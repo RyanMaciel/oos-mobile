@@ -24,6 +24,8 @@
 		F16C890318579DAE002661D5 /* OOS_MobileTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F16C890218579DAE002661D5 /* OOS_MobileTests.m */; };
 		F16C891018579EA2002661D5 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F16C890F18579EA2002661D5 /* MapKit.framework */; };
 		F16C891318579F2F002661D5 /* OOSMDataHandlerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F16C891218579F2F002661D5 /* OOSMDataHandlerModel.m */; };
+		F16C89161857AD1C002661D5 /* OOSMMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F16C89151857AD1C002661D5 /* OOSMMapViewController.m */; };
+		F16C89191857ADC5002661D5 /* OOSMStationMapAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = F16C89181857ADC5002661D5 /* OOSMStationMapAnnotation.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +62,10 @@
 		F16C890F18579EA2002661D5 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		F16C891118579F2F002661D5 /* OOSMDataHandlerModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OOSMDataHandlerModel.h; path = Images.xcassets/OOSMDataHandlerModel.h; sourceTree = "<group>"; };
 		F16C891218579F2F002661D5 /* OOSMDataHandlerModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OOSMDataHandlerModel.m; path = Images.xcassets/OOSMDataHandlerModel.m; sourceTree = "<group>"; };
+		F16C89141857AD1C002661D5 /* OOSMMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OOSMMapViewController.h; sourceTree = "<group>"; };
+		F16C89151857AD1C002661D5 /* OOSMMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OOSMMapViewController.m; sourceTree = "<group>"; };
+		F16C89171857ADC5002661D5 /* OOSMStationMapAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OOSMStationMapAnnotation.h; sourceTree = "<group>"; };
+		F16C89181857ADC5002661D5 /* OOSMStationMapAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OOSMStationMapAnnotation.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -176,6 +182,10 @@
 				F16C88E418579DAE002661D5 /* OOSMAppDelegate.m */,
 				F16C88EC18579DAE002661D5 /* OOSMViewController.h */,
 				F16C88ED18579DAE002661D5 /* OOSMViewController.m */,
+				F16C89141857AD1C002661D5 /* OOSMMapViewController.h */,
+				F16C89151857AD1C002661D5 /* OOSMMapViewController.m */,
+				F16C89171857ADC5002661D5 /* OOSMStationMapAnnotation.h */,
+				F16C89181857ADC5002661D5 /* OOSMStationMapAnnotation.m */,
 			);
 			name = "Shared Resources ";
 			sourceTree = "<group>";
@@ -289,7 +299,9 @@
 			files = (
 				F16C891318579F2F002661D5 /* OOSMDataHandlerModel.m in Sources */,
 				F16C88E518579DAE002661D5 /* OOSMAppDelegate.m in Sources */,
+				F16C89191857ADC5002661D5 /* OOSMStationMapAnnotation.m in Sources */,
 				F16C88E118579DAE002661D5 /* main.m in Sources */,
+				F16C89161857AD1C002661D5 /* OOSMMapViewController.m in Sources */,
 				F16C88EE18579DAE002661D5 /* OOSMViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

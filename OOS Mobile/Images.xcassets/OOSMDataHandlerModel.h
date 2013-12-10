@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
-@interface OOSMDataHandlerModel : NSObject
+@interface OOSMDataHandlerModel : NSObject <NSXMLParserDelegate>
 
+-(NSDictionary*)getDataForStationName:(NSString*)stationName;
+-(NSArray*)getAllStations;
 @end

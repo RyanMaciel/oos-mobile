@@ -22,6 +22,8 @@
 		F16C88F918579DAE002661D5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F16C88D818579DAE002661D5 /* UIKit.framework */; };
 		F16C890118579DAE002661D5 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F16C88FF18579DAE002661D5 /* InfoPlist.strings */; };
 		F16C890318579DAE002661D5 /* OOS_MobileTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F16C890218579DAE002661D5 /* OOS_MobileTests.m */; };
+		F16C891018579EA2002661D5 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F16C890F18579EA2002661D5 /* MapKit.framework */; };
+		F16C891318579F2F002661D5 /* OOSMDataHandlerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F16C891218579F2F002661D5 /* OOSMDataHandlerModel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +57,9 @@
 		F16C88FE18579DAE002661D5 /* OOS MobileTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "OOS MobileTests-Info.plist"; sourceTree = "<group>"; };
 		F16C890018579DAE002661D5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		F16C890218579DAE002661D5 /* OOS_MobileTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OOS_MobileTests.m; sourceTree = "<group>"; };
+		F16C890F18579EA2002661D5 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		F16C891118579F2F002661D5 /* OOSMDataHandlerModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OOSMDataHandlerModel.h; path = Images.xcassets/OOSMDataHandlerModel.h; sourceTree = "<group>"; };
+		F16C891218579F2F002661D5 /* OOSMDataHandlerModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OOSMDataHandlerModel.m; path = Images.xcassets/OOSMDataHandlerModel.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +67,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F16C891018579EA2002661D5 /* MapKit.framework in Frameworks */,
 				F16C88D718579DAE002661D5 /* CoreGraphics.framework in Frameworks */,
 				F16C88D918579DAE002661D5 /* UIKit.framework in Frameworks */,
 				F16C88D518579DAE002661D5 /* Foundation.framework in Frameworks */,
@@ -103,6 +109,7 @@
 		F16C88D318579DAE002661D5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F16C890F18579EA2002661D5 /* MapKit.framework */,
 				F16C88D418579DAE002661D5 /* Foundation.framework */,
 				F16C88D618579DAE002661D5 /* CoreGraphics.framework */,
 				F16C88D818579DAE002661D5 /* UIKit.framework */,
@@ -114,12 +121,9 @@
 		F16C88DA18579DAE002661D5 /* OOS Mobile */ = {
 			isa = PBXGroup;
 			children = (
-				F16C88E318579DAE002661D5 /* OOSMAppDelegate.h */,
-				F16C88E418579DAE002661D5 /* OOSMAppDelegate.m */,
-				F16C88E618579DAE002661D5 /* Main_iPhone.storyboard */,
-				F16C88E918579DAE002661D5 /* Main_iPad.storyboard */,
-				F16C88EC18579DAE002661D5 /* OOSMViewController.h */,
-				F16C88ED18579DAE002661D5 /* OOSMViewController.m */,
+				F16C890E18579E07002661D5 /* iPad Resources */,
+				F16C890D18579DFA002661D5 /* Shared Resources  */,
+				F16C890C18579DEE002661D5 /* iPhone Resources */,
 				F16C88EF18579DAE002661D5 /* Images.xcassets */,
 				F16C88DB18579DAE002661D5 /* Supporting Files */,
 			);
@@ -153,6 +157,35 @@
 				F16C88FF18579DAE002661D5 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		F16C890C18579DEE002661D5 /* iPhone Resources */ = {
+			isa = PBXGroup;
+			children = (
+				F16C88E618579DAE002661D5 /* Main_iPhone.storyboard */,
+			);
+			name = "iPhone Resources";
+			sourceTree = "<group>";
+		};
+		F16C890D18579DFA002661D5 /* Shared Resources  */ = {
+			isa = PBXGroup;
+			children = (
+				F16C891118579F2F002661D5 /* OOSMDataHandlerModel.h */,
+				F16C891218579F2F002661D5 /* OOSMDataHandlerModel.m */,
+				F16C88E318579DAE002661D5 /* OOSMAppDelegate.h */,
+				F16C88E418579DAE002661D5 /* OOSMAppDelegate.m */,
+				F16C88EC18579DAE002661D5 /* OOSMViewController.h */,
+				F16C88ED18579DAE002661D5 /* OOSMViewController.m */,
+			);
+			name = "Shared Resources ";
+			sourceTree = "<group>";
+		};
+		F16C890E18579E07002661D5 /* iPad Resources */ = {
+			isa = PBXGroup;
+			children = (
+				F16C88E918579DAE002661D5 /* Main_iPad.storyboard */,
+			);
+			name = "iPad Resources";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -254,6 +287,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F16C891318579F2F002661D5 /* OOSMDataHandlerModel.m in Sources */,
 				F16C88E518579DAE002661D5 /* OOSMAppDelegate.m in Sources */,
 				F16C88E118579DAE002661D5 /* main.m in Sources */,
 				F16C88EE18579DAE002661D5 /* OOSMViewController.m in Sources */,

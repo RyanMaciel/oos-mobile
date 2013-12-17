@@ -1,8 +1,8 @@
 //
-//  OOSMViewController.h
+//  OOSMStationInfoViewController.h
 //  OOS Mobile
 //
-//  Created by Ryan Maciel on 12/10/13.
+//  Created by Ryan Maciel on 12/17/13.
 //  Copyright (c) 2013 RPS ASA. All rights reserved.
 //
 //OOS Mobile is free software: you can redistribute it and/or modify
@@ -18,8 +18,9 @@
 //   You should have received a copy of the GNU General Public License
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#import <UIKit/UIKit.h>
-
-@interface OOSMViewController : UIViewController
+#import "OOSMViewController.h"
+#import "OOSMStation.h"
+@interface OOSMStationInfoViewController : OOSMViewController
+-(void)setStationInfoToDisplay:(OOSMStation*)stationToDisplay;
 
 @end

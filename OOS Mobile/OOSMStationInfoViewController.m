@@ -1,8 +1,8 @@
 //
-//  OOSMViewController.m
+//  OOSMStationInfoViewController.m
 //  OOS Mobile
 //
-//  Created by Ryan Maciel on 12/10/13.
+//  Created by Ryan Maciel on 12/17/13.
 //  Copyright (c) 2013 RPS ASA. All rights reserved.
 //
 //OOS Mobile is free software: you can redistribute it and/or modify
@@ -18,18 +18,35 @@
 //   You should have received a copy of the GNU General Public License
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#import "OOSMViewController.h"
+#import "OOSMStationInfoViewController.h"
 
-@interface OOSMViewController ()
-
+@interface OOSMStationInfoViewController ()
+@property(strong, nonatomic)IBOutlet UILabel *titleLable;
+@property(strong, nonatomic)OOSMStation *stationToDisplayInfo;
 @end
 
-@implementation OOSMViewController
+@implementation OOSMStationInfoViewController
+@synthesize titleLable=_titleLable;
+@synthesize stationToDisplayInfo=_stationToDisplayInfo;
+
+-(void)setStationInfoToDisplay:(OOSMStation*)stationToDisplay{
+    self.stationToDisplayInfo=stationToDisplay;
+}
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+        // Custom initialization
+    }
+    return self;
+}
 
 - (void)viewDidLoad
 {
+    self.titleLable.text=[self.stationToDisplayInfo getName];
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+	// Do any additional setup after loading the view.
 }
 
 - (void)didReceiveMemoryWarning

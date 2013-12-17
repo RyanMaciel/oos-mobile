@@ -29,6 +29,7 @@
 		F18433791860D95D00D7ED55 /* OOSMStation.m in Sources */ = {isa = PBXBuildFile; fileRef = F18433781860D95D00D7ED55 /* OOSMStation.m */; };
 		F184337F1860DF8F00D7ED55 /* OOSMStationInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F184337E1860DF8F00D7ED55 /* OOSMStationInfoViewController.m */; };
 		F18433821860EC3200D7ED55 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F18433811860EC3200D7ED55 /* CoreLocation.framework */; };
+		F1D88478186100AC00B4A349 /* COPYING in Resources */ = {isa = PBXBuildFile; fileRef = F1D88477186100AC00B4A349 /* COPYING */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -74,6 +75,7 @@
 		F184337D1860DF8F00D7ED55 /* OOSMStationInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OOSMStationInfoViewController.h; sourceTree = "<group>"; };
 		F184337E1860DF8F00D7ED55 /* OOSMStationInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OOSMStationInfoViewController.m; sourceTree = "<group>"; };
 		F18433811860EC3200D7ED55 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		F1D88477186100AC00B4A349 /* COPYING */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = COPYING; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,6 +144,7 @@
 				F16C890C18579DEE002661D5 /* iPhone Resources */,
 				F16C88EF18579DAE002661D5 /* Images.xcassets */,
 				F16C88DB18579DAE002661D5 /* Supporting Files */,
+				F1D88477186100AC00B4A349 /* COPYING */,
 			);
 			path = "OOS Mobile";
 			sourceTree = "<group>";
@@ -324,6 +327,7 @@
 				F16C88EB18579DAE002661D5 /* Main_iPad.storyboard in Resources */,
 				F16C88F018579DAE002661D5 /* Images.xcassets in Resources */,
 				F16C88E818579DAE002661D5 /* Main_iPhone.storyboard in Resources */,
+				F1D88478186100AC00B4A349 /* COPYING in Resources */,
 				F16C88DF18579DAE002661D5 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

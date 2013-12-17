@@ -7,6 +7,8 @@
 //
 #import <MapKit/MapKit.h>
 #import "OOSMDataHandlerModel.h"
+#import "OOSMStation.h"
+
 @interface OOSMDataHandlerModel()
 -(void)getData;
 -(CLLocation*)getStationCoordinates;
@@ -34,34 +36,44 @@
 
 -(CLLocation*)getStationCoordinates{
     
-      NSArray *separatedCoordinateComponents=[self.stationLatitudeLongitude componentsSeparatedByString:@", "];
+      NSArray *separatedCoordinateComponents=[self.stationLatitudeLongitude componentsSeparatedByString:@" "];
     
     NSString *stationLatitude;
     NSString *stationLongitude;
-    if(separatedCoordinateComponents.count==2){
+    if(separatedCoordinateComponents.count>1){
         stationLatitude=[separatedCoordinateComponents objectAtIndex:0];
         stationLongitude=[separatedCoordinateComponents objectAtIndex:1];
+        
+        [stationLatitude stringByReplacingOccurrencesOfString:@"\n" withString:@""];
+        [stationLongitude stringByReplacingOccurrencesOfString:@"\n" withString:@""];
+
     }
-    CLLocation *location=[[CLLocation alloc] initWithLatitude:[stationLatitude floatValue] longitude:[stationLongitude floatValue]];
-    return location;
+    if([stationLatitude floatValue]>=-90 && [stationLatitude floatValue]<=90 && [stationLongitude floatValue]>-180 && [stationLongitude floatValue]<180){
+        CLLocation *location=[[CLLocation alloc] initWithLatitude:[stationLatitude floatValue] longitude:[stationLongitude floatValue]];
+        return location;
+    }
+    return nil;
 }
 
 -(void)setCurrentRSSElement:(NSString *)currentRSSElement{
-    if((![_currentRSSElement isEqualToString:currentRSSElement]) && (!([_currentRSSElement isEqualToString:@"sos:ObservationOffering"] && [currentRSSElement isEqualToString:@"gml:lowerCorner"]))){
-        
-        NSDictionary *newStationDataDictionary=[[NSDictionary alloc] initWithObjectsAndKeys:self.stationName, @"kStationName", [self getStationCoordinates], @"kStationLocation", nil];
-        
-        [self.stationsToDisplay setObject:newStationDataDictionary forKey:self.stationName];
-        
-        self.stationName=nil;
-        self.stationName=[[NSMutableString alloc] init];
-        
-        self.stationLatitudeLongitude=nil;
-        self.stationLatitudeLongitude=[[NSMutableString alloc] init];
-        _currentRSSElement=currentRSSElement;
-
+    if((![self.stationName isEqualToString:@""]) && (![self.stationLatitudeLongitude isEqualToString:@""])){
+        if((![_currentRSSElement isEqualToString:currentRSSElement]) && (!([_currentRSSElement isEqualToString:@"sos:ObservationOffering"] && [currentRSSElement isEqualToString:@"gml:lowerCorner"]))){
+            
+            //add a new station to the dictionary
+            OOSMStation *newStation=[[OOSMStation alloc] initWithName:self.stationName location:[self getStationCoordinates]];
+            
+            [self.stationsToDisplay setObject:newStation forKey:self.stationName];
+            
+            self.stationName=nil;
+            self.stationName=[[NSMutableString alloc] init];
+            
+            self.stationLatitudeLongitude=nil;
+            self.stationLatitudeLongitude=[[NSMutableString alloc] init];
+            
+        }
     }
-    
+    _currentRSSElement=currentRSSElement;
+
 }
 -(NSDictionary*)getDataForStationName:(NSString *)stationName{
     [self getData];

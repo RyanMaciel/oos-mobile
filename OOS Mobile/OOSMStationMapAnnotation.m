@@ -12,6 +12,8 @@
 @synthesize coordinate=_coordinate;
 @synthesize annotationTitle=_annotationTitle;
 @synthesize annotationID=_annotationID;
+@synthesize station=_station;
+
 -(id)initWithTitle:(NSString *)title andCoordinate:(CLLocationCoordinate2D)c2d{
     self=[super init];
     if(self){

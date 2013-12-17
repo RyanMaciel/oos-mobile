@@ -10,6 +10,7 @@
 #import <MapKit/MapKit.h>
 #import "OOSMStationMapAnnotation.h"
 #import "OOSMDataHandlerModel.h"
+#import "OOSMStation.h"
 
 @interface OOSMMapViewController ()
 @property(strong, nonatomic)MKMapView *mapView;
@@ -28,11 +29,11 @@
     
     NSArray *allStations=[self.dataHandlerModel getAllStations];
     for(int i=0; i<allStations.count; i++){
-        CLLocation *stationLocation=[[allStations objectAtIndex:i] objectForKey:@"kStationLocation"];
+        CLLocation *stationLocation=[(OOSMStation*)[allStations objectAtIndex:i] getStationLocation];
         
         OOSMStationMapAnnotation *newMapAnnotation=[[OOSMStationMapAnnotation alloc] initWithTitle:@"" andCoordinate:stationLocation.coordinate];
-        
         [self.mapView addAnnotation:newMapAnnotation];
+        
     }
     [self.view addSubview:self.mapView];
 

@@ -26,6 +26,7 @@
 		F16C891318579F2F002661D5 /* OOSMDataHandlerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F16C891218579F2F002661D5 /* OOSMDataHandlerModel.m */; };
 		F16C89161857AD1C002661D5 /* OOSMMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F16C89151857AD1C002661D5 /* OOSMMapViewController.m */; };
 		F16C89191857ADC5002661D5 /* OOSMStationMapAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = F16C89181857ADC5002661D5 /* OOSMStationMapAnnotation.m */; };
+		F18433791860D95D00D7ED55 /* OOSMStation.m in Sources */ = {isa = PBXBuildFile; fileRef = F18433781860D95D00D7ED55 /* OOSMStation.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +67,8 @@
 		F16C89151857AD1C002661D5 /* OOSMMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OOSMMapViewController.m; sourceTree = "<group>"; };
 		F16C89171857ADC5002661D5 /* OOSMStationMapAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OOSMStationMapAnnotation.h; sourceTree = "<group>"; };
 		F16C89181857ADC5002661D5 /* OOSMStationMapAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OOSMStationMapAnnotation.m; sourceTree = "<group>"; };
+		F18433771860D95D00D7ED55 /* OOSMStation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OOSMStation.h; sourceTree = "<group>"; };
+		F18433781860D95D00D7ED55 /* OOSMStation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OOSMStation.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -176,16 +179,9 @@
 		F16C890D18579DFA002661D5 /* Shared Resources  */ = {
 			isa = PBXGroup;
 			children = (
-				F16C891118579F2F002661D5 /* OOSMDataHandlerModel.h */,
-				F16C891218579F2F002661D5 /* OOSMDataHandlerModel.m */,
-				F16C88E318579DAE002661D5 /* OOSMAppDelegate.h */,
-				F16C88E418579DAE002661D5 /* OOSMAppDelegate.m */,
-				F16C88EC18579DAE002661D5 /* OOSMViewController.h */,
-				F16C88ED18579DAE002661D5 /* OOSMViewController.m */,
-				F16C89141857AD1C002661D5 /* OOSMMapViewController.h */,
-				F16C89151857AD1C002661D5 /* OOSMMapViewController.m */,
-				F16C89171857ADC5002661D5 /* OOSMStationMapAnnotation.h */,
-				F16C89181857ADC5002661D5 /* OOSMStationMapAnnotation.m */,
+				F184337A1860DDF600D7ED55 /* Data Fetching */,
+				F184337C1860DE2800D7ED55 /* Supporting Files */,
+				F184337B1860DE1200D7ED55 /* Map View */,
 			);
 			name = "Shared Resources ";
 			sourceTree = "<group>";
@@ -196,6 +192,39 @@
 				F16C88E918579DAE002661D5 /* Main_iPad.storyboard */,
 			);
 			name = "iPad Resources";
+			sourceTree = "<group>";
+		};
+		F184337A1860DDF600D7ED55 /* Data Fetching */ = {
+			isa = PBXGroup;
+			children = (
+				F18433771860D95D00D7ED55 /* OOSMStation.h */,
+				F18433781860D95D00D7ED55 /* OOSMStation.m */,
+				F16C891118579F2F002661D5 /* OOSMDataHandlerModel.h */,
+				F16C891218579F2F002661D5 /* OOSMDataHandlerModel.m */,
+			);
+			name = "Data Fetching";
+			sourceTree = "<group>";
+		};
+		F184337B1860DE1200D7ED55 /* Map View */ = {
+			isa = PBXGroup;
+			children = (
+				F16C89141857AD1C002661D5 /* OOSMMapViewController.h */,
+				F16C89151857AD1C002661D5 /* OOSMMapViewController.m */,
+				F16C89171857ADC5002661D5 /* OOSMStationMapAnnotation.h */,
+				F16C89181857ADC5002661D5 /* OOSMStationMapAnnotation.m */,
+			);
+			name = "Map View";
+			sourceTree = "<group>";
+		};
+		F184337C1860DE2800D7ED55 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				F16C88E318579DAE002661D5 /* OOSMAppDelegate.h */,
+				F16C88E418579DAE002661D5 /* OOSMAppDelegate.m */,
+				F16C88EC18579DAE002661D5 /* OOSMViewController.h */,
+				F16C88ED18579DAE002661D5 /* OOSMViewController.m */,
+			);
+			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -297,6 +326,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F18433791860D95D00D7ED55 /* OOSMStation.m in Sources */,
 				F16C891318579F2F002661D5 /* OOSMDataHandlerModel.m in Sources */,
 				F16C88E518579DAE002661D5 /* OOSMAppDelegate.m in Sources */,
 				F16C89191857ADC5002661D5 /* OOSMStationMapAnnotation.m in Sources */,
@@ -521,6 +551,7 @@
 				F16C890818579DAE002661D5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		F16C890918579DAE002661D5 /* Build configuration list for PBXNativeTarget "OOS MobileTests" */ = {
 			isa = XCConfigurationList;
@@ -529,6 +560,7 @@
 				F16C890B18579DAE002661D5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

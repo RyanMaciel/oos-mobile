@@ -1,8 +1,8 @@
 //
-//  OOSMStationMapAnnotation.m
+//  OOSMStationInfoViewController.h
 //  OOS Mobile
 //
-//  Created by Ryan Maciel on 12/10/13.
+//  Created by Ryan Maciel on 12/17/13.
 //
 //Copyright (c) 2013 RPS ASA. All rights reserved.
 
@@ -20,20 +20,9 @@
 //   You should have received a copy of the GNU General Public License
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#import "OOSMStationMapAnnotation.h"
+#import "OOSMViewController.h"
+#import "OOSMStation.h"
+@interface OOSMStationInfoViewController : OOSMViewController
+-(void)setStationInfoToDisplay:(OOSMStation*)stationToDisplay;
 
-@implementation OOSMStationMapAnnotation
-@synthesize coordinate=_coordinate;
-@synthesize annotationTitle=_annotationTitle;
-@synthesize annotationID=_annotationID;
-@synthesize station=_station;
-
--(id)initWithTitle:(NSString *)title andCoordinate:(CLLocationCoordinate2D)c2d{
-    self=[super init];
-    if(self){
-        _annotationTitle=title;
-        _coordinate=c2d;
-    }
-    return self;
-}
 @end

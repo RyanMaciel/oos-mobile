@@ -4,10 +4,10 @@
 //
 //  Created by Ryan Maciel on 12/17/13.
 //
-//Copyright (c) 2013 RPS ASA. All rights reserved.
-
-//This file is part of OOS Mobile
-//OOS Mobile is free software: you can redistribute it and/or modify
+//  Copyright (c) 2013 RPS ASA. All rights reserved.
+//
+//  This file is part of OOS Mobile
+//  OOS Mobile is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU General Public License as published by
 //    the Free Software Foundation, either version 3 of the License, or
 //    (at your option) any later version.
@@ -24,9 +24,9 @@
 #import <MapKit/MapKit.h>
 @interface OOSMStation : NSObject
 
--(void)setLocation:(CLLocation*)stationLocation;
--(void)setName:(NSString*)stationName;
--(CLLocation*)getStationLocation;
--(NSString*)getName;
--(id)initWithName:(NSString*)name location:(CLLocation*)location;
+@property(strong, nonatomic)NSString *nameForServer;
+@property(strong, nonatomic)NSString *userReadableName;
+@property(strong, nonatomic)CLLocation *location;
+
+-(id)initWithUserReadableName:(NSString*)name nameForServer:(NSString*)nameForServer location:(CLLocation*)location;
 @end

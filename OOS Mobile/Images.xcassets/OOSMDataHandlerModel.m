@@ -4,10 +4,10 @@
 //
 //  Created by Ryan Maciel on 12/10/13.
 // 
-//Copyright (c) 2013 RPS ASA. All rights reserved.
-
-//This file is part of OOS Mobile
-//OOS Mobile is free software: you can redistribute it and/or modify
+//  Copyright (c) 2013 RPS ASA. All rights reserved.
+//
+//  This file is part of OOS Mobile
+//  OOS Mobile is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU General Public License as published by
 //    the Free Software Foundation, either version 3 of the License, or
 //    (at your option) any later version.
@@ -33,7 +33,7 @@
 @property(strong, nonatomic)NSString *currentRSSElement;
 @property(strong, nonatomic)NSMutableString *stationName;
 @property(strong, nonatomic)NSMutableString *stationLatitudeLongitude;
-
+@property(strong, nonatomic)NSMutableString *stationNameForServer;
 @end
 
 @implementation OOSMDataHandlerModel
@@ -42,7 +42,7 @@
 @synthesize currentRSSElement=_currentRSSElement;
 @synthesize stationName=_stationName;
 @synthesize stationLatitudeLongitude=_stationLatitudeLongitude;
-
+@synthesize stationNameForServer=_stationNameForServer;
 
 //returns all of the stations from the XML
 -(NSArray*)getAllStations{
@@ -51,42 +51,60 @@
 
 -(CLLocation*)getStationCoordinates{
     
-      NSArray *separatedCoordinateComponents=[self.stationLatitudeLongitude componentsSeparatedByString:@" "];
+    //should separate the coordinates into to string components
+    NSArray *separatedCoordinateComponents=[self.stationLatitudeLongitude componentsSeparatedByString:@" "];
     
+    //define the component strings
     NSString *stationLatitude;
     NSString *stationLongitude;
+    
+    //if the [self.stationLatitudeLongitude componentsSeparatedByString:@" "] didn't work then do nothing
     if(separatedCoordinateComponents.count>1){
+        
+        //set the component strings
         stationLatitude=[separatedCoordinateComponents objectAtIndex:0];
         stationLongitude=[separatedCoordinateComponents objectAtIndex:1];
         
+        //remove some formatting that often appears
         [stationLatitude stringByReplacingOccurrencesOfString:@"\n" withString:@""];
         [stationLongitude stringByReplacingOccurrencesOfString:@"\n" withString:@""];
 
     }
+    
+    //make sure the coordinates are valid on the coordinate grid.
     if([stationLatitude floatValue]>=-90 && [stationLatitude floatValue]<=90 && [stationLongitude floatValue]>-180 && [stationLongitude floatValue]<180){
+        //stores the values of the two strings into a CLLocation object
         CLLocation *location=[[CLLocation alloc] initWithLatitude:[stationLatitude floatValue] longitude:[stationLongitude floatValue]];
         return location;
     }
+    //returns nil if the coordinates weren't formatted properly.
     return nil;
 }
 
 -(void)setCurrentRSSElement:(NSString *)currentRSSElement{
-    if((![self.stationName isEqualToString:@""]) && (![self.stationLatitudeLongitude isEqualToString:@""])){
+    //make sure that all the values for the station are not empty strings.
+    if((![self.stationName isEqualToString:@""]) && (![self.stationLatitudeLongitude isEqualToString:@""] && (![self.stationNameForServer isEqualToString:@""]))){
+        
+        //makes sure that the value of currentRSSElement is in fact being changed to a different value and that currentRSSElement isn't being changed from sos:ObservationOffering to gml:lowerCorner
         if((![_currentRSSElement isEqualToString:currentRSSElement]) && (!([_currentRSSElement isEqualToString:@"sos:ObservationOffering"] && [currentRSSElement isEqualToString:@"gml:lowerCorner"]))){
+            //allocate and initialize the newStation
+            OOSMStation *newStation=[[OOSMStation alloc] initWithUserReadableName:self.stationName nameForServer:self.stationNameForServer location:[self getStationCoordinates]];
             
-            //add a new station to the dictionary
-            OOSMStation *newStation=[[OOSMStation alloc] initWithName:self.stationName location:[self getStationCoordinates]];
-            
+            //add a new station to the station dictionary
             [self.stationsToDisplay setObject:newStation forKey:self.stationName];
             
+            //resets the stationName, stationLatitudeLongitude and stationNameForServer properties for the next stations
             self.stationName=nil;
             self.stationName=[[NSMutableString alloc] init];
             
             self.stationLatitudeLongitude=nil;
             self.stationLatitudeLongitude=[[NSMutableString alloc] init];
             
+            self.stationNameForServer=nil;
+            self.stationNameForServer = [[NSMutableString alloc] init];
         }
     }
+    //changes the currentRSSElement variable
     _currentRSSElement=currentRSSElement;
 
 }
@@ -103,6 +121,8 @@
     self.currentRSSElement=elementName;
 }
 -(void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string{
+    
+    //gets the data from the xml and stores it in the appropriate properties
     if([self.currentRSSElement isEqualToString:@"gml:description"]){
         [self.stationName appendString:string];
         
@@ -110,10 +130,13 @@
     if([self.currentRSSElement isEqualToString:@"gml:lowerCorner"]){
         [self.stationLatitudeLongitude appendString:string];
     }
+    if([self.currentRSSElement isEqualToString:@"gml:name"]){
+        [self.stationNameForServer appendString:string];
+    }
 }
 
 -(void)getData{
-    NSURL *feedURL=[NSURL URLWithString:@"file:///Users/ryanmaciel/test/get_caps.xml"];
+    NSURL *feedURL=[NSURL URLWithString:@"http://opendap.co-ops.nos.noaa.gov/ioos-dif-sos/SOS?service=SOS&request=GetCapabilities&version=1.0.0"];
     self.parser=[[NSXMLParser alloc] initWithContentsOfURL:feedURL];
     [self.parser setDelegate:self];
     [self.parser setShouldResolveExternalEntities:NO];

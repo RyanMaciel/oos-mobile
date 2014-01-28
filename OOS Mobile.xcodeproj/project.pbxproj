@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		F1142E8C18610A00009AA3B3 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F1142E8B18610A00009AA3B3 /* Main_iPad.storyboard */; };
+		F1142E8F18610AD3009AA3B3 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F1142E8D18610AD3009AA3B3 /* Main_iPad.storyboard */; };
 		F16C88D518579DAE002661D5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F16C88D418579DAE002661D5 /* Foundation.framework */; };
 		F16C88D718579DAE002661D5 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F16C88D618579DAE002661D5 /* CoreGraphics.framework */; };
 		F16C88D918579DAE002661D5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F16C88D818579DAE002661D5 /* UIKit.framework */; };
@@ -30,6 +30,7 @@
 		F184337F1860DF8F00D7ED55 /* OOSMStationInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F184337E1860DF8F00D7ED55 /* OOSMStationInfoViewController.m */; };
 		F18433821860EC3200D7ED55 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F18433811860EC3200D7ED55 /* CoreLocation.framework */; };
 		F1D88478186100AC00B4A349 /* COPYING in Resources */ = {isa = PBXBuildFile; fileRef = F1D88477186100AC00B4A349 /* COPYING */; };
+		F1E29B3B18725AB900416D5C /* OOSMParseHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = F1E29B3A18725AB900416D5C /* OOSMParseHelper.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,7 +44,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		F1142E8B18610A00009AA3B3 /* Main_iPad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main_iPad.storyboard; path = ../Main_iPad.storyboard; sourceTree = "<group>"; };
+		F1142E8E18610AD3009AA3B3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = "OOS Mobile/Base.lproj/Main_iPad.storyboard"; sourceTree = "<group>"; };
 		F16C88D118579DAE002661D5 /* OOS Mobile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "OOS Mobile.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F16C88D418579DAE002661D5 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		F16C88D618579DAE002661D5 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -76,6 +77,8 @@
 		F184337E1860DF8F00D7ED55 /* OOSMStationInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OOSMStationInfoViewController.m; sourceTree = "<group>"; };
 		F18433811860EC3200D7ED55 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		F1D88477186100AC00B4A349 /* COPYING */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = COPYING; sourceTree = "<group>"; };
+		F1E29B3918725AB900416D5C /* OOSMParseHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OOSMParseHelper.h; sourceTree = "<group>"; };
+		F1E29B3A18725AB900416D5C /* OOSMParseHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OOSMParseHelper.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -200,7 +203,7 @@
 		F16C890E18579E07002661D5 /* iPad Resources */ = {
 			isa = PBXGroup;
 			children = (
-				F1142E8B18610A00009AA3B3 /* Main_iPad.storyboard */,
+				F1142E8D18610AD3009AA3B3 /* Main_iPad.storyboard */,
 			);
 			name = "iPad Resources";
 			sourceTree = "<group>";
@@ -208,6 +211,8 @@
 		F184337A1860DDF600D7ED55 /* Data Fetching */ = {
 			isa = PBXGroup;
 			children = (
+				F1E29B3918725AB900416D5C /* OOSMParseHelper.h */,
+				F1E29B3A18725AB900416D5C /* OOSMParseHelper.m */,
 				F18433771860D95D00D7ED55 /* OOSMStation.h */,
 				F18433781860D95D00D7ED55 /* OOSMStation.m */,
 				F16C891118579F2F002661D5 /* OOSMDataHandlerModel.h */,
@@ -324,7 +329,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F1142E8C18610A00009AA3B3 /* Main_iPad.storyboard in Resources */,
+				F1142E8F18610AD3009AA3B3 /* Main_iPad.storyboard in Resources */,
 				F16C88F018579DAE002661D5 /* Images.xcassets in Resources */,
 				F16C88E818579DAE002661D5 /* Main_iPhone.storyboard in Resources */,
 				F1D88478186100AC00B4A349 /* COPYING in Resources */,
@@ -353,6 +358,7 @@
 				F16C89191857ADC5002661D5 /* OOSMStationMapAnnotation.m in Sources */,
 				F16C88E118579DAE002661D5 /* main.m in Sources */,
 				F184337F1860DF8F00D7ED55 /* OOSMStationInfoViewController.m in Sources */,
+				F1E29B3B18725AB900416D5C /* OOSMParseHelper.m in Sources */,
 				F16C89161857AD1C002661D5 /* OOSMMapViewController.m in Sources */,
 				F16C88EE18579DAE002661D5 /* OOSMViewController.m in Sources */,
 			);
@@ -377,6 +383,15 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		F1142E8D18610AD3009AA3B3 /* Main_iPad.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F1142E8E18610AD3009AA3B3 /* Base */,
+			);
+			name = Main_iPad.storyboard;
+			path = ..;
+			sourceTree = "<group>";
+		};
 		F16C88DD18579DAE002661D5 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (

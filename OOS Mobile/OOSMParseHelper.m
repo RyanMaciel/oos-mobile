@@ -27,6 +27,11 @@
 @property(strong, nonatomic)NSString *currentElement;
 @property(strong, nonatomic)NSDictionary *elementsToFind;
 @property(strong, nonatomic)NSMutableArray *elementsToReturn;
+@property(strong, nonatomic)NSString *stationName;
+@property(nonatomic)NSNumber *currentStationSensorPropertyIndex;
+@property(nonatomic)BOOL urlIsValid;
+@property(nonatomic)BOOL shouldContinueParsing;
+
 @end
 
 @implementation OOSMParseHelper
@@ -34,25 +39,52 @@
 @synthesize currentElement=_currentElement;
 @synthesize elementsToFind=_elementsToFind;
 @synthesize elementsToReturn=_elementsToReturn;
-@synthesize objectToUpdateForReturnDictionary=_objectToUpdateForReturnDictionary;
+@synthesize delegate=_delegate;
+@synthesize stationName=_stationName;
+@synthesize currentStationSensorPropertyIndex=_currentStationSensorPropertyIndex;
+@synthesize operationDelegate=_operationDelegate;
+@synthesize urlIsValid=_urlIsValid;
+@synthesize shouldContinueParsing=_shouldContinueParsing;
 
 //when the objectToUpdateForReturnDictionary property is set the parser will start parsing.
--(void)setObjectToUpdateForReturnDictionary:(NSObject *)objectToUpdateForReturnDictionary{
-    _objectToUpdateForReturnDictionary = objectToUpdateForReturnDictionary;
-    [self.parser parse];
+-(void)setDelegate:(id<OOSMParseHelperDelegate>)delegate{
+    NSLog(@"bloop");
+    
+    self.shouldContinueParsing = YES;
+
+    _delegate = delegate;
+    
+    if(self.urlIsValid){
+        //start parsing
+        [self.parser parse];
+    }else{
+        [self elementsToReturnChanged];
+    }
+}
+-(void)parserDidEndDocument:(NSXMLParser *)parser{
+    [self elementsToReturnChanged];
 }
 
 -(void)elementsToReturnChanged{
-    if([self.objectToUpdateForReturnDictionary respondsToSelector:@selector(updateForParseHelperReturnArray:)]){
-        //if self.elementsToReturn is not empty and its content is not @""
-        if(self.elementsToReturn.count>0 && ![((NSString*)[self.elementsToReturn objectAtIndex:0]) isEqualToString:@""]){
-            [((OOSMStationInfoViewController*) self.objectToUpdateForReturnDictionary) updateForParseHelperReturnArray:(NSString*)[self.elementsToReturn objectAtIndex:0]];
-        }else{
-            [((OOSMStationInfoViewController*) self.objectToUpdateForReturnDictionary) updateForParseHelperReturnArray:@"Information Not Avaliable"];
-        }
-        
-        
+    //the string to return to the delegate
+    NSString *stringForDelegate = nil;
+    
+    //if self.elementsToReturn is not empty and its content is not @""
+    if(self.elementsToReturn.count>0 && ![[self.elementsToReturn objectAtIndex:0] isEqualToString:@""] && self.shouldContinueParsing){
+        stringForDelegate = [self.elementsToReturn objectAtIndex:0];
     }
+        //call the delegate method on the main thread. To update the GUI
+        __weak NSString *weakStringForDelegate = stringForDelegate;
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^(void){
+            [self.delegate parseHelperFoundMatch:self withReturnString:weakStringForDelegate];
+        }];
+        
+        //stop the parsing. it has already returned a value and is no longer needed.
+        self.shouldContinueParsing = NO;
+        [self.parser abortParsing];
+        self.parser = nil;
+        [self.operationDelegate parseHelperFinished];
+  
 }
 
 -(void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName attributes:(NSDictionary *)attributeDict{
@@ -109,18 +141,32 @@
 }
 
 //initailize and set up the parser.
--(id)initWithURL:(NSURL *)url andElementsToRead:(NSDictionary *)element{
+-(id)initWithURL:(NSURL*)URL elementsToFind:(NSDictionary *)element stationName:(NSString*)stationName{
     self = [super init];
     if(self){
-        self.elementsToFind=element;
+
+        //prevents double values from apearing.
+        self.shouldContinueParsing = YES;
+        self.elementsToFind = element;
         self.elementsToReturn = [[NSMutableArray alloc] init];
         self.currentElement = [[NSString alloc] init];
         self.currentElement=@"";
-        self.parser=[[NSXMLParser alloc] initWithContentsOfURL:url];
+        self.stationName = stationName;
+        self.currentStationSensorPropertyIndex = [[NSNumber alloc] initWithInt:0];
+        
+        self.parser = [[NSXMLParser alloc] initWithContentsOfURL:URL];
+        
+        if(!URL){
+            NSLog(@"An invalid url has been passed to OOSMParseHelper");
+            self.urlIsValid = NO;
+        }else{
+            self.urlIsValid = YES;
+        }
+        
         [self.parser setDelegate:self];
         [self.parser setShouldResolveExternalEntities:NO];
-        
     }
     return self;
 }
+
 @end

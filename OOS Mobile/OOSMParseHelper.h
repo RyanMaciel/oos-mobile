@@ -25,11 +25,32 @@
 //the NSDictionary recieved as a parameter of this initializer method should be formatted so the the key is the element name to find and the value is another NSDictionary whose single key will be the element's attribute, and single
 //value will be the attribute's value.
 //if no attribute is meant to be specified the value for the key should be set to and empty string (@"")
+
 #import <Foundation/Foundation.h>
 
+@protocol OOSMParseHelperDelegate;
+@protocol OOSMParseHelperOperationDelegate;
+
 @interface OOSMParseHelper : NSObject
--(id)initWithURL:(NSURL*)url andElementsToRead:(NSDictionary*)element;
+
+
+-(id)initWithURL:(NSURL*)URL elementsToFind:(NSDictionary *)element stationName:(NSString*)stationName;
 
 //the parsing will not start until this property is set.
-@property(strong, nonatomic)NSObject *objectToUpdateForReturnDictionary;
+@property (nonatomic, assign) id <OOSMParseHelperDelegate> delegate;
+@property (nonatomic, assign) id <OOSMParseHelperOperationDelegate> operationDelegate;
+
+@end
+
+@protocol OOSMParseHelperDelegate <NSObject>
+
+//This method will inform the delegate when a string has been found from the XML. The delegate should be able to handle a nil value for the returnString Parameter
+-(void)parseHelperFoundMatch:(OOSMParseHelper *)parseHelper withReturnString:(NSString*)returnString;
+
+@end
+
+@protocol OOSMParseHelperOperationDelegate <NSObject>
+
+-(void)parseHelperFinished;
+
 @end

@@ -22,7 +22,7 @@
 
 #import <MapKit/MapKit.h>
 #import "OOSMDataHandlerModel.h"
-#import "OOSMStation.h"
+
 
 @interface OOSMDataHandlerModel()
 -(void)getData;
@@ -34,6 +34,7 @@
 @property(strong, nonatomic)NSMutableString *stationName;
 @property(strong, nonatomic)NSMutableString *stationLatitudeLongitude;
 @property(strong, nonatomic)NSMutableString *stationNameForServer;
+
 @end
 
 @implementation OOSMDataHandlerModel
@@ -43,11 +44,13 @@
 @synthesize stationName=_stationName;
 @synthesize stationLatitudeLongitude=_stationLatitudeLongitude;
 @synthesize stationNameForServer=_stationNameForServer;
+@synthesize delegate=_delegate;
 
-//returns all of the stations from the XML
--(NSArray*)getAllStations{
-    return [self.stationsToDisplay allValues];
+-(void)setDelegate:(id<OOSMDataHandelerDelegate>)delegate{
+    _delegate = delegate;
+    [self.parser parse];
 }
+
 
 -(CLLocation*)getStationCoordinates{
     
@@ -90,9 +93,12 @@
             //allocate and initialize the newStation
             OOSMStation *newStation=[[OOSMStation alloc] initWithUserReadableName:self.stationName nameForServer:self.stationNameForServer location:[self getStationCoordinates]];
             
+            //update the map with the new station
+            [self.delegate datatHandlerFoundStation:newStation];
+
             //add a new station to the station dictionary
             [self.stationsToDisplay setObject:newStation forKey:self.stationName];
-            
+
             //resets the stationName, stationLatitudeLongitude and stationNameForServer properties for the next stations
             self.stationName=nil;
             self.stationName=[[NSMutableString alloc] init];
@@ -140,7 +146,6 @@
     self.parser=[[NSXMLParser alloc] initWithContentsOfURL:feedURL];
     [self.parser setDelegate:self];
     [self.parser setShouldResolveExternalEntities:NO];
-    [self.parser parse];
 }
 -(id)init{
     self=[super init];
@@ -153,4 +158,5 @@
     }
     return self;
 }
+
 @end

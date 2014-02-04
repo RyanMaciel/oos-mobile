@@ -22,19 +22,18 @@
 
 #import "OOSMMapViewController.h"
 #import "OOSMStationMapAnnotation.h"
-#import "OOSMDataHandlerModel.h"
 #import "OOSMStation.h"
 #import "OOSMStationInfoViewController.h"
 #import <CoreLocation/CoreLocation.h>
+#import "OOSMDataHandlerModel.h"
 
-
-@interface OOSMMapViewController ()
+@interface OOSMMapViewController () <OOSMDataHandelerDelegate>
 
 @property(strong, nonatomic)MKMapView *mapView;
 @property(strong, nonatomic)OOSMDataHandlerModel *dataHandlerModel;
 @property(strong, nonatomic)OOSMStationMapAnnotation *tappedMapAnnotation;
 @property(strong, nonatomic)CLLocationManager *coreLocationManager;
--(void)populateMap;
+-(void)createMap;
 
 @end
 
@@ -44,6 +43,32 @@
 @synthesize tappedMapAnnotation=_tappedMapAnnotation;
 @synthesize coreLocationManager=_coreLocationManager;
 
+-(void)datatHandlerFoundStation:(OOSMStation *)station{
+    
+    CLLocation *stationLocation=station.location;
+    
+    OOSMStationMapAnnotation *newMapAnnotation=[[OOSMStationMapAnnotation alloc] initWithTitle:@"" andCoordinate:stationLocation.coordinate];
+    newMapAnnotation.station=station;
+    [self.mapView addAnnotation:newMapAnnotation];
+}
+-(MKAnnotationView*)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation{
+
+    //reuse a new MKAnnotationView if one cannot be reused
+    static NSString *viewIdentifier = @"MKPinAnnotationView";
+    MKPinAnnotationView *annotationView = (MKPinAnnotationView*)
+    [self.mapView dequeueReusableAnnotationViewWithIdentifier:viewIdentifier];
+    
+    if(!annotationView) {
+        annotationView = [[MKPinAnnotationView alloc]
+                           initWithAnnotation:annotation reuseIdentifier:viewIdentifier];
+    }
+    
+    //give the annotation a custom image
+    annotationView.image = [UIImage imageNamed:@"blue_buoy_icon.png"];
+
+    annotationView.frame = CGRectMake(0, 0, 20, 20);
+    return annotationView;
+}
 //handle touches on the annotations
 -(void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view{
     if([view.annotation isKindOfClass:[OOSMStationMapAnnotation class]]){
@@ -62,22 +87,12 @@
     }
 }
 
--(void)populateMap{
+-(void)createMap{
     self.mapView=[[MKMapView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
     self.mapView.delegate=self;
     
-    MKCoordinateRegion regionToFocusOn=[self.mapView regionThatFits:MKCoordinateRegionMakeWithDistance(self.coreLocationManager.location.coordinate, 1000, 1000)];
+    MKCoordinateRegion regionToFocusOn=[self.mapView regionThatFits:MKCoordinateRegionMakeWithDistance(CLLocationCoordinate2DMake(42, -70), 10000000, 10000000)];
     [self.mapView setRegion:regionToFocusOn];
-    
-    NSArray *allStations=[self.dataHandlerModel getAllStations];
-    for(int i=0; i<allStations.count; i++){
-        CLLocation *stationLocation=((OOSMStation*)[allStations objectAtIndex:i]).location;
-        
-        OOSMStationMapAnnotation *newMapAnnotation=[[OOSMStationMapAnnotation alloc] initWithTitle:@"" andCoordinate:stationLocation.coordinate];
-        newMapAnnotation.station=[allStations objectAtIndex:i];
-        [self.mapView addAnnotation:newMapAnnotation];
-        
-    }
     [self.view addSubview:self.mapView];
 
 }
@@ -93,14 +108,16 @@
 
 - (void)viewDidLoad
 {
-    self.dataHandlerModel=[[OOSMDataHandlerModel alloc] init];
+    [self createMap];
+    OOSMDataHandlerModel *dataHandlerModel=[[OOSMDataHandlerModel alloc] init];
+    dataHandlerModel.delegate = self;
     
     self.coreLocationManager=[[CLLocationManager alloc] init];
     self.coreLocationManager.desiredAccuracy=kCLLocationAccuracyHundredMeters;
     self.coreLocationManager.distanceFilter=kCLDistanceFilterNone;
     [self.coreLocationManager startUpdatingLocation];
     
-    [self populateMap];
+    
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
 }

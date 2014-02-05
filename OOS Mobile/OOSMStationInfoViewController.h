@@ -24,6 +24,6 @@
 #import "OOSMStation.h"
 
 @interface OOSMStationInfoViewController : OOSMViewController
+
 -(void)setStationInfoToDisplay:(OOSMStation*)stationToDisplay;
--(void)updateForParseHelperReturnArray:(NSString*)returnString;
 @end

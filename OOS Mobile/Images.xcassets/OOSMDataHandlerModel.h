@@ -21,9 +21,19 @@
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #import <Foundation/Foundation.h>
+#import "OOSMStation.h"
+
+@protocol OOSMDataHandelerDelegate;
 
 @interface OOSMDataHandlerModel : NSObject <NSXMLParserDelegate>
 
--(NSDictionary*)getDataForStationName:(NSString*)stationName;
--(NSArray*)getAllStations;
+@property (nonatomic, assign) id <OOSMDataHandelerDelegate> delegate;
+
+
+@end
+
+@protocol OOSMDataHandelerDelegate <NSObject>
+
+-(void)datatHandlerFoundStation:(OOSMStation*)station;
+
 @end

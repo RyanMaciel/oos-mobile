@@ -22,14 +22,25 @@
 
 #import "OOSMStationInfoViewController.h"
 #import "OOSMParseHelper.h"
-@interface OOSMStationInfoViewController ()
+#import "OOSMParseHelperOperation.h"
+
+@interface OOSMStationInfoViewController () <OOSMParseOperationDelegate>
+
 @property(strong, nonatomic)IBOutlet UILabel *titleLable;
 @property(strong, nonatomic)OOSMStation *stationToDisplayInfo;
 @property(strong, nonatomic)OOSMParseHelper *parseHelper;
 @property(strong, nonatomic)NSString *currentStationProperty;
 @property(strong, nonatomic)NSArray *sensorProperties;
 @property(nonatomic)int currentSensorPropertyIndex;
+@property(nonatomic, readonly)BOOL stationIsAUserFav;
+@property(nonatomic)int numberOfCallbacksFromParser;
+@property(nonatomic)BOOL recieviedNonNilValueFromParser;
+
 -(void)addSensorProperties;
+-(IBAction)addStationToUserFavorites;
+
+//add an IBOutlet to controll the activity indicator
+@property(strong, nonatomic)IBOutlet UIActivityIndicatorView *activityView;
 @end
 
 @implementation OOSMStationInfoViewController
@@ -38,47 +49,126 @@
 @synthesize parseHelper=_parseHelper;
 @synthesize currentStationProperty=_currentStationProperty;
 @synthesize sensorProperties=_sensorProperties;
+@synthesize stationIsAUserFav=_stationIsAUserFav;
+@synthesize activityView=_activityView;
+@synthesize numberOfCallbacksFromParser=_numberOfCallbacksFromParser;
+@synthesize recieviedNonNilValueFromParser=_recieviedNonNilValueFromParser;
 
--(void)addSensorProperties{
 
-    //set up the parse helper
+//lazily initialize this varible to tell if the station is a user favorite
+-(BOOL)stationIsAUserFav{
     
-    //on each get request the XML element that holds the result is "ioos:Quantity"
-    NSDictionary *elementsForParseHelper = [[NSDictionary alloc] initWithObjectsAndKeys: @"", @"ioos:Quantity", nil];
-    
-    //make the request correspond to the station we want to view
-    NSString *urlString=[@"http://opendap.co-ops.nos.noaa.gov/ioos-dif-sos/SOS?service=SOS&request=GetObservation&version=1.0.0&responseFormat=text/xml;schema=%22ioos/0.6.1%22&observedProperty=**replace**&offering=" stringByAppendingString:self.stationToDisplayInfo.nameForServer];
-    
-    //submit each value of the sensorProperties property to OOSMParseHelper through changing the URL
-    NSURL *urlForParseHelper = [NSURL URLWithString:[urlString stringByReplacingOccurrencesOfString:@"**replace**" withString:((NSString*)[self.sensorProperties objectAtIndex:self.currentSensorPropertyIndex])]];
-    
-    //set up the parser
-    self.parseHelper = [[OOSMParseHelper alloc] initWithURL:urlForParseHelper andElementsToRead:elementsForParseHelper];
-    self.parseHelper.objectToUpdateForReturnDictionary = self;
-    
+    //dont run the code below if this variable has already been set to yes.
+    if(!_stationIsAUserFav){
+        
+        //get the info from user defaults
+        NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+        NSArray *userStationFavorites = [userDefaults arrayForKey:@"kUserFavoriteStations"];
+        
+        for (int i=0; i<userStationFavorites.count; i++) {
+            if([[userStationFavorites objectAtIndex:i]  isEqual: @{@"Server Name" : self.stationToDisplayInfo.nameForServer, @"User Readable Name" : self.stationToDisplayInfo.userReadableName}]){
+                
+                //this code will be run if the station is a user favorite station
+                //set the "add to favorites" button to have a light grey tint and not to call anything if tapped on.
+                self.navigationItem.rightBarButtonItem.enabled = NO;
+                
+                return YES;
+            }
+        }
+        
+        //if it is not a user station favorite return no
+        return NO;
+        
+    }else{
+        
+        //if self.stationIsAUserFav is already YES return YES.
+        return YES;
+    }
 }
 
--(void)updateForParseHelperReturnArray:(NSString*)returnString{
+-(IBAction)addStationToUserFavorites{
     
-    //add a lable to the view describing the return String
-    UILabel *newSensorPropertyLable=[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
-    newSensorPropertyLable.text=[[self.currentStationProperty stringByAppendingString:@": " ] stringByAppendingString:returnString];
-    newSensorPropertyLable.center=CGPointMake(100, 300+self.currentSensorPropertyIndex*50);
-    [newSensorPropertyLable sizeToFit];
-    [self.view addSubview:newSensorPropertyLable];
-    
-    //subtract one in the self.sensor.count because we add one to it in the code.
-    if(self.currentSensorPropertyIndex<self.sensorProperties.count-1){
-        //add one to currentSensoPropertyIndex.
-        self.currentSensorPropertyIndex++;
+    //this code really should not be called if self.stationIsAUserFav. This if statement is a safeguard.
+    if(!self.stationIsAUserFav){
         
-        //change the currentStationProperty
-        self.currentStationProperty=(NSString*)[self.sensorProperties objectAtIndex:self.currentSensorPropertyIndex];
+        //get the info from user defaults
+        NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+        NSArray *userStationFavorites = [userDefaults arrayForKey:@"kUserFavoriteStations"];
         
-        //get the new sensor properties
-        [self addSensorProperties];
+        //create a NSDictionary to hold info about the station
+        NSDictionary *stationInfo = [[NSDictionary alloc] initWithObjectsAndKeys:self.stationToDisplayInfo.nameForServer, @"Server Name", self.stationToDisplayInfo.userReadableName, @"User Readable Name", nil];
+        
+        if(userStationFavorites){
+            //add stationToDisplayInfo to the array
+            NSMutableArray *userStationFavoritesMutable=[userStationFavorites mutableCopy];
+            
+            [userStationFavoritesMutable addObject:stationInfo];
+            userStationFavorites = (NSArray*) userStationFavoritesMutable;
+            
+        }else{
+            //if the userStationFavorites array is == nil then allocate and initialize a new one
+            userStationFavorites = [[NSArray alloc] initWithObjects:stationInfo, nil];
+        }
+        
+        [userDefaults setObject:userStationFavorites forKey:@"kUserFavoriteStations"];
+        
     }
+    //force update self.stationIsAUserFav
+    [self stationIsAUserFav];
+}
+-(void)addSensorProperties{
     
+    //set up a NSOperationQueue to do the parsing on a seperate thread
+    NSOperationQueue *myQueue = [[NSOperationQueue alloc] init];
+    myQueue.name = @"Parser Queue";
+    
+    //set up OOSMParseHelperOperation
+    OOSMParseHelperOperation *parseHelperOp=[[OOSMParseHelperOperation alloc] initWithDelegate:self stationName:self.stationToDisplayInfo.nameForServer elementsToFind:[NSDictionary dictionaryWithObjectsAndKeys:@"", @"air_temperature", @"", @"air_pressure", @"", @"relative_humidity", @"", @"rain_fall", @"", @"visibility", @"", @"air_temperature", @"", @"sea_water_electrical_conductivity", @"", @"currents", @"", @"sea_water_salinity", @"", @"water_surface_height_above_reference_datum", @"", @"sea_surface_height_amplitude_due_to_equilibrium_ocean_tide", @"", @"sea_water_temperature", @"", @"winds",@"", @"harmonic_constituents", @"", @"datums", nil]];
+    
+    [parseHelperOp setQueuePriority:NSOperationQueuePriorityVeryHigh];
+    [myQueue addOperation:parseHelperOp];
+}
+
+-(void)parseHelper:(OOSMParseHelper *)parseHelper returnedString:(NSString *)string{
+    NSLog(@"Parse Helper returned values to StationInfoViewController");
+    self.numberOfCallbacksFromParser++;
+    if(self.activityView.isAnimating){
+        
+        //stop animating the activity view if a value has been returned
+        [self.activityView stopAnimating];
+    }
+    //Make sure that returnSting != nil.
+    if(string && ![string isEqualToString: @""]){
+
+        self.recieviedNonNilValueFromParser = YES;
+        
+        //add a lable to the view describing the return String
+        UILabel *newSensorPropertyLable=[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
+        newSensorPropertyLable.text=[[self.currentStationProperty stringByAppendingString:@": " ] stringByAppendingString:string];
+        [newSensorPropertyLable sizeToFit];
+        newSensorPropertyLable.center=CGPointMake(10 + newSensorPropertyLable.frame.size.width/2, 200+self.currentSensorPropertyIndex*20);
+        [self.view addSubview:newSensorPropertyLable];
+        
+        //subtract one in the self.sensor.count because we add one to it in the code.
+        if(self.currentSensorPropertyIndex<self.sensorProperties.count-1){
+            //add one to currentSensoPropertyIndex.
+            self.currentSensorPropertyIndex++;
+            
+            //change the currentStationProperty
+            self.currentStationProperty=(NSString*)[self.sensorProperties objectAtIndex:self.currentSensorPropertyIndex];
+            
+        }
+    }else{
+        NSLog(@"Got a nil value.");
+        NSLog([NSString stringWithFormat:@"number of callbacks from Parse Helper Operation: %d", self.numberOfCallbacksFromParser]);
+        if(self.numberOfCallbacksFromParser>=self.sensorProperties.count-1 && !self.recieviedNonNilValueFromParser){
+            UILabel *newLable = [[UILabel alloc] init];
+            newLable.text = @"No values where found for this station";
+            [newLable sizeToFit];
+            newLable.center = self.view.center;
+            [self.view addSubview:newLable];
+        }
+    }
 }
 
 -(void)setStationInfoToDisplay:(OOSMStation*)stationToDisplay{
@@ -90,16 +180,25 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        self.recieviedNonNilValueFromParser = NO;
     }
     return self;
 }
 
 - (void)viewDidLoad
 {
+    
+    //start the activity view animation:
+    [self.activityView startAnimating];
+    self.activityView.hidesWhenStopped = YES;
+    
+    //update self.stationIsAUserFav
+    [self stationIsAUserFav];
+    
     self.titleLable.text=self.stationToDisplayInfo.userReadableName;
     
     //array of all the properties of the station sensors which we want to retrieve
-    self.sensorProperties=[[NSArray alloc] initWithObjects:@"air_temperature", @"air_pressure", @"relative_humidity", @"rain_fall", @"visibility",  nil];
+    self.sensorProperties=[[NSArray alloc] initWithObjects:@"air_temperature", @"air_pressure", @"relative_humidity", @"rain_fall", @"visibility", @"air_temperature", @"sea_water_electrical_conductivity", @"currents", @"sea_water_salinity", @"water_surface_height_above_reference_datum", @"sea_surface_height_amplitude_due_to_equilibrium_ocean_tide", @"sea_water_temperature", @"winds", @"harmonic_constituents", @"datums",  nil];
     
     self.currentSensorPropertyIndex = 0;
     self.currentStationProperty = (NSString*)[self.sensorProperties objectAtIndex:self.currentSensorPropertyIndex];

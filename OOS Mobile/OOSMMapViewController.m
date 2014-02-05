@@ -33,6 +33,7 @@
 @property(strong, nonatomic)OOSMDataHandlerModel *dataHandlerModel;
 @property(strong, nonatomic)OOSMStationMapAnnotation *tappedMapAnnotation;
 @property(strong, nonatomic)CLLocationManager *coreLocationManager;
+@property(strong, nonatomic)UIImage *pinImage;
 -(void)createMap;
 
 @end
@@ -42,6 +43,7 @@
 @synthesize dataHandlerModel=_dataHandlerModel;
 @synthesize tappedMapAnnotation=_tappedMapAnnotation;
 @synthesize coreLocationManager=_coreLocationManager;
+@synthesize pinImage=_pinImage;
 
 -(void)datatHandlerFoundStation:(OOSMStation *)station{
     
@@ -64,11 +66,12 @@
     }
     
     //give the annotation a custom image
-    annotationView.image = [UIImage imageNamed:@"blue_buoy_icon.png"];
+    annotationView.image = self.pinImage;
 
-    annotationView.frame = CGRectMake(0, 0, 20, 20);
+    annotationView.frame = CGRectMake(0, 0, 30, 30);
     return annotationView;
 }
+
 //handle touches on the annotations
 -(void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view{
     if([view.annotation isKindOfClass:[OOSMStationMapAnnotation class]]){
@@ -88,6 +91,7 @@
 }
 
 -(void)createMap{
+    self.pinImage = [UIImage imageNamed:@"blue_buoy_icon_test.png"];
     self.mapView=[[MKMapView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
     self.mapView.delegate=self;
     

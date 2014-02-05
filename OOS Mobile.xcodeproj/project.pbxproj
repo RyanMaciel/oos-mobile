@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		F1142E8F18610AD3009AA3B3 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F1142E8D18610AD3009AA3B3 /* Main_iPad.storyboard */; };
 		F117EC62187C825100EBA779 /* OOSMParseHelperOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = F117EC61187C825100EBA779 /* OOSMParseHelperOperation.m */; };
+		F160875518A1756400A76F39 /* blue_buoy_icon_test.png in Resources */ = {isa = PBXBuildFile; fileRef = F160875418A1756400A76F39 /* blue_buoy_icon_test.png */; };
 		F16C88D518579DAE002661D5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F16C88D418579DAE002661D5 /* Foundation.framework */; };
 		F16C88D718579DAE002661D5 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F16C88D618579DAE002661D5 /* CoreGraphics.framework */; };
 		F16C88D918579DAE002661D5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F16C88D818579DAE002661D5 /* UIKit.framework */; };
@@ -50,6 +51,7 @@
 		F1142E8E18610AD3009AA3B3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = "OOS Mobile/Base.lproj/Main_iPad.storyboard"; sourceTree = "<group>"; };
 		F117EC60187C825100EBA779 /* OOSMParseHelperOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OOSMParseHelperOperation.h; sourceTree = "<group>"; };
 		F117EC61187C825100EBA779 /* OOSMParseHelperOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OOSMParseHelperOperation.m; sourceTree = "<group>"; };
+		F160875418A1756400A76F39 /* blue_buoy_icon_test.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = blue_buoy_icon_test.png; path = Images.xcassets/blue_buoy_icon_test.png; sourceTree = "<group>"; };
 		F16C88D118579DAE002661D5 /* OOS Mobile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "OOS Mobile.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F16C88D418579DAE002661D5 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		F16C88D618579DAE002661D5 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -276,6 +278,7 @@
 		F18ECE6818A067CA00DB4C33 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				F160875418A1756400A76F39 /* blue_buoy_icon_test.png */,
 				F18ECE6618A067BC00DB4C33 /* blue_buoy_icon.png */,
 			);
 			name = Images;
@@ -363,6 +366,7 @@
 				F16C88E818579DAE002661D5 /* Main_iPhone.storyboard in Resources */,
 				F1D88478186100AC00B4A349 /* COPYING in Resources */,
 				F16C88DF18579DAE002661D5 /* InfoPlist.strings in Resources */,
+				F160875518A1756400A76F39 /* blue_buoy_icon_test.png in Resources */,
 				F18ECE6718A067BC00DB4C33 /* blue_buoy_icon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

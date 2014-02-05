@@ -29,28 +29,26 @@
 #import <Foundation/Foundation.h>
 
 @protocol OOSMParseHelperDelegate;
-@protocol OOSMParseHelperOperationDelegate;
+@protocol OOSMParseHelperDelegate;
 
-@interface OOSMParseHelper : NSObject
+@interface OOSMParseHelper : NSObject 
 
+//stops the parsing
+-(void)stopParser;
 
--(id)initWithURL:(NSURL*)URL elementsToFind:(NSDictionary *)element stationName:(NSString*)stationName;
+-(id)initWithURL:(NSURL*)URL elementsToFind:(NSDictionary *)element stationName:(NSString*)stationName delegate:(id <OOSMParseHelperDelegate>)delegate;
 
 //the parsing will not start until this property is set.
 @property (nonatomic, assign) id <OOSMParseHelperDelegate> delegate;
-@property (nonatomic, assign) id <OOSMParseHelperOperationDelegate> operationDelegate;
+
 
 @end
 
 @protocol OOSMParseHelperDelegate <NSObject>
 
 //This method will inform the delegate when a string has been found from the XML. The delegate should be able to handle a nil value for the returnString Parameter
--(void)parseHelperFoundMatch:(OOSMParseHelper *)parseHelper withReturnString:(NSString*)returnString;
+-(void)parseHelperFoundMatchWithReturnString:(NSString*)returnString;
 
 @end
 
-@protocol OOSMParseHelperOperationDelegate <NSObject>
 
--(void)parseHelperFinished;
-
-@end

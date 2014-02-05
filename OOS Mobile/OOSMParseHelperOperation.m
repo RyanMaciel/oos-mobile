@@ -21,29 +21,48 @@
 
 #import "OOSMParseHelper.h"
 #import "OOSMParseHelperOperation.h"
-@interface OOSMParseHelperOperation () <OOSMParseHelperOperationDelegate>{
+@interface OOSMParseHelperOperation () <OOSMParseHelperDelegate>{
     BOOL executing;
     BOOL finished;
 
 }
-@property(strong, nonatomic)id<OOSMParseHelperDelegate> parseHelperDelegate;
 @property(strong, nonatomic)NSString *stationName;
 @property(strong, nonatomic)NSDictionary *elementsForParseHelper;
 @property(nonatomic)int propertyNumber;
+@property(strong, nonatomic)NSString *stringForNextCallback;
+@property(strong, nonatomic)OOSMParseHelper *parseHelperForNextCallback;
 
 -(void)getNextProperty;
 -(void)finishedOperation;
+-(void)callbackToDelegate;
+
 @end
 
 @implementation OOSMParseHelperOperation
 
-@synthesize parseHelperDelegate=_parseHelperDelegate;
 @synthesize elementsForParseHelper=_elementsForParseHelper;
 @synthesize stationName=_stationName;
 @synthesize propertyNumber=_propertyNumber;
+@synthesize stringForNextCallback=_stringForNextCallback;
+@synthesize parseHelperForNextCallback=_parseHelperForNextCallback;
 
+//return info to the delgate
+-(void)callbackToDelegate{
+    [self.delegate parseHelper:self.parseHelperForNextCallback returnedString:self.stringForNextCallback];
+}
+
+//callback from the OOSMParseHelper
+-(void)parseHelperFoundMatchWithReturnString:(NSString *)returnString{
+    NSLog(@"OOSMParseOperation recieved callback from OOSMParseHeler");
+    self.stringForNextCallback = returnString;
+    [self parseHelperFinished];
+}
 
 -(void)parseHelperFinished{
+    [self callbackToDelegate];
+    self.stringForNextCallback = nil;
+    self.parseHelperForNextCallback = nil;
+    
     self.propertyNumber++;
     if(self.propertyNumber<[self.elementsForParseHelper allKeys].count){
         [self getNextProperty];
@@ -75,26 +94,32 @@
 
 -(void)getNextProperty{
     
+    
     //submit each value of the sensorProperties property to OOSMParseHelper through changing the URL
     NSURL *urlForParseHelper = [[NSURL alloc] initWithString:[[@"http://opendap.co-ops.nos.noaa.gov/ioos-dif-sos/SOS?service=SOS&request=GetObservation&version=1.0.0&observedProperty=*PropertyObserved*&offering=StationName&responseFormat=text/xml;schema=%22ioos/0.6.1%22" stringByReplacingOccurrencesOfString:@"StationName" withString:self.stationName] stringByReplacingOccurrencesOfString:@"*PropertyObserved*" withString:[[self.elementsForParseHelper allKeys] objectAtIndex:self.propertyNumber]]];
     
     //set up the parser and give one of the key/value pairs in self.elementsForParseHelper for its elements to find
-    OOSMParseHelper *parseHelper = [[OOSMParseHelper alloc] initWithURL:urlForParseHelper elementsToFind:[[NSDictionary alloc ] initWithObjectsAndKeys:[self.elementsForParseHelper objectForKey:[[self.elementsForParseHelper allKeys] objectAtIndex:self.propertyNumber]], @"ioos:Quantity", nil] stationName:self.stationName];
-    parseHelper.operationDelegate = self;
-    parseHelper.delegate=self.parseHelperDelegate;
-    
+    OOSMParseHelper *helper=[[OOSMParseHelper alloc] initWithURL:urlForParseHelper elementsToFind:[[NSDictionary alloc ] initWithObjectsAndKeys:[self.elementsForParseHelper objectForKey:[[self.elementsForParseHelper allKeys] objectAtIndex:self.propertyNumber]], @"ioos:Quantity", nil] stationName:self.stationName delegate:self];
+    self.parseHelperForNextCallback = helper;
 }
--(id)initWithDelegate:(id<OOSMParseHelperDelegate>)delegate stationName:(NSString *)stationName elementsToFind:(NSDictionary *)elementsToFind{
+-(id)initWithDelegate:(id<OOSMParseOperationDelegate>)delegate stationName:(NSString *)stationName elementsToFind:(NSDictionary *)elementsToFind{
     
     self = [super init];
     if(self){
-        self.parseHelperDelegate = delegate;
+        self.delegate = delegate;
         self.elementsForParseHelper = elementsToFind;
         self.stationName = stationName;
     }
     return self;
 }
 -(void)start{
+    
+    if (![NSThread isMainThread])
+    {
+        [self performSelectorOnMainThread:@selector(start) withObject:nil waitUntilDone:NO];
+        return;
+    }
+    
     [self willChangeValueForKey:@"isExecuting"];
     executing = YES;
     [self didChangeValueForKey:@"isExecuting"];

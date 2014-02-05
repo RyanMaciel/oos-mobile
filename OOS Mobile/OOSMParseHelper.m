@@ -31,7 +31,8 @@
 @property(nonatomic)NSNumber *currentStationSensorPropertyIndex;
 @property(nonatomic)BOOL urlIsValid;
 @property(nonatomic)BOOL shouldContinueParsing;
-
+@property(strong, nonatomic)NSMutableData *urlConnectData;
+-(void)setUpNSURlConnectionWithURL:(NSURL*)URL;
 @end
 
 @implementation OOSMParseHelper
@@ -42,25 +43,16 @@
 @synthesize delegate=_delegate;
 @synthesize stationName=_stationName;
 @synthesize currentStationSensorPropertyIndex=_currentStationSensorPropertyIndex;
-@synthesize operationDelegate=_operationDelegate;
 @synthesize urlIsValid=_urlIsValid;
 @synthesize shouldContinueParsing=_shouldContinueParsing;
+@synthesize urlConnectData=_urlConnectData;
 
-//when the objectToUpdateForReturnDictionary property is set the parser will start parsing.
--(void)setDelegate:(id<OOSMParseHelperDelegate>)delegate{
-    NSLog(@"bloop");
-    
-    self.shouldContinueParsing = YES;
-
-    _delegate = delegate;
-    
-    if(self.urlIsValid){
-        //start parsing
-        [self.parser parse];
-    }else{
-        [self elementsToReturnChanged];
-    }
+-(void)stopParser{
+    //stop the parsing
+    self.shouldContinueParsing = NO;
+    [self.parser abortParsing];
 }
+
 -(void)parserDidEndDocument:(NSXMLParser *)parser{
     [self elementsToReturnChanged];
 }
@@ -76,14 +68,13 @@
         //call the delegate method on the main thread. To update the GUI
         __weak NSString *weakStringForDelegate = stringForDelegate;
         [[NSOperationQueue mainQueue] addOperationWithBlock:^(void){
-            [self.delegate parseHelperFoundMatch:self withReturnString:weakStringForDelegate];
+            [self.delegate parseHelperFoundMatchWithReturnString:weakStringForDelegate];
         }];
         
         //stop the parsing. it has already returned a value and is no longer needed.
         self.shouldContinueParsing = NO;
         [self.parser abortParsing];
         self.parser = nil;
-        [self.operationDelegate parseHelperFinished];
   
 }
 
@@ -140,11 +131,36 @@
     [self elementsToReturnChanged];
 }
 
+-(void)setUpNSURlConnectionWithURL:(NSURL *)URL{
+    //create a NSURLRequest
+    NSMutableURLRequest *urlRequest = [[NSMutableURLRequest alloc] initWithURL:URL cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:1.0];
+    [urlRequest setHTTPMethod:@"GET"];
+    
+    NSError *error = nil;
+    NSURLResponse *response = nil;
+    
+    [self.urlConnectData appendData:[NSURLConnection sendSynchronousRequest:urlRequest returningResponse: &response error: &error]];
+    
+    if(error){
+        //return nil to the delegate if an error has occured
+        [self elementsToReturnChanged];
+    }
+    
+    //allocate and initialize the parser. If it returns nil, then return nil to the delegate
+    self.parser = [[NSXMLParser alloc] initWithData:self.urlConnectData];
+    
+    if(!self.parser){
+        [self elementsToReturnChanged];
+    }
+    
+}
+
 //initailize and set up the parser.
--(id)initWithURL:(NSURL*)URL elementsToFind:(NSDictionary *)element stationName:(NSString*)stationName{
+-(id)initWithURL:(NSURL*)URL elementsToFind:(NSDictionary *)element stationName:(NSString*)stationName delegate:(id<OOSMParseHelperDelegate>)delegate{
     self = [super init];
     if(self){
 
+        
         //prevents double values from apearing.
         self.shouldContinueParsing = YES;
         self.elementsToFind = element;
@@ -153,18 +169,21 @@
         self.currentElement=@"";
         self.stationName = stationName;
         self.currentStationSensorPropertyIndex = [[NSNumber alloc] initWithInt:0];
-        
-        self.parser = [[NSXMLParser alloc] initWithContentsOfURL:URL];
+        self.delegate = delegate;
+        self.urlConnectData = [[NSMutableData alloc] init];
         
         if(!URL){
             NSLog(@"An invalid url has been passed to OOSMParseHelper");
             self.urlIsValid = NO;
         }else{
             self.urlIsValid = YES;
+            [self setUpNSURlConnectionWithURL:URL];
+            
+            [self.parser setDelegate:self];
+            [self.parser setShouldResolveExternalEntities:NO];
+            [self.parser parse];
         }
         
-        [self.parser setDelegate:self];
-        [self.parser setShouldResolveExternalEntities:NO];
     }
     return self;
 }

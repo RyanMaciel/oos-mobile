@@ -20,10 +20,16 @@
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #import <Foundation/Foundation.h>
+@protocol OOSMParseOperationDelegate <NSObject>
+
+//return the string found from the XML to the delgate or nil if nothing was found
+-(void)parseHelper:(OOSMParseHelper*)parseHelper
+    returnedString:(NSString*)string;
+@end
 
 @interface OOSMParseHelperOperation : NSOperation
-
--(id)initWithDelegate:(id<OOSMParseHelperDelegate>)delegate stationName:(NSString*)stationName elementsToFind:(NSDictionary*)elementsToFind;
+@property(nonatomic, assign) id <OOSMParseOperationDelegate> delegate;
+-(id)initWithDelegate:(id<OOSMParseOperationDelegate>)delegate stationName:(NSString*)stationName elementsToFind:(NSDictionary*)elementsToFind;
 
 @end
 

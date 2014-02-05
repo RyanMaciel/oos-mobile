@@ -24,7 +24,7 @@
 #import "OOSMParseHelper.h"
 #import "OOSMParseHelperOperation.h"
 
-@interface OOSMStationInfoViewController () <OOSMParseHelperDelegate>
+@interface OOSMStationInfoViewController () <OOSMParseOperationDelegate>
 
 @property(strong, nonatomic)IBOutlet UILabel *titleLable;
 @property(strong, nonatomic)OOSMStation *stationToDisplayInfo;
@@ -54,13 +54,6 @@
 @synthesize numberOfCallbacksFromParser=_numberOfCallbacksFromParser;
 @synthesize recieviedNonNilValueFromParser=_recieviedNonNilValueFromParser;
 
-//this method is called when OOSMParseHelperOperation is done with downloading and parsing its xml data.
--(void)parseHelperFinished{
-    //if the parse helper finished and no values were recieved then show an error message.;
-    //if(!self.recievedNonNilValueFromParser){
-    
-    //}
-}
 
 //lazily initialize this varible to tell if the station is a user favorite
 -(BOOL)stationIsAUserFav{
@@ -136,7 +129,7 @@
     [myQueue addOperation:parseHelperOp];
 }
 
--(void)parseHelperFoundMatch:(OOSMParseHelper *)parseHelper withReturnString:(NSString *)returnString{
+-(void)parseHelper:(OOSMParseHelper *)parseHelper returnedString:(NSString *)string{
     NSLog(@"Parse Helper returned values to StationInfoViewController");
     self.numberOfCallbacksFromParser++;
     if(self.activityView.isAnimating){
@@ -145,13 +138,13 @@
         [self.activityView stopAnimating];
     }
     //Make sure that returnSting != nil.
-    if(returnString && ![returnString isEqualToString: @""]){
+    if(string && ![string isEqualToString: @""]){
 
         self.recieviedNonNilValueFromParser = YES;
         
         //add a lable to the view describing the return String
         UILabel *newSensorPropertyLable=[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
-        newSensorPropertyLable.text=[[self.currentStationProperty stringByAppendingString:@": " ] stringByAppendingString:returnString];
+        newSensorPropertyLable.text=[[self.currentStationProperty stringByAppendingString:@": " ] stringByAppendingString:string];
         [newSensorPropertyLable sizeToFit];
         newSensorPropertyLable.center=CGPointMake(10 + newSensorPropertyLable.frame.size.width/2, 200+self.currentSensorPropertyIndex*20);
         [self.view addSubview:newSensorPropertyLable];
@@ -167,7 +160,8 @@
         }
     }else{
         NSLog(@"Got a nil value.");
-        if(self.numberOfCallbacksFromParser>=self.sensorProperties.count && !self.recieviedNonNilValueFromParser){
+        NSLog([NSString stringWithFormat:@"number of callbacks from Parse Helper Operation: %d", self.numberOfCallbacksFromParser]);
+        if(self.numberOfCallbacksFromParser>=self.sensorProperties.count-1 && !self.recieviedNonNilValueFromParser){
             UILabel *newLable = [[UILabel alloc] init];
             newLable.text = @"No values where found for this station";
             [newLable sizeToFit];

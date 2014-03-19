@@ -24,7 +24,8 @@
 
 //return the string found from the XML to the delgate or nil if nothing was found
 -(void)parseHelper:(OOSMParseHelper*)parseHelper
-    returnedString:(NSString*)string;
+    returnedString:(NSString*)string
+       forProperty:(NSString*)property;
 @end
 
 @interface OOSMParseHelperOperation : NSOperation

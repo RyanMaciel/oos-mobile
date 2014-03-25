@@ -27,7 +27,7 @@
 #import <CoreLocation/CoreLocation.h>
 #import "OOSMDataHandlerModel.h"
 
-@interface OOSMMapViewController () <OOSMDataHandelerDelegate>
+@interface OOSMMapViewController () <OOSMDataHandelerDelegate, MKMapViewDelegate>
 
 @property(strong, nonatomic)MKMapView *mapView;
 @property(strong, nonatomic)OOSMDataHandlerModel *dataHandlerModel;
@@ -44,6 +44,16 @@
 @synthesize tappedMapAnnotation=_tappedMapAnnotation;
 @synthesize coreLocationManager=_coreLocationManager;
 @synthesize pinImage=_pinImage;
+@synthesize mapDelegate=_mapDelegate;
+
+-(void)dataEncounteredFatalError{
+    //tell the delegate that an error occured.
+    [self.mapDelegate mapViewControllerFailedToLoad];
+}
+-(void)dataHandlerFinished{
+    //call when the data handler has finished parsing or encountered a fatal error.
+    [self.mapDelegate mapViewControllerFinishedLoading:self];
+}
 
 -(void)datatHandlerFoundStation:(OOSMStation *)station{
     
@@ -92,6 +102,8 @@
 
 -(void)createMap{
     self.pinImage = [UIImage imageNamed:@"blue_buoy_icon_test.png"];
+    
+    //position the map
     self.mapView=[[MKMapView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
     self.mapView.delegate=self;
     
@@ -112,15 +124,19 @@
 
 - (void)viewDidLoad
 {
+    //hide the back button
+    [self.navigationItem setHidesBackButton:YES];
+
+    //set up the map
     [self createMap];
+    
     OOSMDataHandlerModel *dataHandlerModel=[[OOSMDataHandlerModel alloc] init];
     dataHandlerModel.delegate = self;
     
     self.coreLocationManager=[[CLLocationManager alloc] init];
-    self.coreLocationManager.desiredAccuracy=kCLLocationAccuracyHundredMeters;
+    self.coreLocationManager.desiredAccuracy=kCLLocationAccuracyKilometer;
     self.coreLocationManager.distanceFilter=kCLDistanceFilterNone;
     [self.coreLocationManager startUpdatingLocation];
-    
     
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
@@ -130,6 +146,12 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+-(NSUInteger)supportedInterfaceOrientations{
+    return UIInterfaceOrientationMaskLandscapeLeft;
+}
+-(BOOL)shouldAutorotate{
+    return NO;
 }
 
 @end

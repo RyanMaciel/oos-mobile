@@ -22,7 +22,14 @@
 
 #import <MapKit/MapKit.h>
 #import "OOSMViewController.h"
+@protocol OOSMMapLoadingDelegate;
 
 @interface OOSMMapViewController : OOSMViewController <MKMapViewDelegate>
+@property (nonatomic, assign) id <OOSMMapLoadingDelegate> mapDelegate;
+@end
 
+//define a protocol to tell the prior view controller when the map is loaded.
+@protocol OOSMMapLoadingDelegate <NSObject>
+-(void)mapViewControllerFinishedLoading:(OOSMMapViewController*)mapController;
+-(void)mapViewControllerFailedToLoad;
 @end

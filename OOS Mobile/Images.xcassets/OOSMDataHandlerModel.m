@@ -49,6 +49,9 @@
 -(void)setDelegate:(id<OOSMDataHandelerDelegate>)delegate{
     _delegate = delegate;
     [self.parser parse];
+    
+    //handle an error
+    if(!self.parser) [self.delegate dataEncounteredFatalError];
 }
 
 
@@ -74,14 +77,9 @@
 
     }
     
-    //make sure the coordinates are valid on the coordinate grid.
-    if([stationLatitude floatValue]>=-90 && [stationLatitude floatValue]<=90 && [stationLongitude floatValue]>-180 && [stationLongitude floatValue]<180){
-        //stores the values of the two strings into a CLLocation object
-        CLLocation *location=[[CLLocation alloc] initWithLatitude:[stationLatitude floatValue] longitude:[stationLongitude floatValue]];
-        return location;
-    }
-    //returns nil if the coordinates weren't formatted properly.
-    return nil;
+    CLLocation *location=[[CLLocation alloc] initWithLatitude:[stationLatitude floatValue] longitude:[stationLongitude floatValue]];
+    return location;
+    
 }
 
 -(void)setCurrentRSSElement:(NSString *)currentRSSElement{
@@ -140,10 +138,18 @@
         [self.stationNameForServer appendString:string];
     }
 }
-
+-(void)parserDidEndDocument:(NSXMLParser *)parser{
+    [self.delegate dataHandlerFinished];
+}
+-(void)parser:(NSXMLParser *)parser parseErrorOccurred:(NSError *)parseError{
+    
+    [self.delegate dataEncounteredFatalError];
+    NSLog(@"error occured when getting map data");
+}
 -(void)getData{
     NSURL *feedURL=[NSURL URLWithString:@"http://opendap.co-ops.nos.noaa.gov/ioos-dif-sos/SOS?service=SOS&request=GetCapabilities&version=1.0.0"];
     self.parser=[[NSXMLParser alloc] initWithContentsOfURL:feedURL];
+    
     [self.parser setDelegate:self];
     [self.parser setShouldResolveExternalEntities:NO];
 }

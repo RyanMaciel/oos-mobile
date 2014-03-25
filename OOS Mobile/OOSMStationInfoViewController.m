@@ -23,6 +23,8 @@
 #import "OOSMStationInfoViewController.h"
 #import "OOSMParseHelper.h"
 #import "OOSMParseHelperOperation.h"
+#import "OOSMWebViewController.h"
+#import "OOSMStationPropertyButton.h"
 
 @interface OOSMStationInfoViewController () <OOSMParseOperationDelegate>
 
@@ -35,9 +37,15 @@
 @property(nonatomic, readonly)BOOL stationIsAUserFav;
 @property(nonatomic)int numberOfCallbacksFromParser;
 @property(nonatomic)BOOL recieviedNonNilValueFromParser;
+@property(strong, nonatomic)NSOperationQueue *propertyOperationQueue;
+    
+@property(strong, nonatomic)NSString *webViewURL;
+@property(strong, nonatomic)NSString *webViewPropertyString;
 
 -(void)addSensorProperties;
 -(IBAction)addStationToUserFavorites;
+-(void)getChartWithSender:(id)sender;
+-(void)setUpChartURLWithTimeInterval:(NSTimeInterval)interval forProperty:(NSString*)property;
 
 //add an IBOutlet to controll the activity indicator
 @property(strong, nonatomic)IBOutlet UIActivityIndicatorView *activityView;
@@ -53,7 +61,61 @@
 @synthesize activityView=_activityView;
 @synthesize numberOfCallbacksFromParser=_numberOfCallbacksFromParser;
 @synthesize recieviedNonNilValueFromParser=_recieviedNonNilValueFromParser;
+@synthesize webViewURL=_webViewURL;
+@synthesize propertyOperationQueue=_propertyOperationQueue;
+@synthesize webViewPropertyString=_webViewPropertyString;
 
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if([segue.destinationViewController isKindOfClass:[OOSMWebViewController class]]){
+        OOSMWebViewController *webController = ((OOSMWebViewController*)segue.destinationViewController);
+        
+        //give the web view its URL
+        webController.webViewURL = self.webViewURL;
+        
+        //tell it what property it is graphing
+        webController.propertyToGraph = self.webViewPropertyString;
+    }
+}
+
+-(void)getChartWithSender:(id)sender{
+    
+    if([sender isKindOfClass:[OOSMStationPropertyButton class]]){
+        NSString *buttonProperty = ((OOSMStationPropertyButton*)sender).propertyString;
+        
+        //set the property string to tell the web view controller what property it will be displaying
+        self.webViewPropertyString = buttonProperty;
+        
+        [self setUpChartURLWithTimeInterval:-432000 forProperty:buttonProperty];
+        
+    }
+}
+-(void)setUpChartURLWithTimeInterval:(NSTimeInterval)interval forProperty:(NSString *)property{
+    
+    //create a date formatter that will format the date in a way acceptable for the server
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+    [dateFormat setDateFormat:@"yyyy'-'MM'-'dd'T'HH':'mm':'ss'Z'"];
+    
+    //this is the basic string for the url
+    NSString *webViewString = @"http://opendap.co-ops.nos.noaa.gov/ioos-dif-sos/SOS?service=SOS&request=GetObservation&version=1.0.0&observedProperty=***SensorProperty***&offering=**StationName**&eventTime=***SecondDate***/***FirstDate***&responseFormat=text/csv";
+    
+    //set the first date in the time series
+     webViewString = [webViewString stringByReplacingOccurrencesOfString:@"***FirstDate***" withString:[dateFormat stringFromDate:[NSDate date]]];
+    
+    NSDate *intervalDifference=[NSDate dateWithTimeInterval:interval sinceDate:[NSDate date]];
+    
+    //set the second date in the time series
+    webViewString = [webViewString stringByReplacingOccurrencesOfString:@"***SecondDate***" withString: [dateFormat stringFromDate:intervalDifference]];
+    
+    //set the station name for the url
+    webViewString = [webViewString stringByReplacingOccurrencesOfString:@"**StationName**" withString:self.stationToDisplayInfo.nameForServer];
+    
+    //set the sensor property
+    webViewString = [webViewString stringByReplacingOccurrencesOfString:@"***SensorProperty***" withString:property];
+    self.webViewURL = webViewString;
+    
+    //perform the segue
+    [self performSegueWithIdentifier:@"ChartView" sender:self];
+}
 
 //lazily initialize this varible to tell if the station is a user favorite
 -(BOOL)stationIsAUserFav{
@@ -119,37 +181,44 @@
 -(void)addSensorProperties{
     
     //set up a NSOperationQueue to do the parsing on a seperate thread
-    NSOperationQueue *myQueue = [[NSOperationQueue alloc] init];
-    myQueue.name = @"Parser Queue";
+    self.propertyOperationQueue = [[NSOperationQueue alloc] init];
+    self.propertyOperationQueue.name = @"Parser Queue";
     
     //set up OOSMParseHelperOperation
     OOSMParseHelperOperation *parseHelperOp=[[OOSMParseHelperOperation alloc] initWithDelegate:self stationName:self.stationToDisplayInfo.nameForServer elementsToFind:[NSDictionary dictionaryWithObjectsAndKeys:@"", @"air_temperature", @"", @"air_pressure", @"", @"relative_humidity", @"", @"rain_fall", @"", @"visibility", @"", @"air_temperature", @"", @"sea_water_electrical_conductivity", @"", @"currents", @"", @"sea_water_salinity", @"", @"water_surface_height_above_reference_datum", @"", @"sea_surface_height_amplitude_due_to_equilibrium_ocean_tide", @"", @"sea_water_temperature", @"", @"winds",@"", @"harmonic_constituents", @"", @"datums", nil]];
     
     [parseHelperOp setQueuePriority:NSOperationQueuePriorityVeryHigh];
-    [myQueue addOperation:parseHelperOp];
+    [self.propertyOperationQueue addOperation:parseHelperOp];
 }
 
--(void)parseHelper:(OOSMParseHelper *)parseHelper returnedString:(NSString *)string{
+-(void)parseHelper:(OOSMParseHelper *)parseHelper returnedString:(NSString *)string forProperty:(NSString*)property{
     NSLog(@"Parse Helper returned values to StationInfoViewController");
     self.numberOfCallbacksFromParser++;
-    if(self.activityView.isAnimating){
-        
-        //stop animating the activity view if a value has been returned
-        [self.activityView stopAnimating];
-    }
+
+    
     //Make sure that returnSting != nil.
     if(string && ![string isEqualToString: @""]){
-
+        
+        //if the activity view is still animating and the string is not nil, then stop the activity view
+        if(self.activityView.isAnimating && string){
+            
+            //stop animating the activity view if a value has been returned
+            [self.activityView stopAnimating];
+        }
+        
         self.recieviedNonNilValueFromParser = YES;
         
-        //add a lable to the view describing the return String
-        UILabel *newSensorPropertyLable=[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
-        newSensorPropertyLable.text=[[self.currentStationProperty stringByAppendingString:@": " ] stringByAppendingString:string];
-        [newSensorPropertyLable sizeToFit];
-        newSensorPropertyLable.center=CGPointMake(10 + newSensorPropertyLable.frame.size.width/2, 200+self.currentSensorPropertyIndex*20);
-        [self.view addSubview:newSensorPropertyLable];
+        //add a button to the view describing the return String
+        OOSMStationPropertyButton *newSensorPropertyButton = [OOSMStationPropertyButton buttonWithType:UIButtonTypeSystem];
+        newSensorPropertyButton.frame = CGRectMake(0, 0, 300, 17);
+        [newSensorPropertyButton setTitle:[[[property stringByReplacingOccurrencesOfString:@"_" withString:@" "] stringByAppendingString:@": "] stringByAppendingString:string] forState:UIControlStateNormal];
+        newSensorPropertyButton.center=CGPointMake(10 + newSensorPropertyButton.frame.size.width/2, 200+self.currentSensorPropertyIndex*25);
+        newSensorPropertyButton.propertyString = property;
+        [newSensorPropertyButton addTarget:self action:@selector(getChartWithSender:) forControlEvents:UIControlEventTouchDown];
+        [self.view addSubview:newSensorPropertyButton];
         
-        //subtract one in the self.sensor.count because we add one to it in the code.
+        
+        //subtract one in the self.sensor.count because we add one to it in the code below.
         if(self.currentSensorPropertyIndex<self.sensorProperties.count-1){
             //add one to currentSensoPropertyIndex.
             self.currentSensorPropertyIndex++;
@@ -161,11 +230,21 @@
     }else{
         NSLog(@"Got a nil value.");
         NSLog([NSString stringWithFormat:@"number of callbacks from Parse Helper Operation: %d", self.numberOfCallbacksFromParser]);
+        
+        //this code will run if no values were found for the station
         if(self.numberOfCallbacksFromParser>=self.sensorProperties.count-1 && !self.recieviedNonNilValueFromParser){
+            
+            //stop the activity view
+            if(self.activityView.isAnimating){
+                [self.activityView stopAnimating];
+            }
+            
+            //add a warning label
             UILabel *newLable = [[UILabel alloc] init];
             newLable.text = @"No values where found for this station";
             [newLable sizeToFit];
             newLable.center = self.view.center;
+            
             [self.view addSubview:newLable];
         }
     }
@@ -184,7 +263,10 @@
     }
     return self;
 }
-
+-(void)viewWillDisappear:(BOOL)animated{
+    //when the view will disappear the data parsing should be stopped
+    [self.propertyOperationQueue cancelAllOperations];
+}
 - (void)viewDidLoad
 {
     

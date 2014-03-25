@@ -21,6 +21,7 @@
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #import "OOSMViewController.h"
+#import "OOSMWebViewController.h"
 
 @interface OOSMViewController ()
 
@@ -40,4 +41,11 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(UIInterfaceOrientation)preferredInterfaceOrientationForPresentation{
+    return UIInterfaceOrientationPortrait;
+}
+
+-(NSUInteger)supportedInterfaceOrientations{
+    return UIInterfaceOrientationMaskPortrait;
+}
 @end

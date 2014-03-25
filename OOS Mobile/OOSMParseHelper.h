@@ -36,7 +36,7 @@
 //stops the parsing
 -(void)stopParser;
 
--(id)initWithURL:(NSURL*)URL elementsToFind:(NSDictionary *)element stationName:(NSString*)stationName delegate:(id <OOSMParseHelperDelegate>)delegate;
+-(id)initWithURL:(NSURL*)URL elementsToFind:(NSDictionary *)element stationName:(NSString*)stationName delegate:(id <OOSMParseHelperDelegate>)delegate propertyToFind:(NSString*)property;
 
 //the parsing will not start until this property is set.
 @property (nonatomic, assign) id <OOSMParseHelperDelegate> delegate;
@@ -47,7 +47,7 @@
 @protocol OOSMParseHelperDelegate <NSObject>
 
 //This method will inform the delegate when a string has been found from the XML. The delegate should be able to handle a nil value for the returnString Parameter
--(void)parseHelperFoundMatchWithReturnString:(NSString*)returnString;
+-(void)parseHelperFoundMatchWithReturnString:(NSString*)returnString forProperty:(NSString*)property;
 
 @end
 

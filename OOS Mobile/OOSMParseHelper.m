@@ -32,6 +32,8 @@
 @property(nonatomic)BOOL urlIsValid;
 @property(nonatomic)BOOL shouldContinueParsing;
 @property(strong, nonatomic)NSMutableData *urlConnectData;
+@property(strong, nonatomic)NSString *propertyToFind;
+
 -(void)setUpNSURlConnectionWithURL:(NSURL*)URL;
 @end
 
@@ -46,6 +48,7 @@
 @synthesize urlIsValid=_urlIsValid;
 @synthesize shouldContinueParsing=_shouldContinueParsing;
 @synthesize urlConnectData=_urlConnectData;
+@synthesize propertyToFind=_propertyToFind;
 
 -(void)stopParser{
     //stop the parsing
@@ -65,16 +68,17 @@
     if(self.elementsToReturn.count>0 && ![[self.elementsToReturn objectAtIndex:0] isEqualToString:@""] && self.shouldContinueParsing){
         stringForDelegate = [self.elementsToReturn objectAtIndex:0];
     }
-        //call the delegate method on the main thread. To update the GUI
-        __weak NSString *weakStringForDelegate = stringForDelegate;
-        [[NSOperationQueue mainQueue] addOperationWithBlock:^(void){
-            [self.delegate parseHelperFoundMatchWithReturnString:weakStringForDelegate];
-        }];
-        
-        //stop the parsing. it has already returned a value and is no longer needed.
-        self.shouldContinueParsing = NO;
-        [self.parser abortParsing];
-        self.parser = nil;
+    //call the delegate method on the main thread. To update the GUI
+    __weak NSString *weakStringForDelegate = stringForDelegate;
+    __weak NSString *weakPropertyForDelegate = self.propertyToFind;
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^(void){
+        [self.delegate parseHelperFoundMatchWithReturnString:weakStringForDelegate forProperty:weakPropertyForDelegate];
+    }];
+    
+    //stop the parsing. it has already returned a value and is no longer needed.
+    self.shouldContinueParsing = NO;
+    [self.parser abortParsing];
+    self.parser = nil;
   
 }
 
@@ -156,10 +160,11 @@
 }
 
 //initailize and set up the parser.
--(id)initWithURL:(NSURL*)URL elementsToFind:(NSDictionary *)element stationName:(NSString*)stationName delegate:(id<OOSMParseHelperDelegate>)delegate{
+-(id)initWithURL:(NSURL*)URL elementsToFind:(NSDictionary *)element stationName:(NSString*)stationName delegate:(id<OOSMParseHelperDelegate>)delegate propertyToFind:(NSString *)property{
     self = [super init];
     if(self){
 
+        self.propertyToFind = property;
         
         //prevents double values from apearing.
         self.shouldContinueParsing = YES;

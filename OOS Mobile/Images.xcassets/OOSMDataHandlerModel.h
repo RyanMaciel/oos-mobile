@@ -28,12 +28,11 @@
 @interface OOSMDataHandlerModel : NSObject <NSXMLParserDelegate>
 
 @property (nonatomic, assign) id <OOSMDataHandelerDelegate> delegate;
-
-
 @end
 
 @protocol OOSMDataHandelerDelegate <NSObject>
 
 -(void)datatHandlerFoundStation:(OOSMStation*)station;
-
+-(void)dataHandlerFinished;
+-(void)dataEncounteredFatalError;
 @end

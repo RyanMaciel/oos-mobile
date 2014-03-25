@@ -27,12 +27,14 @@
 @property(strong, nonatomic)NSArray *userFavs;
 @property(strong, nonatomic)NSUserDefaults *userDefaults;
 @property(strong, nonatomic)OOSMStation *stationTappedOn;
+@property(strong, nonatomic)NSIndexPath *selectedPath;
 @end
 
 @implementation OOSMFavoriteStationsViewController
 @synthesize mainTableView=_mainTableView;
 @synthesize userFavs=_userFavs;
 @synthesize stationTappedOn=_stationTappedOn;
+@synthesize selectedPath=_selectedPath;
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if([segue.destinationViewController isKindOfClass:[OOSMStationInfoViewController class]]){
@@ -41,6 +43,10 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    //set the selected path
+    self.selectedPath = indexPath;
+    
     NSString *tableViewTitle = [tableView cellForRowAtIndexPath:indexPath].textLabel.text;
     NSString *nameForServer;
     //get the name for sever for the station that has been tapped on.
@@ -57,8 +63,8 @@
     
     [self performSegueWithIdentifier:@"StationInfo" sender:self];
 }
--(int)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return self.userFavs.count;
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return (int)self.userFavs.count;
 }
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -92,7 +98,12 @@
     }
     return self;
 }
+-(void)viewWillAppear:(BOOL)animated{
+    //deselect the selected row.
+    [self.mainTableView deselectRowAtIndexPath:self.selectedPath animated:NO];
+    [super viewWillAppear:animated];
 
+}
 - (void)viewDidLoad
 {
     

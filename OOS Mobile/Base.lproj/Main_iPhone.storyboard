@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="DJ1-bK-Km7">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5053" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="DJ1-bK-Km7">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <scenes>
         <!--Navigation View Controller-->
@@ -40,6 +40,13 @@
                                 <rect key="frame" x="150" y="230" width="180" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </activityIndicatorView>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="An Error occured while loading data." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f59-3s-IIv">
+                                <rect key="frame" x="88" y="118" width="304" height="84"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -52,6 +59,7 @@
                     <navigationItem key="navigationItem" id="DLT-rc-XmO"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <connections>
+                        <outlet property="errorMessageLabel" destination="f59-3s-IIv" id="h5o-lz-fpM"/>
                         <outlet property="loadingView" destination="u6N-2P-PSm" id="OHd-oU-eKn"/>
                         <outlet property="mainWebView" destination="TyS-n8-nUl" id="Lr6-L8-gs8"/>
                     </connections>
@@ -72,7 +80,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="OOSM Launch Image.png" translatesAutoresizingMaskIntoConstraints="NO" id="7tm-Gf-SgL">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="OOSM Launch Image.png" translatesAutoresizingMaskIntoConstraints="NO" id="7tm-Gf-SgL">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <constraints>
@@ -94,6 +102,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="7tm-Gf-SgL" firstAttribute="leading" secondItem="5fx-QU-Luj" secondAttribute="leading" id="cV6-l1-VQy"/>
+                            <constraint firstAttribute="trailing" secondItem="7tm-Gf-SgL" secondAttribute="trailing" id="gXZ-kh-cfe"/>
                             <constraint firstItem="7tm-Gf-SgL" firstAttribute="top" secondItem="5fx-QU-Luj" secondAttribute="top" id="w9J-Lh-rvN"/>
                         </constraints>
                     </view>

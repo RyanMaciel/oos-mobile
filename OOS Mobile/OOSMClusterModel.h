@@ -1,10 +1,9 @@
 //
-//  OOSMDataHandlerModel.h
+//  OOSMClusterModel.h
 //  OOS Mobile
 //
-//  Created by Ryan Maciel on 12/10/13.
-//
-//  Copyright (c) 2013 RPS ASA. All rights reserved.
+//  Created by Ryan Maciel on 3/25/14.
+//  Copyright (c) 2014 RPS ASA. All rights reserved.
 //
 //  This file is part of OOS Mobile
 //  OOS Mobile is free software: you can redistribute it and/or modify
@@ -21,19 +20,15 @@
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #import <Foundation/Foundation.h>
-#import "OOSMStation.h"
 
-@protocol OOSMDataHandelerDelegate;
+@interface OOSMClusterModel : NSObject
+-(id)initWithDataSet:(NSDictionary*)dataSet;
+-(NSDictionary*)dBSCAN;
 
-@interface OOSMDataHandlerModel : NSObject <NSXMLParserDelegate>
+//This property defines the diameter between points that can become a cluster.
+@property(nonatomic)float densityRadius;
 
-@property (nonatomic, assign) id <OOSMDataHandelerDelegate> delegate;
+//This property defines the set of OOSMMapPoints used to calculate clusters.
+@property(strong, nonatomic)NSDictionary *dataSet;
 
-@end
-
-@protocol OOSMDataHandelerDelegate <NSObject>
-
--(void)dataHandlerFoundStation:(OOSMStation*)station;
--(void)dataHandlerFinished;
--(void)dataEncounteredFatalError;
 @end

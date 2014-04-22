@@ -31,14 +31,13 @@
 @property(strong, nonatomic)IBOutlet UILabel *titleLable;
 @property(strong, nonatomic)OOSMStation *stationToDisplayInfo;
 @property(strong, nonatomic)OOSMParseHelper *parseHelper;
-@property(strong, nonatomic)NSString *currentStationProperty;
 @property(strong, nonatomic)NSArray *sensorProperties;
 @property(nonatomic)int currentSensorPropertyIndex;
 @property(nonatomic, readonly)BOOL stationIsAUserFav;
 @property(nonatomic)int numberOfCallbacksFromParser;
 @property(nonatomic)BOOL recieviedNonNilValueFromParser;
 @property(strong, nonatomic)NSOperationQueue *propertyOperationQueue;
-    
+@property(nonatomic)BOOL wasinitiatedWithDictionary;
 @property(strong, nonatomic)NSString *webViewURL;
 @property(strong, nonatomic)NSString *webViewPropertyString;
 
@@ -55,7 +54,6 @@
 @synthesize titleLable=_titleLable;
 @synthesize stationToDisplayInfo=_stationToDisplayInfo;
 @synthesize parseHelper=_parseHelper;
-@synthesize currentStationProperty=_currentStationProperty;
 @synthesize sensorProperties=_sensorProperties;
 @synthesize stationIsAUserFav=_stationIsAUserFav;
 @synthesize activityView=_activityView;
@@ -64,7 +62,10 @@
 @synthesize webViewURL=_webViewURL;
 @synthesize propertyOperationQueue=_propertyOperationQueue;
 @synthesize webViewPropertyString=_webViewPropertyString;
+@synthesize wasinitiatedWithDictionary=_wasinitiatedWithDictionary;
+@synthesize delegate=_delegate;
 
+#pragma mark Handle Displaying Web View
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if([segue.destinationViewController isKindOfClass:[OOSMWebViewController class]]){
         OOSMWebViewController *webController = ((OOSMWebViewController*)segue.destinationViewController);
@@ -127,6 +128,7 @@
         NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
         NSArray *userStationFavorites = [userDefaults arrayForKey:@"kUserFavoriteStations"];
         
+        //if the current station is equal to one of the favorite station return yes.
         for (int i=0; i<userStationFavorites.count; i++) {
             if([[userStationFavorites objectAtIndex:i]  isEqual: @{@"Server Name" : self.stationToDisplayInfo.nameForServer, @"User Readable Name" : self.stationToDisplayInfo.userReadableName}]){
                 
@@ -136,6 +138,7 @@
                 
                 return YES;
             }
+            
         }
         
         //if it is not a user station favorite return no
@@ -178,6 +181,17 @@
     //force update self.stationIsAUserFav
     [self stationIsAUserFav];
 }
+#pragma mark Handle Interaction With Fav Stations
+
+
+//When the data has already been downloaed and parsed by another view controller, this method lets that other view controller tell the station info view controller which properties it should display.
+-(void)displayWithDictionary:(NSDictionary*)stationInfo{
+    for (NSString *key in [stationInfo allKeys]) {
+        [self parseHelper:nil returnedString:[stationInfo objectForKey:key] forProperty:key];
+    }
+}
+#pragma mark Get and Handle Data
+
 -(void)addSensorProperties{
     
     //set up a NSOperationQueue to do the parsing on a seperate thread
@@ -223,13 +237,10 @@
             //add one to currentSensoPropertyIndex.
             self.currentSensorPropertyIndex++;
             
-            //change the currentStationProperty
-            self.currentStationProperty=(NSString*)[self.sensorProperties objectAtIndex:self.currentSensorPropertyIndex];
-            
         }
     }else{
         NSLog(@"Got a nil value.");
-        NSLog([NSString stringWithFormat:@"number of callbacks from Parse Helper Operation: %d", self.numberOfCallbacksFromParser]);
+        NSLog(@"number of callbacks from Parse Helper Operation: %d", self.numberOfCallbacksFromParser);
         
         //this code will run if no values were found for the station
         if(self.numberOfCallbacksFromParser>=self.sensorProperties.count-1 && !self.recieviedNonNilValueFromParser){
@@ -269,24 +280,39 @@
 }
 - (void)viewDidLoad
 {
-    
-    //start the activity view animation:
-    [self.activityView startAnimating];
-    self.activityView.hidesWhenStopped = YES;
-    
-    //update self.stationIsAUserFav
-    [self stationIsAUserFav];
-    
-    self.titleLable.text=self.stationToDisplayInfo.userReadableName;
-    
-    //array of all the properties of the station sensors which we want to retrieve
-    self.sensorProperties=[[NSArray alloc] initWithObjects:@"air_temperature", @"air_pressure", @"relative_humidity", @"rain_fall", @"visibility", @"air_temperature", @"sea_water_electrical_conductivity", @"currents", @"sea_water_salinity", @"water_surface_height_above_reference_datum", @"sea_surface_height_amplitude_due_to_equilibrium_ocean_tide", @"sea_water_temperature", @"winds", @"harmonic_constituents", @"datums",  nil];
-    
-    self.currentSensorPropertyIndex = 0;
-    self.currentStationProperty = (NSString*)[self.sensorProperties objectAtIndex:self.currentSensorPropertyIndex];
-    
-    [self addSensorProperties];
-    
+    //don't do anything if the userReadableName and the name for the server are both not nil
+    if(self.stationToDisplayInfo.userReadableName && self.stationToDisplayInfo.nameForServer){
+        if(!self.wasinitiatedWithDictionary){
+            //start the activity view animation:
+            [self.activityView startAnimating];
+            self.activityView.hidesWhenStopped = YES;
+            
+            //update self.stationIsAUserFav
+            [self stationIsAUserFav];
+            
+            self.titleLable.text=self.stationToDisplayInfo.userReadableName;
+            
+            //array of all the properties of the station sensors which we want to retrieve
+            self.sensorProperties=[[NSArray alloc] initWithObjects:@"air_temperature", @"air_pressure", @"relative_humidity", @"rain_fall", @"visibility", @"air_temperature", @"sea_water_electrical_conductivity", @"currents", @"sea_water_salinity", @"water_surface_height_above_reference_datum", @"sea_surface_height_amplitude_due_to_equilibrium_ocean_tide", @"sea_water_temperature", @"winds", @"harmonic_constituents", @"datums",  nil];
+            
+            self.currentSensorPropertyIndex = 0;
+            
+            
+            [self addSensorProperties];
+        }
+        
+    }else{
+        //This handles an error in which the user taps on a station that does not have both the user readable name and the name for the server.
+        
+        //stop the activity view.
+        [self.activityView stopAnimating];
+        self.activityView.hidden = YES;
+        
+        //move the title label and display a error message.
+        self.titleLable.center = self.view.center;
+        self.titleLable.text = @"An error has occured.";
+        
+    }
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
 }

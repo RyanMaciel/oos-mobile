@@ -56,6 +56,7 @@
     
     //force -viewDidLoad to be called
     [viewController view];
+    
 
 }
 

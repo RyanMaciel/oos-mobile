@@ -1,10 +1,9 @@
 //
-//  main.m
+//  OOSMFavStationTableViewCell.h
 //  OOS Mobile
 //
-//  Created by Ryan Maciel on 12/10/13.
-//
-//Copyright (c) 2013 RPS ASA. All rights reserved.
+//  Created by Ryan Maciel on 4/8/14.
+//  Copyright (c) 2014 RPS ASA. All rights reserved.
 //
 //This file is part of OOS Mobile
 //OOS Mobile is free software: you can redistribute it and/or modify
@@ -19,14 +18,9 @@
 //
 //   You should have received a copy of the GNU General Public License
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
 #import <UIKit/UIKit.h>
 
-#import "OOSMAppDelegate.h"
-
-int main(int argc, char * argv[])
-{
-    @autoreleasepool {
-        return UIApplicationMain(argc, argv, nil, NSStringFromClass([OOSMAppDelegate class]));
-    }
-}
+@interface OOSMFavStationTableViewCell : UITableViewCell
+@property(strong, nonatomic)NSString *stationName;
+-(void)setUpWithDictionaryOfPropertiesAndValues:(NSDictionary*)propertyValues;
+@end

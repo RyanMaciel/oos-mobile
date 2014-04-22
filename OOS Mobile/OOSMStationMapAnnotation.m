@@ -24,15 +24,23 @@
 
 @implementation OOSMStationMapAnnotation
 @synthesize coordinate=_coordinate;
-@synthesize annotationTitle=_annotationTitle;
 @synthesize annotationID=_annotationID;
 @synthesize station=_station;
+@synthesize clusteredAnnotations=_clusteredAnnotations;
+@synthesize isACluster=_isACluster;
 
--(id)initWithTitle:(NSString *)title andCoordinate:(CLLocationCoordinate2D)c2d{
+-(void)setIsACluster:(BOOL)isACluster{
+    _isACluster = isACluster;
+    
+    //if the annotation is a cluster then make sure that self.clusteredAnnotations is initialized
+    if(!self.clusteredAnnotations){
+        self.clusteredAnnotations = [[NSMutableArray alloc] init];
+    }
+}
+
+-(id)initWithCoordinate:(CLLocationCoordinate2D)c2d{
     self=[super init];
     if(self){
-    
-        _annotationTitle=title;
         _coordinate=c2d;
     }
     return self;

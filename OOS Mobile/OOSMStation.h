@@ -22,11 +22,17 @@
 
 #import <Foundation/Foundation.h>
 #import <MapKit/MapKit.h>
+#import "OOSMMapPoint.h"
+
 @interface OOSMStation : NSObject
 
 @property(strong, nonatomic)NSString *nameForServer;
 @property(strong, nonatomic)NSString *userReadableName;
 @property(strong, nonatomic)CLLocation *location;
+@property(strong, nonatomic)NSString *serverid;
+
+//get a point with the same id as the station
+-(OOSMMapPoint*)getPoint;
 
 -(id)initWithUserReadableName:(NSString*)name nameForServer:(NSString*)nameForServer location:(CLLocation*)location;
 @end

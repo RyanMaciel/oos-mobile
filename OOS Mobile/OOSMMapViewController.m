@@ -26,6 +26,9 @@
 #import "OOSMStationInfoViewController.h"
 #import <CoreLocation/CoreLocation.h>
 #import "OOSMDataHandlerModel.h"
+#import "OOSMMapCluster.h"
+#import "OOSMMapPoint.h"
+#import "OOSMClusterModel.h"
 
 @interface OOSMMapViewController () <OOSMDataHandelerDelegate, MKMapViewDelegate>
 
@@ -36,6 +39,17 @@
 @property(strong, nonatomic)UIImage *pinImage;
 -(void)createMap;
 
+-(void)handleClustering;
+-(void)addClustersToMap:(NSArray*)clusters;
+-(void)addStationsPointsToMap:(NSDictionary*)stationPoints;
+-(void)addStationToMap:(OOSMStation*)station;
+
+//this will be an array of OOSMStations to referece to--among other things--cluster the pins on the map
+@property(strong, nonatomic)NSMutableDictionary *stations;
+
+//this will be an array of OOSMMapPoins to reference when clustering the pins on the map.
+@property(strong, nonatomic)NSMutableDictionary *stationPoints;
+@property(strong, nonatomic)OOSMClusterModel *clusterModel;
 @end
 
 @implementation OOSMMapViewController
@@ -45,26 +59,131 @@
 @synthesize coreLocationManager=_coreLocationManager;
 @synthesize pinImage=_pinImage;
 @synthesize mapDelegate=_mapDelegate;
+@synthesize stations=_stations;
+@synthesize stationPoints=_stationPoints;
+@synthesize clusterModel=_clusterModel;
 
+#pragma mark Handle Clustering:
+//This method will handle running the clustering algorithm and adding the data points to the map.
+-(void)handleClustering{
+    
+    //make sure that the cluster model is not nil
+    if(!self.clusterModel){
+        self.clusterModel = [[OOSMClusterModel alloc] initWithDataSet:self.stationPoints];
+    }
+    
+    //Create a dicionary of points that are on the screen for the algorithm to cluster, and an array of the annotations that are on the screen so that only the zoomed in annotations (clusters or pins) are recalculated removed from the map.
+    NSMutableDictionary *stationsShownOnMap = [[NSMutableDictionary alloc] init];
+    for(OOSMMapPoint *currentStationPoint in [self.stationPoints allValues]){
+    
+        if(MKMapRectContainsPoint(self.mapView.visibleMapRect, MKMapPointForCoordinate(currentStationPoint.position))){
+            
+            //get the point from the currentAnnotation and save it in the dicionary
+            [stationsShownOnMap setObject:currentStationPoint forKey:currentStationPoint.serverID];
+        }
+    }
+    
+    self.clusterModel.densityRadius = self.mapView.region.span.latitudeDelta/10.0;
+    self.clusterModel.dataSet = stationsShownOnMap;
+    
+    //Run the clustering algorithm.
+    NSDictionary *dataPoints = [self.clusterModel dBSCAN];
+    
+    //Remove all annotations from map.
+    [self.mapView removeAnnotations:[self.mapView annotations]];
+    
+    [self addClustersToMap:[dataPoints objectForKey:@"clusters"]];
+    [self addStationsPointsToMap:[dataPoints objectForKey:@"noisePoints"]];
+    
+    //Reset the visited values of the OOSMMapPoints.
+    for(OOSMMapPoint *point in [self.stationPoints allValues]){
+        point.visited = NO;
+        point.isPartOfCluster = NO;
+    }
+}
+
+-(void)addClustersToMap:(NSArray*)clusters{
+    if(clusters){
+        //For each cluster add an annotation to the map with the same coordinate.
+        for(OOSMMapCluster *cluster in clusters){
+            OOSMStationMapAnnotation *clusterAnotation = [[OOSMStationMapAnnotation alloc] initWithCoordinate:cluster.position];
+            clusterAnotation.isACluster = YES;
+            [self.mapView addAnnotation:clusterAnotation];
+        }
+    }
+}
+-(void)addStationsPointsToMap:(NSDictionary*)stationPoints{
+    for (int i = 0 ; i<[stationPoints allKeys].count; i++) {
+        
+        //get the station that corresponds to the stationPoint.
+        OOSMStation *stationForAnnotation = [self.stations objectForKey:[[stationPoints allKeys] objectAtIndex:i]];
+        
+        [self addStationToMap:stationForAnnotation];
+        
+    }
+}
+-(void)addStationToMap:(OOSMStation*)station{
+    
+    //Set up an annotation on the map to represent the station.
+    OOSMStationMapAnnotation *annotationForStation = [[OOSMStationMapAnnotation alloc] initWithCoordinate:station.location.coordinate];
+    annotationForStation.station = station;
+    [self.mapView addAnnotation:annotationForStation];
+}
+
+-(void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated{
+    [self handleClustering];
+}
+
+#pragma mark Handle Data:
 -(void)dataEncounteredFatalError{
     //tell the delegate that an error occured.
     [self.mapDelegate mapViewControllerFailedToLoad];
 }
 -(void)dataHandlerFinished{
-    //call when the data handler has finished parsing or encountered a fatal error.
+    
+    [self handleClustering];
+    
+    //call when the data handler has finished parsing.
     [self.mapDelegate mapViewControllerFinishedLoading:self];
+        
 }
 
--(void)datatHandlerFoundStation:(OOSMStation *)station{
+-(void)dataHandlerFoundStation:(OOSMStation *)station{
+    NSLog(@"new callback occured");
     
-    CLLocation *stationLocation=station.location;
-    
-    OOSMStationMapAnnotation *newMapAnnotation=[[OOSMStationMapAnnotation alloc] initWithTitle:@"" andCoordinate:stationLocation.coordinate];
-    newMapAnnotation.station=station;
-    [self.mapView addAnnotation:newMapAnnotation];
+    //only add the station to the array if it's nameForServer property is not nil and does not equal @""
+    if(station.nameForServer && ![station.nameForServer isEqualToString:@""] && station.serverid && ![station.serverid isEqualToString:@""]){
+            
+            //Add the station to the stations dictionary.
+            [self.stations setObject:station forKey:station.serverid];
+            //Add a point representing the station to the stationPoints.
+            [self.stationPoints setObject:[station getPoint] forKey:station.serverid];
+    }
 }
+
+
+#pragma mark Handle Map View Interaction:
+//handle touches on the annotations
+-(void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view{
+    
+    if([view.annotation isKindOfClass:[OOSMStationMapAnnotation class]]){
+        
+        OOSMStationMapAnnotation *clusterAnnotation = ((OOSMStationMapAnnotation*)view.annotation);
+        
+        //if the touch was on a cluster, then expand the cluster
+        if(clusterAnnotation.isACluster){
+            [self.mapView setRegion:[self.mapView regionThatFits:MKCoordinateRegionMake(clusterAnnotation.coordinate, MKCoordinateSpanMake(self.mapView.region.span.latitudeDelta/3.5, self.mapView.region.span.latitudeDelta/3.5))]];
+        }else{
+            self.tappedMapAnnotation=(OOSMStationMapAnnotation*)(view.annotation);
+            [self performSegueWithIdentifier:@"StationInfo" sender:self];
+        }
+    }
+}
+
+
+#pragma mark Set Up Map View
 -(MKAnnotationView*)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation{
-
+    
     //reuse a new MKAnnotationView if one cannot be reused
     static NSString *viewIdentifier = @"MKPinAnnotationView";
     MKPinAnnotationView *annotationView = (MKPinAnnotationView*)
@@ -72,32 +191,14 @@
     
     if(!annotationView) {
         annotationView = [[MKPinAnnotationView alloc]
-                           initWithAnnotation:annotation reuseIdentifier:viewIdentifier];
+                          initWithAnnotation:annotation reuseIdentifier:viewIdentifier];
     }
     
     //give the annotation a custom image
     annotationView.image = self.pinImage;
-
+    
     annotationView.frame = CGRectMake(0, 0, 30, 30);
     return annotationView;
-}
-
-//handle touches on the annotations
--(void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view{
-    if([view.annotation isKindOfClass:[OOSMStationMapAnnotation class]]){
-        self.tappedMapAnnotation=(OOSMStationMapAnnotation*)(view.annotation);
-        [self performSegueWithIdentifier:@"StationInfo" sender:self];
-    }
-}
-
--(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-    
-    if([segue.destinationViewController respondsToSelector:@selector(setStationInfoToDisplay:)]){
-        
-        //provide the OOSMStationInfoViewController with the information it needs.
-        OOSMStationInfoViewController *destinationViewController=segue.destinationViewController;
-        [destinationViewController setStationInfoToDisplay:self.tappedMapAnnotation.station];
-    }
 }
 
 -(void)createMap{
@@ -113,6 +214,16 @@
 
 }
 
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    
+    if([segue.destinationViewController respondsToSelector:@selector(setStationInfoToDisplay:)]){
+        
+        //provide the OOSMStationInfoViewController with the information it needs.
+        OOSMStationInfoViewController *destinationViewController=segue.destinationViewController;
+        [destinationViewController setStationInfoToDisplay:self.tappedMapAnnotation.station];
+    }
+}
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -124,6 +235,10 @@
 
 - (void)viewDidLoad
 {
+    //initialize mutable dictionaries
+    self.stations = [[NSMutableDictionary alloc] init];
+    self.stationPoints = [[NSMutableDictionary alloc] init];
+    
     //hide the back button
     [self.navigationItem setHidesBackButton:YES];
 

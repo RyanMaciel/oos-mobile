@@ -27,7 +27,6 @@
 		F16C88F818579DAE002661D5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F16C88D418579DAE002661D5 /* Foundation.framework */; };
 		F16C88F918579DAE002661D5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F16C88D818579DAE002661D5 /* UIKit.framework */; };
 		F16C890118579DAE002661D5 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F16C88FF18579DAE002661D5 /* InfoPlist.strings */; };
-		F16C890318579DAE002661D5 /* OOS_MobileTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F16C890218579DAE002661D5 /* OOS_MobileTests.m */; };
 		F16C891018579EA2002661D5 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F16C890F18579EA2002661D5 /* MapKit.framework */; };
 		F16C891318579F2F002661D5 /* OOSMDataHandlerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F16C891218579F2F002661D5 /* OOSMDataHandlerModel.m */; };
 		F16C89161857AD1C002661D5 /* OOSMMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F16C89151857AD1C002661D5 /* OOSMMapViewController.m */; };
@@ -39,8 +38,15 @@
 		F1898843187CADA000E1CC37 /* OOSMFavoriteStationsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F1898842187CADA000E1CC37 /* OOSMFavoriteStationsViewController.m */; };
 		F18ECE6718A067BC00DB4C33 /* blue_buoy_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = F18ECE6618A067BC00DB4C33 /* blue_buoy_icon.png */; };
 		F19764D918A94F9200AA02BD /* OOSMWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F19764D818A94F9200AA02BD /* OOSMWebViewController.m */; };
+		F1B1D01E18E203D60052EFDC /* OOSMClusterModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F1B1D01D18E203D60052EFDC /* OOSMClusterModel.m */; };
+		F1B1D02118E204700052EFDC /* OOSMMapCluster.m in Sources */ = {isa = PBXBuildFile; fileRef = F1B1D02018E204700052EFDC /* OOSMMapCluster.m */; };
+		F1B1D02418E2048A0052EFDC /* OOSMMapPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = F1B1D02318E2048A0052EFDC /* OOSMMapPoint.m */; };
+		F1B1D02A18E223C70052EFDC /* OOSMMapClusterTest.m in Sources */ = {isa = PBXBuildFile; fileRef = F1B1D02918E223C70052EFDC /* OOSMMapClusterTest.m */; };
+		F1B2F93D18F48A1E00BACDA3 /* OOSMFavStationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F1B2F93C18F48A1E00BACDA3 /* OOSMFavStationCell.xib */; };
+		F1B2F94018F48BF900BACDA3 /* OOSMFavStationTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F1B2F93F18F48BF900BACDA3 /* OOSMFavStationTableViewCell.m */; };
 		F1D88478186100AC00B4A349 /* COPYING in Resources */ = {isa = PBXBuildFile; fileRef = F1D88477186100AC00B4A349 /* COPYING */; };
 		F1E29B3B18725AB900416D5C /* OOSMParseHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = F1E29B3A18725AB900416D5C /* OOSMParseHelper.m */; };
+		F1F5BB4F18E3B3F200E43E84 /* OOSMMapAnnotationClusterRepresentation.m in Sources */ = {isa = PBXBuildFile; fileRef = F1F5BB4E18E3B3F200E43E84 /* OOSMMapAnnotationClusterRepresentation.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -83,7 +89,6 @@
 		F16C88F618579DAE002661D5 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		F16C88FE18579DAE002661D5 /* OOS MobileTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "OOS MobileTests-Info.plist"; sourceTree = "<group>"; };
 		F16C890018579DAE002661D5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		F16C890218579DAE002661D5 /* OOS_MobileTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OOS_MobileTests.m; sourceTree = "<group>"; };
 		F16C890F18579EA2002661D5 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		F16C891118579F2F002661D5 /* OOSMDataHandlerModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OOSMDataHandlerModel.h; path = Images.xcassets/OOSMDataHandlerModel.h; sourceTree = "<group>"; };
 		F16C891218579F2F002661D5 /* OOSMDataHandlerModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OOSMDataHandlerModel.m; path = Images.xcassets/OOSMDataHandlerModel.m; sourceTree = "<group>"; };
@@ -102,9 +107,21 @@
 		F18ECE6618A067BC00DB4C33 /* blue_buoy_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = blue_buoy_icon.png; path = Images.xcassets/blue_buoy_icon.png; sourceTree = "<group>"; };
 		F19764D718A94F9200AA02BD /* OOSMWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OOSMWebViewController.h; sourceTree = "<group>"; };
 		F19764D818A94F9200AA02BD /* OOSMWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OOSMWebViewController.m; sourceTree = "<group>"; };
+		F1B1D01C18E203D60052EFDC /* OOSMClusterModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OOSMClusterModel.h; sourceTree = "<group>"; };
+		F1B1D01D18E203D60052EFDC /* OOSMClusterModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OOSMClusterModel.m; sourceTree = "<group>"; };
+		F1B1D01F18E204700052EFDC /* OOSMMapCluster.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OOSMMapCluster.h; sourceTree = "<group>"; };
+		F1B1D02018E204700052EFDC /* OOSMMapCluster.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OOSMMapCluster.m; sourceTree = "<group>"; };
+		F1B1D02218E2048A0052EFDC /* OOSMMapPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OOSMMapPoint.h; sourceTree = "<group>"; };
+		F1B1D02318E2048A0052EFDC /* OOSMMapPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OOSMMapPoint.m; sourceTree = "<group>"; };
+		F1B1D02918E223C70052EFDC /* OOSMMapClusterTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OOSMMapClusterTest.m; sourceTree = "<group>"; };
+		F1B2F93C18F48A1E00BACDA3 /* OOSMFavStationCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OOSMFavStationCell.xib; sourceTree = "<group>"; };
+		F1B2F93E18F48BF900BACDA3 /* OOSMFavStationTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OOSMFavStationTableViewCell.h; sourceTree = "<group>"; };
+		F1B2F93F18F48BF900BACDA3 /* OOSMFavStationTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OOSMFavStationTableViewCell.m; sourceTree = "<group>"; };
 		F1D88477186100AC00B4A349 /* COPYING */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = COPYING; sourceTree = "<group>"; };
 		F1E29B3918725AB900416D5C /* OOSMParseHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OOSMParseHelper.h; sourceTree = "<group>"; };
 		F1E29B3A18725AB900416D5C /* OOSMParseHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OOSMParseHelper.m; sourceTree = "<group>"; };
+		F1F5BB4D18E3B3F200E43E84 /* OOSMMapAnnotationClusterRepresentation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OOSMMapAnnotationClusterRepresentation.h; sourceTree = "<group>"; };
+		F1F5BB4E18E3B3F200E43E84 /* OOSMMapAnnotationClusterRepresentation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OOSMMapAnnotationClusterRepresentation.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -219,8 +236,8 @@
 		F16C88FC18579DAE002661D5 /* OOS MobileTests */ = {
 			isa = PBXGroup;
 			children = (
-				F16C890218579DAE002661D5 /* OOS_MobileTests.m */,
 				F16C88FD18579DAE002661D5 /* Supporting Files */,
+				F1B1D02918E223C70052EFDC /* OOSMMapClusterTest.m */,
 			);
 			path = "OOS MobileTests";
 			sourceTree = "<group>";
@@ -287,6 +304,7 @@
 				F16C89151857AD1C002661D5 /* OOSMMapViewController.m */,
 				F16C89171857ADC5002661D5 /* OOSMStationMapAnnotation.h */,
 				F16C89181857ADC5002661D5 /* OOSMStationMapAnnotation.m */,
+				F1B1D02518E207440052EFDC /* Clustering */,
 			);
 			name = "Map View";
 			sourceTree = "<group>";
@@ -320,6 +338,9 @@
 			children = (
 				F1898841187CADA000E1CC37 /* OOSMFavoriteStationsViewController.h */,
 				F1898842187CADA000E1CC37 /* OOSMFavoriteStationsViewController.m */,
+				F1B2F93C18F48A1E00BACDA3 /* OOSMFavStationCell.xib */,
+				F1B2F93E18F48BF900BACDA3 /* OOSMFavStationTableViewCell.h */,
+				F1B2F93F18F48BF900BACDA3 /* OOSMFavStationTableViewCell.m */,
 			);
 			name = "Favorite Stations";
 			sourceTree = "<group>";
@@ -332,6 +353,29 @@
 				F18ECE6618A067BC00DB4C33 /* blue_buoy_icon.png */,
 			);
 			name = Images;
+			sourceTree = "<group>";
+		};
+		F1B1D02518E207440052EFDC /* Clustering */ = {
+			isa = PBXGroup;
+			children = (
+				F1B1D01C18E203D60052EFDC /* OOSMClusterModel.h */,
+				F1B1D01D18E203D60052EFDC /* OOSMClusterModel.m */,
+				F1F5BB4A18E3B3AD00E43E84 /* Station Annotation Representations */,
+			);
+			name = Clustering;
+			sourceTree = "<group>";
+		};
+		F1F5BB4A18E3B3AD00E43E84 /* Station Annotation Representations */ = {
+			isa = PBXGroup;
+			children = (
+				F1B1D01F18E204700052EFDC /* OOSMMapCluster.h */,
+				F1B1D02018E204700052EFDC /* OOSMMapCluster.m */,
+				F1B1D02218E2048A0052EFDC /* OOSMMapPoint.h */,
+				F1B1D02318E2048A0052EFDC /* OOSMMapPoint.m */,
+				F1F5BB4D18E3B3F200E43E84 /* OOSMMapAnnotationClusterRepresentation.h */,
+				F1F5BB4E18E3B3F200E43E84 /* OOSMMapAnnotationClusterRepresentation.m */,
+			);
+			name = "Station Annotation Representations";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -420,6 +464,7 @@
 				F17566EE18CF410300617CD4 /* OOSM Launch Image.png in Resources */,
 				F16C88E818579DAE002661D5 /* Main_iPhone.storyboard in Resources */,
 				F1D88478186100AC00B4A349 /* COPYING in Resources */,
+				F1B2F93D18F48A1E00BACDA3 /* OOSMFavStationCell.xib in Resources */,
 				F16C88DF18579DAE002661D5 /* InfoPlist.strings in Resources */,
 				F160875518A1756400A76F39 /* blue_buoy_icon_test.png in Resources */,
 				F18ECE6718A067BC00DB4C33 /* blue_buoy_icon.png in Resources */,
@@ -444,17 +489,22 @@
 				F18433791860D95D00D7ED55 /* OOSMStation.m in Sources */,
 				F16C891318579F2F002661D5 /* OOSMDataHandlerModel.m in Sources */,
 				F16C88E518579DAE002661D5 /* OOSMAppDelegate.m in Sources */,
+				F1B1D02418E2048A0052EFDC /* OOSMMapPoint.m in Sources */,
+				F1F5BB4F18E3B3F200E43E84 /* OOSMMapAnnotationClusterRepresentation.m in Sources */,
 				F16C89191857ADC5002661D5 /* OOSMStationMapAnnotation.m in Sources */,
 				F16C88E118579DAE002661D5 /* main.m in Sources */,
 				F1898843187CADA000E1CC37 /* OOSMFavoriteStationsViewController.m in Sources */,
 				F15EF1ED18CFA8B60071584E /* OOSMNavigationViewController.m in Sources */,
 				F117EC62187C825100EBA779 /* OOSMParseHelperOperation.m in Sources */,
 				F15EF1E318CF7CDD0071584E /* OOSMLoadingViewController.m in Sources */,
+				F1B1D02118E204700052EFDC /* OOSMMapCluster.m in Sources */,
+				F1B2F94018F48BF900BACDA3 /* OOSMFavStationTableViewCell.m in Sources */,
 				F184337F1860DF8F00D7ED55 /* OOSMStationInfoViewController.m in Sources */,
 				F1E29B3B18725AB900416D5C /* OOSMParseHelper.m in Sources */,
 				F10E951018D39E0D005C5420 /* OOSMStationPropertyButton.m in Sources */,
 				F19764D918A94F9200AA02BD /* OOSMWebViewController.m in Sources */,
 				F16C89161857AD1C002661D5 /* OOSMMapViewController.m in Sources */,
+				F1B1D01E18E203D60052EFDC /* OOSMClusterModel.m in Sources */,
 				F16C88EE18579DAE002661D5 /* OOSMViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -463,7 +513,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F16C890318579DAE002661D5 /* OOS_MobileTests.m in Sources */,
+				F1B1D02A18E223C70052EFDC /* OOSMMapClusterTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

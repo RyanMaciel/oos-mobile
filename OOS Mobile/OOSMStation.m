@@ -26,6 +26,20 @@
 @synthesize location=_location;
 @synthesize userReadableName=_userReadableName;
 @synthesize nameForServer=_nameForServer;
+@synthesize serverid=_serverid;
+
+-(OOSMMapPoint*)getPoint{
+    
+    //create a new map point
+    OOSMMapPoint *mapPoint = [[OOSMMapPoint alloc] init];
+    
+    //set the point's position
+    mapPoint.position = self.location.coordinate;
+    
+    //set the point's serverID
+    mapPoint.serverID = self.serverid;
+    return mapPoint;
+}
 
 -(id)initWithUserReadableName:(NSString *)name nameForServer:(NSString *)nameForServer location:(CLLocation *)location{
     self = [super init];
@@ -36,6 +50,9 @@
         //fixes a formatting issue
         self.nameForServer=[nameForServer stringByReplacingOccurrencesOfString:@"\n        " withString:@""];
         self.location=location;
+        
+        //set the server id
+        self.serverid = [self.nameForServer stringByReplacingOccurrencesOfString:@"urn:ioos:station:NOAA.NOS.CO-OPS:" withString:@""];
     }
     return self;
 }

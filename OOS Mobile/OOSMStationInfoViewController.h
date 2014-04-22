@@ -22,8 +22,14 @@
 
 #import "OOSMViewController.h"
 #import "OOSMStation.h"
+@protocol OOSMStationInfoDataHandler <NSObject>
 
+//return properties to the delegate
+-(NSDictionary*)dataReturnedByStationInfoViewControllerForIndex:(int)index;
+@end
 @interface OOSMStationInfoViewController : OOSMViewController
+@property(strong, nonatomic)id<OOSMStationInfoDataHandler> delegate;
 
 -(void)setStationInfoToDisplay:(OOSMStation*)stationToDisplay;
+-(void)displayWithDictionary:(NSDictionary*)stationInfo;
 @end

@@ -25,7 +25,10 @@
 
 
 @interface OOSMDataHandlerModel()
--(void)getData;
+
+//Attempts to set up the parser and returns a BOOL indicating its success.
+-(BOOL)getData;
+
 -(CLLocation*)getStationCoordinates;
 
 @property(strong, nonatomic)NSXMLParser *parser;
@@ -48,10 +51,15 @@
 
 -(void)setDelegate:(id<OOSMDataHandelerDelegate>)delegate{
     _delegate = delegate;
-    [self.parser parse];
     
     //handle an error
     if(!self.parser) [self.delegate dataEncounteredFatalError];
+    
+    if([self getData]){
+        [self.parser parse];
+    }else{
+        [self.delegate dataEncounteredFatalError];
+    }
 }
 
 
@@ -92,7 +100,7 @@
             OOSMStation *newStation=[[OOSMStation alloc] initWithUserReadableName:self.stationName nameForServer:self.stationNameForServer location:[self getStationCoordinates]];
             
             //update the map with the new station
-            [self.delegate datatHandlerFoundStation:newStation];
+            [self.delegate dataHandlerFoundStation:newStation];
 
             //add a new station to the station dictionary
             [self.stationsToDisplay setObject:newStation forKey:self.stationName];
@@ -146,12 +154,20 @@
     [self.delegate dataEncounteredFatalError];
     NSLog(@"error occured when getting map data");
 }
--(void)getData{
+
+-(BOOL)getData{
     NSURL *feedURL=[NSURL URLWithString:@"http://opendap.co-ops.nos.noaa.gov/ioos-dif-sos/SOS?service=SOS&request=GetCapabilities&version=1.0.0"];
+    
+    if(!feedURL){
+        return NO;
+    }
+    
     self.parser=[[NSXMLParser alloc] initWithContentsOfURL:feedURL];
     
     [self.parser setDelegate:self];
     [self.parser setShouldResolveExternalEntities:NO];
+    
+    return YES;
 }
 -(id)init{
     self=[super init];

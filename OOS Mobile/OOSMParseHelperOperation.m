@@ -31,6 +31,7 @@
 @property(nonatomic)int propertyNumber;
 @property(strong, nonatomic)NSString *stringForNextCallback;
 @property(strong, nonatomic)OOSMParseHelper *parseHelperForNextCallback;
+@property(strong, nonatomic)NSMutableDictionary *outputDictionary;
 
 -(void)getNextProperty;
 -(void)finishedOperation;
@@ -44,12 +45,25 @@
 @synthesize propertyNumber=_propertyNumber;
 @synthesize stringForNextCallback=_stringForNextCallback;
 @synthesize parseHelperForNextCallback=_parseHelperForNextCallback;
+@synthesize outputDictionary=_outputDictionary;
 
 //return info to the delgate
 -(void)callbackToDelegateWithString:(NSString*)string property:(NSString*)property{
     //don't return anything if the operation is cancelled
     if(!self.isCancelled){
-        [self.delegate parseHelper:self.parseHelperForNextCallback returnedString:string forProperty:property];
+        
+        if(!string){
+            [self.outputDictionary setObject:@"" forKey:property];
+        }else{
+            [self.outputDictionary setObject:string forKey:property];
+        }
+        if([self.delegate respondsToSelector:@selector(parseHelper:returnedString:forProperty:)]){
+            [self.delegate parseHelper:self.parseHelperForNextCallback returnedString:string forProperty:property];
+        }
+        
+        if(self.outputDictionary.count == self.elementsForParseHelper.count && [self.delegate respondsToSelector:@selector(parseHelperReturnedDictionary:forStationNamed:)]){
+            [self.delegate parseHelperReturnedDictionary:self.outputDictionary forStationNamed:self.stationName];
+        }
     }
 }
 
@@ -125,6 +139,7 @@
         self.delegate = delegate;
         self.elementsForParseHelper = elementsToFind;
         self.stationName = stationName;
+        self.outputDictionary = [[NSMutableDictionary alloc] init];
     }
     return self;
 }

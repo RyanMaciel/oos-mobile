@@ -1,10 +1,9 @@
 //
-//  OOSMDataHandlerModel.h
+//  OOSMMapAnnotationClusterRepresentation.m
 //  OOS Mobile
 //
-//  Created by Ryan Maciel on 12/10/13.
-//
-//  Copyright (c) 2013 RPS ASA. All rights reserved.
+//  Created by Ryan Maciel on 3/26/14.
+//  Copyright (c) 2014 RPS ASA. All rights reserved.
 //
 //  This file is part of OOS Mobile
 //  OOS Mobile is free software: you can redistribute it and/or modify
@@ -19,21 +18,8 @@
 //
 //   You should have received a copy of the GNU General Public License
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#import "OOSMMapAnnotationClusterRepresentation.h"
 
-#import <Foundation/Foundation.h>
-#import "OOSMStation.h"
-
-@protocol OOSMDataHandelerDelegate;
-
-@interface OOSMDataHandlerModel : NSObject <NSXMLParserDelegate>
-
-@property (nonatomic, assign) id <OOSMDataHandelerDelegate> delegate;
-
-@end
-
-@protocol OOSMDataHandelerDelegate <NSObject>
-
--(void)dataHandlerFoundStation:(OOSMStation*)station;
--(void)dataHandlerFinished;
--(void)dataEncounteredFatalError;
+@implementation OOSMMapAnnotationClusterRepresentation
+@synthesize position=_position;
 @end

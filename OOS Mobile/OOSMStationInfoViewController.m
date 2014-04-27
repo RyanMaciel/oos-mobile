@@ -29,6 +29,8 @@
 @interface OOSMStationInfoViewController () <OOSMParseOperationDelegate>
 
 @property(strong, nonatomic)IBOutlet UILabel *titleLable;
+@property(strong, nonatomic)IBOutlet UILabel *timeStamp;
+
 @property(strong, nonatomic)OOSMStation *stationToDisplayInfo;
 @property(strong, nonatomic)OOSMParseHelper *parseHelper;
 @property(strong, nonatomic)NSArray *sensorProperties;
@@ -64,6 +66,7 @@
 @synthesize webViewPropertyString=_webViewPropertyString;
 @synthesize wasinitiatedWithDictionary=_wasinitiatedWithDictionary;
 @synthesize delegate=_delegate;
+@synthesize timeStamp=_timeStamp;
 
 #pragma mark Handle Displaying Web View
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
@@ -280,6 +283,13 @@
 }
 - (void)viewDidLoad
 {
+    //set the time stamp to the current date.
+    NSDateFormatter *formater = [[NSDateFormatter alloc] init];
+    formater.dateStyle = NSDateFormatterMediumStyle;
+    formater.timeStyle = NSDateFormatterMediumStyle;
+    
+    self.timeStamp.text = [formater stringFromDate:[NSDate date]];
+    
     //don't do anything if the userReadableName and the name for the server are both not nil
     if(self.stationToDisplayInfo.userReadableName && self.stationToDisplayInfo.nameForServer){
         if(!self.wasinitiatedWithDictionary){

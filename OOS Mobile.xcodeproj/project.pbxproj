@@ -38,6 +38,7 @@
 		F1898843187CADA000E1CC37 /* OOSMFavoriteStationsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F1898842187CADA000E1CC37 /* OOSMFavoriteStationsViewController.m */; };
 		F18ECE6718A067BC00DB4C33 /* blue_buoy_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = F18ECE6618A067BC00DB4C33 /* blue_buoy_icon.png */; };
 		F19764D918A94F9200AA02BD /* OOSMWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F19764D818A94F9200AA02BD /* OOSMWebViewController.m */; };
+		F1A5669E19070D91003C8FE5 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = F1A5669D19070D91003C8FE5 /* Reachability.m */; };
 		F1B1D01E18E203D60052EFDC /* OOSMClusterModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F1B1D01D18E203D60052EFDC /* OOSMClusterModel.m */; };
 		F1B1D02118E204700052EFDC /* OOSMMapCluster.m in Sources */ = {isa = PBXBuildFile; fileRef = F1B1D02018E204700052EFDC /* OOSMMapCluster.m */; };
 		F1B1D02418E2048A0052EFDC /* OOSMMapPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = F1B1D02318E2048A0052EFDC /* OOSMMapPoint.m */; };
@@ -46,6 +47,18 @@
 		F1B2F94018F48BF900BACDA3 /* OOSMFavStationTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F1B2F93F18F48BF900BACDA3 /* OOSMFavStationTableViewCell.m */; };
 		F1D88478186100AC00B4A349 /* COPYING in Resources */ = {isa = PBXBuildFile; fileRef = F1D88477186100AC00B4A349 /* COPYING */; };
 		F1E29B3B18725AB900416D5C /* OOSMParseHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = F1E29B3A18725AB900416D5C /* OOSMParseHelper.m */; };
+		F1F55C81190DC711002E7D37 /* barometer.png in Resources */ = {isa = PBXBuildFile; fileRef = F1F55C75190DC711002E7D37 /* barometer.png */; };
+		F1F55C82190DC711002E7D37 /* current_speed.png in Resources */ = {isa = PBXBuildFile; fileRef = F1F55C76190DC711002E7D37 /* current_speed.png */; };
+		F1F55C83190DC711002E7D37 /* depth-1.png in Resources */ = {isa = PBXBuildFile; fileRef = F1F55C77190DC711002E7D37 /* depth-1.png */; };
+		F1F55C84190DC711002E7D37 /* depth.png in Resources */ = {isa = PBXBuildFile; fileRef = F1F55C78190DC711002E7D37 /* depth.png */; };
+		F1F55C85190DC711002E7D37 /* height.png in Resources */ = {isa = PBXBuildFile; fileRef = F1F55C79190DC711002E7D37 /* height.png */; };
+		F1F55C86190DC711002E7D37 /* light.png in Resources */ = {isa = PBXBuildFile; fileRef = F1F55C7A190DC711002E7D37 /* light.png */; };
+		F1F55C87190DC711002E7D37 /* salinity.png in Resources */ = {isa = PBXBuildFile; fileRef = F1F55C7B190DC711002E7D37 /* salinity.png */; };
+		F1F55C88190DC711002E7D37 /* temperature.png in Resources */ = {isa = PBXBuildFile; fileRef = F1F55C7C190DC711002E7D37 /* temperature.png */; };
+		F1F55C89190DC711002E7D37 /* temporary_splash_screen.png in Resources */ = {isa = PBXBuildFile; fileRef = F1F55C7D190DC711002E7D37 /* temporary_splash_screen.png */; };
+		F1F55C8A190DC711002E7D37 /* time.png in Resources */ = {isa = PBXBuildFile; fileRef = F1F55C7E190DC711002E7D37 /* time.png */; };
+		F1F55C8B190DC711002E7D37 /* water_temp.png in Resources */ = {isa = PBXBuildFile; fileRef = F1F55C7F190DC711002E7D37 /* water_temp.png */; };
+		F1F55C8C190DC711002E7D37 /* windspeed.png in Resources */ = {isa = PBXBuildFile; fileRef = F1F55C80190DC711002E7D37 /* windspeed.png */; };
 		F1F5BB4F18E3B3F200E43E84 /* OOSMMapAnnotationClusterRepresentation.m in Sources */ = {isa = PBXBuildFile; fileRef = F1F5BB4E18E3B3F200E43E84 /* OOSMMapAnnotationClusterRepresentation.m */; };
 /* End PBXBuildFile section */
 
@@ -107,6 +120,8 @@
 		F18ECE6618A067BC00DB4C33 /* blue_buoy_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = blue_buoy_icon.png; path = Images.xcassets/blue_buoy_icon.png; sourceTree = "<group>"; };
 		F19764D718A94F9200AA02BD /* OOSMWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OOSMWebViewController.h; sourceTree = "<group>"; };
 		F19764D818A94F9200AA02BD /* OOSMWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OOSMWebViewController.m; sourceTree = "<group>"; };
+		F1A5669C19070D91003C8FE5 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		F1A5669D19070D91003C8FE5 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		F1B1D01C18E203D60052EFDC /* OOSMClusterModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OOSMClusterModel.h; sourceTree = "<group>"; };
 		F1B1D01D18E203D60052EFDC /* OOSMClusterModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OOSMClusterModel.m; sourceTree = "<group>"; };
 		F1B1D01F18E204700052EFDC /* OOSMMapCluster.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OOSMMapCluster.h; sourceTree = "<group>"; };
@@ -120,6 +135,18 @@
 		F1D88477186100AC00B4A349 /* COPYING */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = COPYING; sourceTree = "<group>"; };
 		F1E29B3918725AB900416D5C /* OOSMParseHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OOSMParseHelper.h; sourceTree = "<group>"; };
 		F1E29B3A18725AB900416D5C /* OOSMParseHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OOSMParseHelper.m; sourceTree = "<group>"; };
+		F1F55C75190DC711002E7D37 /* barometer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = barometer.png; path = Images.xcassets/barometer.png; sourceTree = "<group>"; };
+		F1F55C76190DC711002E7D37 /* current_speed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = current_speed.png; path = Images.xcassets/current_speed.png; sourceTree = "<group>"; };
+		F1F55C77190DC711002E7D37 /* depth-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "depth-1.png"; path = "Images.xcassets/depth-1.png"; sourceTree = "<group>"; };
+		F1F55C78190DC711002E7D37 /* depth.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = depth.png; path = Images.xcassets/depth.png; sourceTree = "<group>"; };
+		F1F55C79190DC711002E7D37 /* height.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = height.png; path = Images.xcassets/height.png; sourceTree = "<group>"; };
+		F1F55C7A190DC711002E7D37 /* light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = light.png; path = Images.xcassets/light.png; sourceTree = "<group>"; };
+		F1F55C7B190DC711002E7D37 /* salinity.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = salinity.png; path = Images.xcassets/salinity.png; sourceTree = "<group>"; };
+		F1F55C7C190DC711002E7D37 /* temperature.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = temperature.png; path = Images.xcassets/temperature.png; sourceTree = "<group>"; };
+		F1F55C7D190DC711002E7D37 /* temporary_splash_screen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = temporary_splash_screen.png; path = Images.xcassets/temporary_splash_screen.png; sourceTree = "<group>"; };
+		F1F55C7E190DC711002E7D37 /* time.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = time.png; path = Images.xcassets/time.png; sourceTree = "<group>"; };
+		F1F55C7F190DC711002E7D37 /* water_temp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = water_temp.png; path = Images.xcassets/water_temp.png; sourceTree = "<group>"; };
+		F1F55C80190DC711002E7D37 /* windspeed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = windspeed.png; path = Images.xcassets/windspeed.png; sourceTree = "<group>"; };
 		F1F5BB4D18E3B3F200E43E84 /* OOSMMapAnnotationClusterRepresentation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OOSMMapAnnotationClusterRepresentation.h; sourceTree = "<group>"; };
 		F1F5BB4E18E3B3F200E43E84 /* OOSMMapAnnotationClusterRepresentation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OOSMMapAnnotationClusterRepresentation.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -262,6 +289,7 @@
 		F16C890D18579DFA002661D5 /* Shared Resources  */ = {
 			isa = PBXGroup;
 			children = (
+				F1A5669B19070D7F003C8FE5 /* Network Reachability */,
 				F15EF1E418CFA7A00071584E /* Navigation Controller */,
 				F15EF1E018CF7CA90071584E /* Loading View */,
 				F10CCF9718B3E20E0093241F /* www */,
@@ -348,11 +376,32 @@
 		F18ECE6818A067CA00DB4C33 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				F1F55C75190DC711002E7D37 /* barometer.png */,
+				F1F55C76190DC711002E7D37 /* current_speed.png */,
+				F1F55C77190DC711002E7D37 /* depth-1.png */,
+				F1F55C78190DC711002E7D37 /* depth.png */,
+				F1F55C79190DC711002E7D37 /* height.png */,
+				F1F55C7A190DC711002E7D37 /* light.png */,
+				F1F55C7B190DC711002E7D37 /* salinity.png */,
+				F1F55C7C190DC711002E7D37 /* temperature.png */,
+				F1F55C7D190DC711002E7D37 /* temporary_splash_screen.png */,
+				F1F55C7E190DC711002E7D37 /* time.png */,
+				F1F55C7F190DC711002E7D37 /* water_temp.png */,
+				F1F55C80190DC711002E7D37 /* windspeed.png */,
 				F17566ED18CF410300617CD4 /* OOSM Launch Image.png */,
 				F160875418A1756400A76F39 /* blue_buoy_icon_test.png */,
 				F18ECE6618A067BC00DB4C33 /* blue_buoy_icon.png */,
 			);
 			name = Images;
+			sourceTree = "<group>";
+		};
+		F1A5669B19070D7F003C8FE5 /* Network Reachability */ = {
+			isa = PBXGroup;
+			children = (
+				F1A5669C19070D91003C8FE5 /* Reachability.h */,
+				F1A5669D19070D91003C8FE5 /* Reachability.m */,
+			);
+			name = "Network Reachability";
 			sourceTree = "<group>";
 		};
 		F1B1D02518E207440052EFDC /* Clustering */ = {
@@ -459,15 +508,27 @@
 			buildActionMask = 2147483647;
 			files = (
 				F10CCF9818B3E20E0093241F /* www in Resources */,
+				F1F55C87190DC711002E7D37 /* salinity.png in Resources */,
+				F1F55C83190DC711002E7D37 /* depth-1.png in Resources */,
+				F1F55C81190DC711002E7D37 /* barometer.png in Resources */,
+				F1F55C88190DC711002E7D37 /* temperature.png in Resources */,
 				F1142E8F18610AD3009AA3B3 /* Main_iPad.storyboard in Resources */,
+				F1F55C8A190DC711002E7D37 /* time.png in Resources */,
+				F1F55C8C190DC711002E7D37 /* windspeed.png in Resources */,
+				F1F55C86190DC711002E7D37 /* light.png in Resources */,
 				F16C88F018579DAE002661D5 /* Images.xcassets in Resources */,
+				F1F55C84190DC711002E7D37 /* depth.png in Resources */,
+				F1F55C89190DC711002E7D37 /* temporary_splash_screen.png in Resources */,
 				F17566EE18CF410300617CD4 /* OOSM Launch Image.png in Resources */,
 				F16C88E818579DAE002661D5 /* Main_iPhone.storyboard in Resources */,
 				F1D88478186100AC00B4A349 /* COPYING in Resources */,
+				F1F55C82190DC711002E7D37 /* current_speed.png in Resources */,
 				F1B2F93D18F48A1E00BACDA3 /* OOSMFavStationCell.xib in Resources */,
 				F16C88DF18579DAE002661D5 /* InfoPlist.strings in Resources */,
+				F1F55C85190DC711002E7D37 /* height.png in Resources */,
 				F160875518A1756400A76F39 /* blue_buoy_icon_test.png in Resources */,
 				F18ECE6718A067BC00DB4C33 /* blue_buoy_icon.png in Resources */,
+				F1F55C8B190DC711002E7D37 /* water_temp.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -496,6 +557,7 @@
 				F1898843187CADA000E1CC37 /* OOSMFavoriteStationsViewController.m in Sources */,
 				F15EF1ED18CFA8B60071584E /* OOSMNavigationViewController.m in Sources */,
 				F117EC62187C825100EBA779 /* OOSMParseHelperOperation.m in Sources */,
+				F1A5669E19070D91003C8FE5 /* Reachability.m in Sources */,
 				F15EF1E318CF7CDD0071584E /* OOSMLoadingViewController.m in Sources */,
 				F1B1D02118E204700052EFDC /* OOSMMapCluster.m in Sources */,
 				F1B2F94018F48BF900BACDA3 /* OOSMFavStationTableViewCell.m in Sources */,

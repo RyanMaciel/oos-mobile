@@ -31,6 +31,7 @@
 @property(strong, nonatomic)NSUserDefaults *userDefaults;
 @property(strong, nonatomic)OOSMStation *stationTappedOn;
 @property(strong, nonatomic)NSIndexPath *selectedPath;
+@property(strong, nonatomic)NSMutableArray *tableViewCellNames;
 @end
 
 @implementation OOSMFavoriteStationsViewController
@@ -38,9 +39,19 @@
 @synthesize userFavs=_userFavs;
 @synthesize stationTappedOn=_stationTappedOn;
 @synthesize selectedPath=_selectedPath;
+@synthesize tableViewCellNames=_tableViewCellNames;
 
 //Delegate method for getting the temperature and wind speed at a station.
 -(void)parseHelperReturnedDictionary:(NSDictionary *)stationProperties forStationNamed:(NSString*)station{
+
+    for(int i=0; i<self.tableViewCellNames.count; i++){
+
+        if([station isEqualToString:[self.tableViewCellNames objectAtIndex:i]]){
+            
+            OOSMFavStationTableViewCell *favoriteCell = (OOSMFavStationTableViewCell*)[self.mainTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:0]];
+            [favoriteCell setUpWithDictionaryOfPropertiesAndValues:stationProperties];
+        }
+    }
     
     for(NSString *key in [stationProperties allKeys]){
         NSLog(@"%@ <--%@",[stationProperties objectForKey:key], key);
@@ -142,10 +153,15 @@
 }
 - (void)viewDidLoad
 {
-    //self.mainTableView.editing = YES;
-    
+    //Get the user's favorite stations.
     self.userDefaults = [NSUserDefaults standardUserDefaults];
     self.userFavs=[[self.userDefaults arrayForKey:@"kUserFavoriteStations"] mutableCopy];
+    
+    //Set up a NSMutableArray to hold the names of all the stations.
+    self.tableViewCellNames = [[NSMutableArray alloc] init];
+    for(NSDictionary *stationRepresentation in self.userFavs){
+        [self.tableViewCellNames addObject:[stationRepresentation objectForKey:@"Server Name"]];
+    }
     
     NSOperationQueue *operationQueue = [[NSOperationQueue alloc] init];
     operationQueue.name = @"getInfoForUserFavorites";

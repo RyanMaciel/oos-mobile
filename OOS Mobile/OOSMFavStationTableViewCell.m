@@ -44,7 +44,7 @@
     //Create a UIScrollView to hold all of the images and labels.
     UIScrollView *propertyScrollView = [[UIScrollView alloc] init];
     propertyScrollView.frame = CGRectMake(0, 0, self.bounds.size.width - elementBorder - CGRectGetMaxX(self.stationNameLabel.bounds), self.bounds.size.height-(2 * elementBorder));
-    propertyScrollView.center = CGPointMake(self.bounds.size.width - (elementBorder * 2) - CGRectGetMaxX(self.stationNameLabel.bounds), self.bounds.size.height - (elementBorder * 2));
+    propertyScrollView.center = CGPointMake(self.bounds.size.width - (elementBorder * 2) - CGRectGetMaxX(self.stationNameLabel.bounds), (self.bounds.size.height/2) - elementBorder);
     
     //Lay out images and values for each key/value pair in the dictionary.
     for(int i = 0; i < [propertyValues allKeys].count; i++){
@@ -52,6 +52,7 @@
         
         UIImageView *propertyImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:[property stringByAppendingString:@".png"]]];
         propertyImage.frame = CGRectMake(0, 0, 50, 100);
+        propertyImage.contentMode = UIViewContentModeScaleAspectFit;
         propertyImage.center = CGPointMake(startingXForNextElement + propertyImage.bounds.size.width/2, self.bounds.size.height/2);
         [propertyScrollView addSubview:propertyImage];
         
@@ -59,7 +60,7 @@
         UILabel *valueLabel = [[UILabel alloc] init];
         valueLabel.text = [[propertyValues allValues] objectAtIndex:i];
         [valueLabel sizeToFit];
-        valueLabel.center = CGPointMake(CGRectGetMaxX(propertyImage.bounds) + elementBorder, self.bounds.size.height/2);
+        valueLabel.center = CGPointMake(valueLabel.frame.size.width/2 + CGRectGetMaxX(propertyImage.bounds) + elementBorder, self.bounds.size.height/2);
         [propertyScrollView addSubview:valueLabel];
         
         startingXForNextElement = CGRectGetMaxX(valueLabel.bounds) + elementBorder;

@@ -69,7 +69,6 @@
 
 //callback from the OOSMParseHelper
 -(void)parseHelperFoundMatchWithReturnString:(NSString *)returnString forProperty:(NSString *)property{
-    NSLog(@"OOSMParseOperation recieved callback from OOSMParseHeler");
     self.stringForNextCallback = returnString;
     [self callbackToDelegateWithString:returnString property:property];
 

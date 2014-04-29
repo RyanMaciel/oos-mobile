@@ -51,26 +51,33 @@
     self.errorLabel.hidden = YES;
     
     //check for network reachability:
-    Reachability *reachabilityChecker = [Reachability reachabilityWithHostName:@"http://opendap.co-ops.nos.noaa.gov"];
+    Reachability *reachabilityChecker = [Reachability reachabilityWithHostName:@"google.com"];
     reachabilityChecker.reachableBlock = ^(Reachability*reach)
     {
-        NSLog(@"The host is reachable");
+        [[NSOperationQueue mainQueue]addOperationWithBlock:^(void){
         
-        //initiate the map view controller
-        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main_iPhone" bundle:[NSBundle mainBundle]];
-        
-        OOSMMapViewController *viewController = [storyboard instantiateViewControllerWithIdentifier:@"MapViewController"];
-        viewController.mapDelegate = self;
-        
-        //force -viewDidLoad to be called
-        [viewController view];
+            NSLog(@"The host is reachable");
+            
+            //initiate the map view controller
+            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main_iPhone" bundle:[NSBundle mainBundle]];
+            
+            OOSMMapViewController *viewController = [storyboard instantiateViewControllerWithIdentifier:@"MapViewController"];
+            viewController.mapDelegate = self;
+            
+            //force -viewDidLoad to be called
+            [viewController view];
+        }];
 
     };
     reachabilityChecker.unreachableBlock = ^(Reachability*reach)
     {
         //call the error delegate method on self if the host is not reachable.
         NSLog(@"Host not reachable");
-        [self mapViewControllerFailedToLoad];
+        
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^(void){
+            [self mapViewControllerFailedToLoad];
+
+        }];
         
     };
 

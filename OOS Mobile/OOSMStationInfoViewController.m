@@ -43,6 +43,7 @@
 @property(nonatomic)BOOL wasinitiatedWithDictionary;
 @property(strong, nonatomic)NSString *webViewURL;
 @property(strong, nonatomic)NSString *webViewPropertyString;
+@property(strong, nonatomic)NSMutableArray *returnedStationProperties;
 
 -(void)addSensorProperties;
 -(IBAction)addStationToUserFavorites;
@@ -69,6 +70,7 @@
 @synthesize delegate=_delegate;
 @synthesize timeStamp=_timeStamp;
 @synthesize numberOfValidProperties=_numberOfValidProperties;
+@synthesize returnedStationProperties=_returnedStationProperties;
 
 #pragma mark Handle Displaying Web View
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
@@ -135,7 +137,7 @@
         
         //if the current station is equal to one of the favorite station return yes.
         for (int i=0; i<userStationFavorites.count; i++) {
-            if([[userStationFavorites objectAtIndex:i]  isEqual: @{@"Server Name" : self.stationToDisplayInfo.nameForServer, @"User Readable Name" : self.stationToDisplayInfo.userReadableName}]){
+            if([[[userStationFavorites objectAtIndex:i] objectForKey:@"Server Name"] isEqualToString:self.stationToDisplayInfo.nameForServer]){
                 
                 //this code will be run if the station is a user favorite station
                 //set the "add to favorites" button to have a light grey tint and not to call anything if tapped on.
@@ -166,7 +168,7 @@
         NSArray *userStationFavorites = [userDefaults arrayForKey:@"kUserFavoriteStations"];
         
         //create a NSDictionary to hold info about the station
-        NSDictionary *stationInfo = [[NSDictionary alloc] initWithObjectsAndKeys:self.stationToDisplayInfo.nameForServer, @"Server Name", self.stationToDisplayInfo.userReadableName, @"User Readable Name", nil];
+        NSDictionary *stationInfo = @{@"Server Name" : self.stationToDisplayInfo.nameForServer, @"User Readable Name" : self.stationToDisplayInfo.userReadableName, @"Returned Station Properties" : self.returnedStationProperties};
         
         if(userStationFavorites){
             //add stationToDisplayInfo to the array
@@ -215,8 +217,9 @@
 
     //Make sure that returnSting != nil.
     if(string && ![string isEqualToString: @""]){
-        NSLog(@"property returned: %@ with value: %@", property, string);
 
+        [self.returnedStationProperties addObject:property];
+        
         //if the activity view is still animating and the string is not nil, then stop the activity view
         if(self.activityView.isAnimating && string){
             
@@ -292,6 +295,11 @@
     //don't do anything if the userReadableName and the name for the server are both not nil
     if(self.stationToDisplayInfo.userReadableName && self.stationToDisplayInfo.nameForServer){
         if(!self.wasinitiatedWithDictionary){
+            
+            
+            //This array will hold all of the properties which were succesfully downloaded and parsed.
+            self.returnedStationProperties = [[NSMutableArray alloc] init];
+            
             //start the activity view animation:
             [self.activityView startAnimating];
             self.activityView.hidesWhenStopped = YES;

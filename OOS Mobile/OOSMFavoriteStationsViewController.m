@@ -159,15 +159,23 @@
     
     //Set up a NSMutableArray to hold the names of all the stations.
     self.tableViewCellNames = [[NSMutableArray alloc] init];
+    
+    
     for(NSDictionary *stationRepresentation in self.userFavs){
         [self.tableViewCellNames addObject:[stationRepresentation objectForKey:@"Server Name"]];
-    }
-    
-    NSOperationQueue *operationQueue = [[NSOperationQueue alloc] init];
-    operationQueue.name = @"getInfoForUserFavorites";
-    
-    for(int i  = 0; i<self.userFavs.count; i++){
-        OOSMParseHelperOperation *newOperation = [[OOSMParseHelperOperation alloc] initWithDelegate:self stationName:[[self.userFavs objectAtIndex:i] objectForKey:@"Server Name"] elementsToFind:@{@"air_temperature": @"", @"winds": @""}];
+        
+        
+        NSMutableDictionary *elementsToFind = [[NSMutableDictionary alloc] init];
+        NSArray *returnedProperties = [stationRepresentation objectForKey:@"Returned Station Properties"];
+        if(returnedProperties){
+            for(NSString *property in returnedProperties){
+                if(property && ![property isEqualToString:@""])[elementsToFind setObject:@"" forKey:property];
+            }
+        }
+        NSOperationQueue *operationQueue = [[NSOperationQueue alloc] init];
+        operationQueue.name = @"getInfoForUserFavorites";
+        
+        OOSMParseHelperOperation *newOperation = [[OOSMParseHelperOperation alloc] initWithDelegate:self stationName:[stationRepresentation objectForKey:@"Server Name"] elementsToFind:elementsToFind];
         
         newOperation.queuePriority = NSOperationQueuePriorityHigh;
         [operationQueue addOperation:newOperation];

@@ -31,6 +31,7 @@
 @property(strong, nonatomic)NSUserDefaults *userDefaults;
 @property(strong, nonatomic)OOSMStation *stationTappedOn;
 @property(strong, nonatomic)NSIndexPath *selectedPath;
+@property(strong, nonatomic)NSMutableArray *tableViewCellNames;
 @end
 
 @implementation OOSMFavoriteStationsViewController
@@ -38,9 +39,19 @@
 @synthesize userFavs=_userFavs;
 @synthesize stationTappedOn=_stationTappedOn;
 @synthesize selectedPath=_selectedPath;
+@synthesize tableViewCellNames=_tableViewCellNames;
 
 //Delegate method for getting the temperature and wind speed at a station.
 -(void)parseHelperReturnedDictionary:(NSDictionary *)stationProperties forStationNamed:(NSString*)station{
+
+    for(int i=0; i<self.tableViewCellNames.count; i++){
+
+        if([station isEqualToString:[self.tableViewCellNames objectAtIndex:i]]){
+            
+            OOSMFavStationTableViewCell *favoriteCell = (OOSMFavStationTableViewCell*)[self.mainTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:0]];
+            [favoriteCell setUpWithDictionaryOfPropertiesAndValues:stationProperties];
+        }
+    }
     
     for(NSString *key in [stationProperties allKeys]){
         NSLog(@"%@ <--%@",[stationProperties objectForKey:key], key);
@@ -142,16 +153,29 @@
 }
 - (void)viewDidLoad
 {
-    //self.mainTableView.editing = YES;
-    
+    //Get the user's favorite stations.
     self.userDefaults = [NSUserDefaults standardUserDefaults];
     self.userFavs=[[self.userDefaults arrayForKey:@"kUserFavoriteStations"] mutableCopy];
     
-    NSOperationQueue *operationQueue = [[NSOperationQueue alloc] init];
-    operationQueue.name = @"getInfoForUserFavorites";
+    //Set up a NSMutableArray to hold the names of all the stations.
+    self.tableViewCellNames = [[NSMutableArray alloc] init];
     
-    for(int i  = 0; i<self.userFavs.count; i++){
-        OOSMParseHelperOperation *newOperation = [[OOSMParseHelperOperation alloc] initWithDelegate:self stationName:[[self.userFavs objectAtIndex:i] objectForKey:@"Server Name"] elementsToFind:@{@"air_temperature": @"", @"winds": @""}];
+    
+    for(NSDictionary *stationRepresentation in self.userFavs){
+        [self.tableViewCellNames addObject:[stationRepresentation objectForKey:@"Server Name"]];
+        
+        
+        NSMutableDictionary *elementsToFind = [[NSMutableDictionary alloc] init];
+        NSArray *returnedProperties = [stationRepresentation objectForKey:@"Returned Station Properties"];
+        if(returnedProperties){
+            for(NSString *property in returnedProperties){
+                if(property && ![property isEqualToString:@""])[elementsToFind setObject:@"" forKey:property];
+            }
+        }
+        NSOperationQueue *operationQueue = [[NSOperationQueue alloc] init];
+        operationQueue.name = @"getInfoForUserFavorites";
+        
+        OOSMParseHelperOperation *newOperation = [[OOSMParseHelperOperation alloc] initWithDelegate:self stationName:[stationRepresentation objectForKey:@"Server Name"] elementsToFind:elementsToFind];
         
         newOperation.queuePriority = NSOperationQueuePriorityHigh;
         [operationQueue addOperation:newOperation];

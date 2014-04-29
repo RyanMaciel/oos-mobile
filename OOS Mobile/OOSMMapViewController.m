@@ -149,7 +149,6 @@
 }
 
 -(void)dataHandlerFoundStation:(OOSMStation *)station{
-    NSLog(@"new callback occured");
     
     //only add the station to the array if it's nameForServer property is not nil and does not equal @""
     if(station.nameForServer && ![station.nameForServer isEqualToString:@""] && station.serverid && ![station.serverid isEqualToString:@""]){

@@ -24,7 +24,7 @@
 #import "OOSMParseHelper.h"
 #import "OOSMParseHelperOperation.h"
 #import "OOSMWebViewController.h"
-#import "OOSMStationPropertyButton.h"
+#import "OOSMStationSensorView.h"
 
 @interface OOSMStationInfoViewController () <OOSMParseOperationDelegate>
 
@@ -35,6 +35,7 @@
 @property(strong, nonatomic)OOSMParseHelper *parseHelper;
 @property(strong, nonatomic)NSArray *sensorProperties;
 @property(nonatomic)int currentSensorPropertyIndex;
+@property(nonatomic)int numberOfValidProperties;
 @property(nonatomic, readonly)BOOL stationIsAUserFav;
 @property(nonatomic)int numberOfCallbacksFromParser;
 @property(nonatomic)BOOL recieviedNonNilValueFromParser;
@@ -42,6 +43,7 @@
 @property(nonatomic)BOOL wasinitiatedWithDictionary;
 @property(strong, nonatomic)NSString *webViewURL;
 @property(strong, nonatomic)NSString *webViewPropertyString;
+@property(strong, nonatomic)NSMutableArray *returnedStationProperties;
 
 -(void)addSensorProperties;
 -(IBAction)addStationToUserFavorites;
@@ -67,6 +69,8 @@
 @synthesize wasinitiatedWithDictionary=_wasinitiatedWithDictionary;
 @synthesize delegate=_delegate;
 @synthesize timeStamp=_timeStamp;
+@synthesize numberOfValidProperties=_numberOfValidProperties;
+@synthesize returnedStationProperties=_returnedStationProperties;
 
 #pragma mark Handle Displaying Web View
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
@@ -82,7 +86,7 @@
 }
 
 -(void)getChartWithSender:(id)sender{
-    
+    /*
     if([sender isKindOfClass:[OOSMStationPropertyButton class]]){
         NSString *buttonProperty = ((OOSMStationPropertyButton*)sender).propertyString;
         
@@ -91,7 +95,7 @@
         
         [self setUpChartURLWithTimeInterval:-432000 forProperty:buttonProperty];
         
-    }
+    }*/
 }
 -(void)setUpChartURLWithTimeInterval:(NSTimeInterval)interval forProperty:(NSString *)property{
     
@@ -133,7 +137,7 @@
         
         //if the current station is equal to one of the favorite station return yes.
         for (int i=0; i<userStationFavorites.count; i++) {
-            if([[userStationFavorites objectAtIndex:i]  isEqual: @{@"Server Name" : self.stationToDisplayInfo.nameForServer, @"User Readable Name" : self.stationToDisplayInfo.userReadableName}]){
+            if([[[userStationFavorites objectAtIndex:i] objectForKey:@"Server Name"] isEqualToString:self.stationToDisplayInfo.nameForServer]){
                 
                 //this code will be run if the station is a user favorite station
                 //set the "add to favorites" button to have a light grey tint and not to call anything if tapped on.
@@ -164,7 +168,7 @@
         NSArray *userStationFavorites = [userDefaults arrayForKey:@"kUserFavoriteStations"];
         
         //create a NSDictionary to hold info about the station
-        NSDictionary *stationInfo = [[NSDictionary alloc] initWithObjectsAndKeys:self.stationToDisplayInfo.nameForServer, @"Server Name", self.stationToDisplayInfo.userReadableName, @"User Readable Name", nil];
+        NSDictionary *stationInfo = @{@"Server Name" : self.stationToDisplayInfo.nameForServer, @"User Readable Name" : self.stationToDisplayInfo.userReadableName, @"Returned Station Properties" : self.returnedStationProperties};
         
         if(userStationFavorites){
             //add stationToDisplayInfo to the array
@@ -209,12 +213,12 @@
 }
 
 -(void)parseHelper:(OOSMParseHelper *)parseHelper returnedString:(NSString *)string forProperty:(NSString*)property{
-    NSLog(@"Parse Helper returned values to StationInfoViewController");
     self.numberOfCallbacksFromParser++;
 
-    
     //Make sure that returnSting != nil.
     if(string && ![string isEqualToString: @""]){
+
+        [self.returnedStationProperties addObject:property];
         
         //if the activity view is still animating and the string is not nil, then stop the activity view
         if(self.activityView.isAnimating && string){
@@ -225,15 +229,12 @@
         
         self.recieviedNonNilValueFromParser = YES;
         
-        //add a button to the view describing the return String
-        OOSMStationPropertyButton *newSensorPropertyButton = [OOSMStationPropertyButton buttonWithType:UIButtonTypeSystem];
-        newSensorPropertyButton.frame = CGRectMake(0, 0, 300, 17);
-        [newSensorPropertyButton setTitle:[[[property stringByReplacingOccurrencesOfString:@"_" withString:@" "] stringByAppendingString:@": "] stringByAppendingString:string] forState:UIControlStateNormal];
-        newSensorPropertyButton.center=CGPointMake(10 + newSensorPropertyButton.frame.size.width/2, 200+self.currentSensorPropertyIndex*25);
-        newSensorPropertyButton.propertyString = property;
-        [newSensorPropertyButton addTarget:self action:@selector(getChartWithSender:) forControlEvents:UIControlEventTouchDown];
-        [self.view addSubview:newSensorPropertyButton];
+        //Convert the float in the string to an int and back to a string.
+        string = [NSString stringWithFormat:@"%li",(long)[string integerValue]];
         
+        OOSMStationSensorView *sensorView = [[OOSMStationSensorView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width/3 - 5, self.view.frame.size.width/3 + 5) sensorIconName:property sensorPropertyValue:string];
+        sensorView.center = CGPointMake((sensorView.frame.size.width+5)/2 + ((sensorView.frame.size.width + 5) *(self.numberOfValidProperties%3)), 200 + ((sensorView.frame.size.height + 5) * (self.numberOfValidProperties / 3)));
+        [self.view addSubview:sensorView];
         
         //subtract one in the self.sensor.count because we add one to it in the code below.
         if(self.currentSensorPropertyIndex<self.sensorProperties.count-1){
@@ -241,9 +242,10 @@
             self.currentSensorPropertyIndex++;
             
         }
+        
+        self.numberOfValidProperties++;
+
     }else{
-        NSLog(@"Got a nil value.");
-        NSLog(@"number of callbacks from Parse Helper Operation: %d", self.numberOfCallbacksFromParser);
         
         //this code will run if no values were found for the station
         if(self.numberOfCallbacksFromParser>=self.sensorProperties.count-1 && !self.recieviedNonNilValueFromParser){
@@ -255,7 +257,7 @@
             
             //add a warning label
             UILabel *newLable = [[UILabel alloc] init];
-            newLable.text = @"No values where found for this station";
+            newLable.text = @"No values where found for this station.";
             [newLable sizeToFit];
             newLable.center = self.view.center;
             
@@ -293,6 +295,11 @@
     //don't do anything if the userReadableName and the name for the server are both not nil
     if(self.stationToDisplayInfo.userReadableName && self.stationToDisplayInfo.nameForServer){
         if(!self.wasinitiatedWithDictionary){
+            
+            
+            //This array will hold all of the properties which were succesfully downloaded and parsed.
+            self.returnedStationProperties = [[NSMutableArray alloc] init];
+            
             //start the activity view animation:
             [self.activityView startAnimating];
             self.activityView.hidesWhenStopped = YES;

@@ -62,19 +62,20 @@
 
 -(void)elementsToReturnChanged{
     //the string to return to the delegate
-    NSString *stringForDelegate = nil;
+    NSString *stringForDelegate;
     
     //if self.elementsToReturn is not empty and its content is not @""
     if(self.elementsToReturn.count>0 && ![[self.elementsToReturn objectAtIndex:0] isEqualToString:@""] && self.shouldContinueParsing){
         stringForDelegate = [self.elementsToReturn objectAtIndex:0];
     }
-    //call the delegate method on the main thread. To update the GUI
-    __weak NSString *weakStringForDelegate = stringForDelegate;
-    __weak NSString *weakPropertyForDelegate = self.propertyToFind;
-    [[NSOperationQueue mainQueue] addOperationWithBlock:^(void){
-        [self.delegate parseHelperFoundMatchWithReturnString:weakStringForDelegate forProperty:weakPropertyForDelegate];
-    }];
-    
+    if(stringForDelegate){
+        //call the delegate method on the main thread. To update the GUI
+        __weak NSString *weakStringForDelegate = stringForDelegate;
+        __weak NSString *weakPropertyForDelegate = self.propertyToFind;
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^(void){
+            [self.delegate parseHelperFoundMatchWithReturnString:weakStringForDelegate forProperty:weakPropertyForDelegate];
+        }];
+    }
     //stop the parsing. it has already returned a value and is no longer needed.
     self.shouldContinueParsing = NO;
     [self.parser abortParsing];

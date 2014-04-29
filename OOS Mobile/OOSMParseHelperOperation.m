@@ -52,10 +52,10 @@
     //don't return anything if the operation is cancelled
     if(!self.isCancelled){
         
-        if(!string){
-            [self.outputDictionary setObject:@"" forKey:property];
-        }else{
+        if(string){
             [self.outputDictionary setObject:string forKey:property];
+        }else{
+            [self.outputDictionary setObject:@"" forKey:property];
         }
         if([self.delegate respondsToSelector:@selector(parseHelper:returnedString:forProperty:)]){
             [self.delegate parseHelper:self.parseHelperForNextCallback returnedString:string forProperty:property];
@@ -69,7 +69,6 @@
 
 //callback from the OOSMParseHelper
 -(void)parseHelperFoundMatchWithReturnString:(NSString *)returnString forProperty:(NSString *)property{
-    NSLog(@"OOSMParseOperation recieved callback from OOSMParseHeler");
     self.stringForNextCallback = returnString;
     [self callbackToDelegateWithString:returnString property:property];
 

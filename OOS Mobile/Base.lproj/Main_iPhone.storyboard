@@ -198,6 +198,12 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Timestamp" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="281" translatesAutoresizingMaskIntoConstraints="NO" id="VyP-Vh-FRK">
+                                <rect key="frame" x="20" y="449" width="281" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="SPH-2j-ya2">
                                 <rect key="frame" x="150" y="274" width="20" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -215,6 +221,7 @@
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <connections>
                         <outlet property="activityView" destination="SPH-2j-ya2" id="vgA-Fs-a8A"/>
+                        <outlet property="timeStamp" destination="VyP-Vh-FRK" id="Bcy-ab-k6K"/>
                         <outlet property="titleLable" destination="2Sf-fd-pNe" id="q0B-eP-FZ5"/>
                         <outlet property="view" destination="jLa-bu-m5G" id="m1E-AO-LD1"/>
                         <segue destination="wCI-XT-tcw" kind="push" identifier="ChartView" id="kFd-jJ-8gm"/>

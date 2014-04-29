@@ -8,6 +8,8 @@
 
 #import "OOSMLoadingViewController.h"
 #import "OOSMMapViewController.h"
+#import "Reachability.h"
+
 @interface OOSMLoadingViewController () <OOSMMapLoadingDelegate>
 @property(strong, nonatomic)IBOutlet UIActivityIndicatorView *indicator;
 @property(strong, nonatomic)IBOutlet UILabel *errorLabel;
@@ -48,15 +50,31 @@
     //hide the error label
     self.errorLabel.hidden = YES;
     
-    //initiate the map view controller
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main_iPhone" bundle:[NSBundle mainBundle]];
-    
-    OOSMMapViewController *viewController = [storyboard instantiateViewControllerWithIdentifier:@"MapViewController"];
-    viewController.mapDelegate = self;
-    
-    //force -viewDidLoad to be called
-    [viewController view];
-    
+    //check for network reachability:
+    Reachability *reachabilityChecker = [Reachability reachabilityWithHostName:@"http://opendap.co-ops.nos.noaa.gov"];
+    reachabilityChecker.reachableBlock = ^(Reachability*reach)
+    {
+        NSLog(@"The host is reachable");
+        
+        //initiate the map view controller
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main_iPhone" bundle:[NSBundle mainBundle]];
+        
+        OOSMMapViewController *viewController = [storyboard instantiateViewControllerWithIdentifier:@"MapViewController"];
+        viewController.mapDelegate = self;
+        
+        //force -viewDidLoad to be called
+        [viewController view];
+
+    };
+    reachabilityChecker.unreachableBlock = ^(Reachability*reach)
+    {
+        //call the error delegate method on self if the host is not reachable.
+        NSLog(@"Host not reachable");
+        [self mapViewControllerFailedToLoad];
+        
+    };
+
+    [reachabilityChecker startNotifier];
 
 }
 

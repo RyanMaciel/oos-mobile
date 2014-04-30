@@ -112,8 +112,12 @@
     if(clusters){
         //For each cluster add an annotation to the map with the same coordinate.
         for(OOSMMapCluster *cluster in clusters){
+            
             OOSMStationMapAnnotation *clusterAnotation = [[OOSMStationMapAnnotation alloc] initWithCoordinate:cluster.position];
+            
             int numberOfStationsInCluster = (int)[cluster.pointsContained count];
+            
+            //Assign the numberOfStations property of the annotation to be used in giving the annotation images.
             if(numberOfStationsInCluster>50){clusterAnotation.numberOfStations = ClusterNumberFiftyPlus;}
             else if(numberOfStationsInCluster>100){clusterAnotation.numberOfStations = ClusterNumberOneHundredPlus;}
             else if(numberOfStationsInCluster>500){clusterAnotation.numberOfStations = ClusterNumberFiveHundredPlus;}
@@ -204,8 +208,7 @@
                           initWithAnnotation:annotation reuseIdentifier:viewIdentifier];
     }
     
-    //give the annotation a custom image
-   
+    //give the annotation a custom image based on the number of stations it represents.
     switch (((OOSMStationMapAnnotation*)annotation).numberOfStations) {
         case ClusterNumberFiftyPlus:
             annotationView.image = self.fiftyPlusPinImage;

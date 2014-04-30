@@ -114,9 +114,9 @@
         for(OOSMMapCluster *cluster in clusters){
             OOSMStationMapAnnotation *clusterAnotation = [[OOSMStationMapAnnotation alloc] initWithCoordinate:cluster.position];
             int numberOfStationsInCluster = (int)[cluster.pointsContained count];
-            if(numberOfStationsInCluster>50)clusterAnotation.numberOfStations = ClusterNumberFiftyPlus;
-            if(numberOfStationsInCluster>100)clusterAnotation.numberOfStations = ClusterNumberOneHundredPlus;
-            if(numberOfStationsInCluster>500)clusterAnotation.numberOfStations = ClusterNumberFiveHundredPlus;
+            if(numberOfStationsInCluster>50){clusterAnotation.numberOfStations = ClusterNumberFiftyPlus;}
+            else if(numberOfStationsInCluster>100){clusterAnotation.numberOfStations = ClusterNumberOneHundredPlus;}
+            else if(numberOfStationsInCluster>500){clusterAnotation.numberOfStations = ClusterNumberFiveHundredPlus;}
             
             clusterAnotation.isACluster = YES;
             [self.mapView addAnnotation:clusterAnotation];

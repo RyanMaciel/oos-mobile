@@ -36,7 +36,10 @@
 @property(strong, nonatomic)OOSMDataHandlerModel *dataHandlerModel;
 @property(strong, nonatomic)OOSMStationMapAnnotation *tappedMapAnnotation;
 @property(strong, nonatomic)CLLocationManager *coreLocationManager;
-@property(strong, nonatomic)UIImage *pinImage;
+@property(strong, nonatomic)UIImage *defaultPinImage;
+@property(strong, nonatomic)UIImage *fiftyPlusPinImage;
+@property(strong, nonatomic)UIImage *oneHundredPlusPinImage;
+@property(strong, nonatomic)UIImage *fiveHundredPlusPinImage;
 -(void)createMap;
 
 -(void)handleClustering;
@@ -57,11 +60,14 @@
 @synthesize dataHandlerModel=_dataHandlerModel;
 @synthesize tappedMapAnnotation=_tappedMapAnnotation;
 @synthesize coreLocationManager=_coreLocationManager;
-@synthesize pinImage=_pinImage;
+@synthesize defaultPinImage=_defaultPinImage;
 @synthesize mapDelegate=_mapDelegate;
 @synthesize stations=_stations;
 @synthesize stationPoints=_stationPoints;
 @synthesize clusterModel=_clusterModel;
+@synthesize fiftyPlusPinImage=_fiftyPlusPinImage;
+@synthesize oneHundredPlusPinImage=_oneHundredPlusPinImage;
+@synthesize fiveHundredPlusPinImage=_fiveHundredPlusPinImage;
 
 #pragma mark Handle Clustering:
 //This method will handle running the clustering algorithm and adding the data points to the map.
@@ -107,6 +113,11 @@
         //For each cluster add an annotation to the map with the same coordinate.
         for(OOSMMapCluster *cluster in clusters){
             OOSMStationMapAnnotation *clusterAnotation = [[OOSMStationMapAnnotation alloc] initWithCoordinate:cluster.position];
+            int numberOfStationsInCluster = (int)[cluster.pointsContained count];
+            if(numberOfStationsInCluster>50)clusterAnotation.numberOfStations = ClusterNumberFiftyPlus;
+            if(numberOfStationsInCluster>100)clusterAnotation.numberOfStations = ClusterNumberOneHundredPlus;
+            if(numberOfStationsInCluster>500)clusterAnotation.numberOfStations = ClusterNumberFiveHundredPlus;
+            
             clusterAnotation.isACluster = YES;
             [self.mapView addAnnotation:clusterAnotation];
         }
@@ -149,7 +160,6 @@
 }
 
 -(void)dataHandlerFoundStation:(OOSMStation *)station{
-    NSLog(@"new callback occured");
     
     //only add the station to the array if it's nameForServer property is not nil and does not equal @""
     if(station.nameForServer && ![station.nameForServer isEqualToString:@""] && station.serverid && ![station.serverid isEqualToString:@""]){
@@ -195,14 +205,33 @@
     }
     
     //give the annotation a custom image
-    annotationView.image = self.pinImage;
+   
+    switch (((OOSMStationMapAnnotation*)annotation).numberOfStations) {
+        case ClusterNumberFiftyPlus:
+            annotationView.image = self.fiftyPlusPinImage;
+            break;
+        case ClusterNumberOneHundredPlus:
+            annotationView.image = self.oneHundredPlusPinImage;
+            break;
+        case ClusterNumberFiveHundredPlus:
+            annotationView.image = self.fiveHundredPlusPinImage;
+            break;
+        case ClusterNumberSingle:
+            annotationView.image = self.defaultPinImage;
+            break;
+        default:
+            break;
+    }
     
     annotationView.frame = CGRectMake(0, 0, 30, 30);
     return annotationView;
 }
 
 -(void)createMap{
-    self.pinImage = [UIImage imageNamed:@"blue_buoy_icon_test.png"];
+    self.defaultPinImage = [UIImage imageNamed:@"blue_buoy_icon_test.png"];
+    self.fiftyPlusPinImage = [UIImage imageNamed:@"blue_buoy_icon_50_plus.png"];
+    self.oneHundredPlusPinImage = [UIImage imageNamed:@"blue_buoy_icon_100_plus.png"];
+    self.fiveHundredPlusPinImage = [UIImage imageNamed:@"blue_buoy_icon_500_plus.png"];
     
     //position the map
     self.mapView=[[MKMapView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];

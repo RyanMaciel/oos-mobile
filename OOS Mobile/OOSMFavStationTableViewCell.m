@@ -37,35 +37,37 @@
 @synthesize temperatureImage=_temperatureImage;
 
 -(void)setUpWithDictionaryOfPropertiesAndValues:(NSDictionary *)propertyValues{
-    
+
     CGFloat elementBorder = 10;
-    CGFloat startingXForNextElement = CGRectGetMaxX(self.stationNameLabel.frame) + elementBorder;
+    CGFloat startingXForNextElement = elementBorder;
     
     //Create a UIScrollView to hold all of the images and labels.
     UIScrollView *propertyScrollView = [[UIScrollView alloc] init];
     propertyScrollView.frame = CGRectMake(0, 0, self.bounds.size.width - elementBorder - CGRectGetMaxX(self.stationNameLabel.bounds), self.bounds.size.height-(2 * elementBorder));
-    propertyScrollView.center = CGPointMake(self.bounds.size.width - (elementBorder * 2) - CGRectGetMaxX(self.stationNameLabel.bounds), self.bounds.size.height - (elementBorder * 2));
+    propertyScrollView.center = CGPointMake(self.bounds.size.width - (elementBorder * 2) - CGRectGetMaxX(self.stationNameLabel.bounds), (self.bounds.size.height/2) - elementBorder);
     
     //Lay out images and values for each key/value pair in the dictionary.
     for(int i = 0; i < [propertyValues allKeys].count; i++){
+
         NSString *property = [[propertyValues allKeys] objectAtIndex:i];
         
         UIImageView *propertyImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:[property stringByAppendingString:@".png"]]];
         propertyImage.frame = CGRectMake(0, 0, 50, 100);
-        propertyImage.center = CGPointMake(startingXForNextElement + propertyImage.bounds.size.width/2, self.bounds.size.height/2);
+        propertyImage.contentMode = UIViewContentModeScaleAspectFit;
+        propertyImage.center = CGPointMake(startingXForNextElement + propertyImage.frame.size.width/2, self.frame.size.height/2);
         [propertyScrollView addSubview:propertyImage];
         
         
         UILabel *valueLabel = [[UILabel alloc] init];
         valueLabel.text = [[propertyValues allValues] objectAtIndex:i];
         [valueLabel sizeToFit];
-        valueLabel.center = CGPointMake(CGRectGetMaxX(propertyImage.bounds) + elementBorder, self.bounds.size.height/2);
+        valueLabel.center = CGPointMake(valueLabel.frame.size.width/2 + propertyImage.center.x + propertyImage.frame.size.width/2 + elementBorder, self.bounds.size.height/2);
         [propertyScrollView addSubview:valueLabel];
         
-        startingXForNextElement = CGRectGetMaxX(valueLabel.bounds) + elementBorder;
+        startingXForNextElement = valueLabel.center.x + valueLabel.frame.size.width/2 + elementBorder;
     }
     
-    propertyScrollView.contentSize = CGSizeMake(startingXForNextElement - (CGRectGetMaxX(self.stationNameLabel.frame) + elementBorder), propertyScrollView.frame.size.height);
+    propertyScrollView.contentSize = CGSizeMake(startingXForNextElement + elementBorder, propertyScrollView.frame.size.height);
     
     [self addSubview:propertyScrollView];
 }

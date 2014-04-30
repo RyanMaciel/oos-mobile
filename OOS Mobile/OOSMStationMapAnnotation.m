@@ -28,6 +28,7 @@
 @synthesize station=_station;
 @synthesize clusteredAnnotations=_clusteredAnnotations;
 @synthesize isACluster=_isACluster;
+@synthesize numberOfStations=_numberOfStations;
 
 -(void)setIsACluster:(BOOL)isACluster{
     _isACluster = isACluster;

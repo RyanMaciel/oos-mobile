@@ -48,6 +48,9 @@
 		F18433821860EC3200D7ED55 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F18433811860EC3200D7ED55 /* CoreLocation.framework */; };
 		F1898843187CADA000E1CC37 /* OOSMFavoriteStationsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F1898842187CADA000E1CC37 /* OOSMFavoriteStationsViewController.m */; };
 		F19764D918A94F9200AA02BD /* OOSMWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F19764D818A94F9200AA02BD /* OOSMWebViewController.m */; };
+		F19B49FF191142A500AF1972 /* blue_buoy_icon_50_plus.png in Resources */ = {isa = PBXBuildFile; fileRef = F19B49FE191142A500AF1972 /* blue_buoy_icon_50_plus.png */; };
+		F19B4A011911460900AF1972 /* blue_buoy_icon_100_plus.png in Resources */ = {isa = PBXBuildFile; fileRef = F19B4A001911460900AF1972 /* blue_buoy_icon_100_plus.png */; };
+		F19B4A03191146F000AF1972 /* blue_buoy_icon_500_plus.png in Resources */ = {isa = PBXBuildFile; fileRef = F19B4A02191146F000AF1972 /* blue_buoy_icon_500_plus.png */; };
 		F1A5669E19070D91003C8FE5 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = F1A5669D19070D91003C8FE5 /* Reachability.m */; };
 		F1A78ED3190FD7B5005BD39E /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1A78ED2190FD7B5005BD39E /* QuartzCore.framework */; };
 		F1A78ED6190FDA1D005BD39E /* OOSMStationSensorView.m in Sources */ = {isa = PBXBuildFile; fileRef = F1A78ED5190FDA1D005BD39E /* OOSMStationSensorView.m */; };
@@ -129,6 +132,9 @@
 		F1898842187CADA000E1CC37 /* OOSMFavoriteStationsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OOSMFavoriteStationsViewController.m; sourceTree = "<group>"; };
 		F19764D718A94F9200AA02BD /* OOSMWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OOSMWebViewController.h; sourceTree = "<group>"; };
 		F19764D818A94F9200AA02BD /* OOSMWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OOSMWebViewController.m; sourceTree = "<group>"; };
+		F19B49FE191142A500AF1972 /* blue_buoy_icon_50_plus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blue_buoy_icon_50_plus.png; sourceTree = "<group>"; };
+		F19B4A001911460900AF1972 /* blue_buoy_icon_100_plus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blue_buoy_icon_100_plus.png; sourceTree = "<group>"; };
+		F19B4A02191146F000AF1972 /* blue_buoy_icon_500_plus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blue_buoy_icon_500_plus.png; sourceTree = "<group>"; };
 		F1A5669C19070D91003C8FE5 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		F1A5669D19070D91003C8FE5 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		F1A78ED2190FD7B5005BD39E /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -378,6 +384,9 @@
 		F18ECE6818A067CA00DB4C33 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				F19B4A02191146F000AF1972 /* blue_buoy_icon_500_plus.png */,
+				F19B4A001911460900AF1972 /* blue_buoy_icon_100_plus.png */,
+				F19B49FE191142A500AF1972 /* blue_buoy_icon_50_plus.png */,
 				F16A3B9219101B5400D56855 /* air_pressure.png */,
 				F16A3B9319101B5400D56855 /* air_temperature.png */,
 				F16A3B9619101B5400D56855 /* blue_buoy_icon_test.png */,
@@ -514,6 +523,7 @@
 				F16A3BB419101B5500D56855 /* water_surface_height_above_reference_datum.png in Resources */,
 				F16A3BA819101B5400D56855 /* blue_buoy_icon_test.png in Resources */,
 				F16A3BAE19101B5500D56855 /* OOSM Launch Image.png in Resources */,
+				F19B49FF191142A500AF1972 /* blue_buoy_icon_50_plus.png in Resources */,
 				F16A3BB319101B5500D56855 /* time.png in Resources */,
 				F16A3BAC19101B5400D56855 /* depth.png in Resources */,
 				F16A3BB019101B5500D56855 /* sea_water_salinity.png in Resources */,
@@ -524,7 +534,9 @@
 				F1D88478186100AC00B4A349 /* COPYING in Resources */,
 				F16A3BA619101B5400D56855 /* air_temperature.png in Resources */,
 				F1B2F93D18F48A1E00BACDA3 /* OOSMFavStationCell.xib in Resources */,
+				F19B4A011911460900AF1972 /* blue_buoy_icon_100_plus.png in Resources */,
 				F16C88DF18579DAE002661D5 /* InfoPlist.strings in Resources */,
+				F19B4A03191146F000AF1972 /* blue_buoy_icon_500_plus.png in Resources */,
 				F16A3BAA19101B5400D56855 /* current_speed.png in Resources */,
 				F16A3BAB19101B5400D56855 /* depth-1.png in Resources */,
 				F16A3BA519101B5400D56855 /* air_pressure.png in Resources */,

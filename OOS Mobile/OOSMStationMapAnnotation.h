@@ -24,6 +24,12 @@
 #import <MapKit/MapKit.h>
 #import "OOSMStation.h"
 
+typedef enum{
+    ClusterNumberSingle,
+    ClusterNumberFiftyPlus,
+    ClusterNumberOneHundredPlus,
+    ClusterNumberFiveHundredPlus,
+}OOSMClusterNumber;
 @interface OOSMStationMapAnnotation : NSObject <MKAnnotation>
 
 @property (nonatomic, readonly) CLLocationCoordinate2D coordinate;
@@ -31,6 +37,7 @@
 @property (strong, nonatomic)OOSMStation *station;
 @property (strong, nonatomic)NSMutableArray *clusteredAnnotations;
 @property (nonatomic)BOOL isACluster;
+@property (nonatomic)OOSMClusterNumber numberOfStations;
 -(id)initWithCoordinate:(CLLocationCoordinate2D)c2d;
 
 @end

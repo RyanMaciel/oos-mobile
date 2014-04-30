@@ -37,10 +37,9 @@
 @synthesize temperatureImage=_temperatureImage;
 
 -(void)setUpWithDictionaryOfPropertiesAndValues:(NSDictionary *)propertyValues{
-    NSLog([propertyValues description]);
+
     CGFloat elementBorder = 10;
     CGFloat startingXForNextElement = elementBorder;
-    NSLog(@"%f",startingXForNextElement);
     
     //Create a UIScrollView to hold all of the images and labels.
     UIScrollView *propertyScrollView = [[UIScrollView alloc] init];
@@ -49,7 +48,6 @@
     
     //Lay out images and values for each key/value pair in the dictionary.
     for(int i = 0; i < [propertyValues allKeys].count; i++){
-        NSLog(@"%f",startingXForNextElement);
 
         NSString *property = [[propertyValues allKeys] objectAtIndex:i];
         
@@ -69,7 +67,7 @@
         startingXForNextElement = valueLabel.center.x + valueLabel.frame.size.width/2 + elementBorder;
     }
     
-    propertyScrollView.contentSize = CGSizeMake(startingXForNextElement - (CGRectGetMaxX(self.stationNameLabel.frame) + elementBorder), propertyScrollView.frame.size.height);
+    propertyScrollView.contentSize = CGSizeMake(startingXForNextElement + elementBorder, propertyScrollView.frame.size.height);
     
     [self addSubview:propertyScrollView];
 }

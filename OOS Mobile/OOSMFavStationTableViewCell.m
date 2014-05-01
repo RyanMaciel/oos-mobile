@@ -38,6 +38,8 @@
 
 -(void)setUpWithDictionaryOfPropertiesAndValues:(NSDictionary *)propertyValues{
 
+    NSDictionary *unitsForSensor = @{@"air_temperature": @"ºC", @"air_pressure": @"mb", @"relative_humidity": @"%", @"rain_fall": @"centimeters", @"visibility": @"km", @"sea_water_electrical_conductivity": @"S/m", @"currents": @"", @"sea_water_salinity": @"", @"water_surface_height_above_reference_datum": @"", @"sea_surface_height_amplitude_due_to_equilibrium_ocean_tide": @"", @"sea_water_temperature": @"ºC", @"winds":@"m/s", @"harmonic_constituents":@"", @"datums":@""};
+    
     CGFloat elementBorder = 10;
     CGFloat startingXForNextElement = elementBorder;
     
@@ -60,6 +62,11 @@
         
         UILabel *valueLabel = [[UILabel alloc] init];
         valueLabel.text = [[propertyValues allValues] objectAtIndex:i];
+        
+        //add a unit label besides the value.
+        if([unitsForSensor objectForKey:[[propertyValues allValues] objectAtIndex:i]]){
+            [valueLabel.text stringByAppendingString:[[valueLabel.text stringByAppendingString:@" "] stringByAppendingString:[unitsForSensor objectForKey:[[propertyValues allValues] objectAtIndex:i]]] ];
+        }
         [valueLabel sizeToFit];
         valueLabel.center = CGPointMake(valueLabel.frame.size.width/2 + propertyImage.center.x + propertyImage.frame.size.width/2 + elementBorder, self.bounds.size.height/2);
         [propertyScrollView addSubview:valueLabel];

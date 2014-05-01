@@ -76,7 +76,7 @@
 //Respond when one of the station sensor views are touched.
 -(void)stationSensorViewWasTouched:(OOSMStationSensorView *)sensorView{
     //The interval here must be negative.
-    [self setUpChartURLWithTimeInterval:-604800 forProperty:sensorView.propertyObserved];
+    [self setUpChartURLWithTimeInterval:-259200 forProperty:sensorView.propertyObserved];
 }
 
 #pragma mark Handle Displaying Web View

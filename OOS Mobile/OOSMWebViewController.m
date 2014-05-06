@@ -49,6 +49,7 @@
 
 #pragma mark handle TSV request:
 -(void)getTSVData{
+    NSLog(self.webViewURL);
     //create a NSURLRequest
     NSMutableURLRequest *urlRequest = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:self.webViewURL] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:1.0];
     [urlRequest setHTTPMethod:@"GET"];
@@ -74,6 +75,7 @@
             }];
 
         }else{
+            NSLog([error description]);
             self.errorMessageLabel.hidden = NO;
             [self.loadingView stopAnimating];
             

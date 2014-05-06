@@ -24,7 +24,6 @@
 #import "OOSMParseHelper.h"
 #import "OOSMParseHelperOperation.h"
 #import "OOSMWebViewController.h"
-#import "OOSMStationSensorView.h"
 
 @interface OOSMStationInfoViewController () <OOSMParseOperationDelegate>
 
@@ -71,6 +70,14 @@
 @synthesize timeStamp=_timeStamp;
 @synthesize numberOfValidProperties=_numberOfValidProperties;
 @synthesize returnedStationProperties=_returnedStationProperties;
+
+#pragma mark Handle Touch On Sensor View
+
+//Respond when one of the station sensor views are touched.
+-(void)stationSensorViewWasTouched:(OOSMStationSensorView *)sensorView{
+    //The interval here must be negative.
+    [self setUpChartURLWithTimeInterval:-604800 forProperty:sensorView.propertyObserved];
+}
 
 #pragma mark Handle Displaying Web View
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
@@ -120,6 +127,9 @@
     //set the sensor property
     webViewString = [webViewString stringByReplacingOccurrencesOfString:@"***SensorProperty***" withString:property];
     self.webViewURL = webViewString;
+    
+    //Set this property so that when the segue is called the web view will know what sensor property to create a graph of.
+    self.webViewPropertyString = property;
     
     //perform the segue
     [self performSegueWithIdentifier:@"ChartView" sender:self];
@@ -206,7 +216,9 @@
     self.propertyOperationQueue.name = @"Parser Queue";
     
     //set up OOSMParseHelperOperation
-    OOSMParseHelperOperation *parseHelperOp=[[OOSMParseHelperOperation alloc] initWithDelegate:self stationName:self.stationToDisplayInfo.nameForServer elementsToFind:[NSDictionary dictionaryWithObjectsAndKeys:@"", @"air_temperature", @"", @"air_pressure", @"", @"relative_humidity", @"", @"rain_fall", @"", @"visibility", @"", @"air_temperature", @"", @"sea_water_electrical_conductivity", @"", @"currents", @"", @"sea_water_salinity", @"", @"water_surface_height_above_reference_datum", @"", @"sea_surface_height_amplitude_due_to_equilibrium_ocean_tide", @"", @"sea_water_temperature", @"", @"winds",@"", @"harmonic_constituents", @"", @"datums", nil]];
+    OOSMParseHelperOperation *parseHelperOp=[[OOSMParseHelperOperation alloc] initWithDelegate:self stationName:self.stationToDisplayInfo.nameForServer elementsToFind:[NSDictionary dictionaryWithObjectsAndKeys:@"", @"air_temperature", @"", @"air_pressure", @"", @"relative_humidity", @"", @"rain_fall", @"", @"visibility", @"", @"air_temperature", @"", @"currents", @"", @"sea_water_salinity", @"",  @"sea_water_temperature", @"", @"winds", nil]];
+    
+    // These were removed: @"water_surface_height_above_reference_datum", @"", @"sea_surface_height_amplitude_due_to_equilibrium_ocean_tide", @"", @"sea_water_electrical_conductivity", @"", ,@"", @"harmonic_constituents", @"", @"datums",
     
     [parseHelperOp setQueuePriority:NSOperationQueuePriorityVeryHigh];
     [self.propertyOperationQueue addOperation:parseHelperOp];
@@ -234,6 +246,7 @@
         
         OOSMStationSensorView *sensorView = [[OOSMStationSensorView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width/3 - 5, self.view.frame.size.width/3 + 5) sensorIconName:property sensorPropertyValue:string];
         sensorView.center = CGPointMake((sensorView.frame.size.width+5)/2 + ((sensorView.frame.size.width + 5) *(self.numberOfValidProperties%3)), 200 + ((sensorView.frame.size.height + 5) * (self.numberOfValidProperties / 3)));
+        sensorView.stationInfoViewController = self;
         [self.view addSubview:sensorView];
         
         //subtract one in the self.sensor.count because we add one to it in the code below.

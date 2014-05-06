@@ -21,9 +21,13 @@
 
 #import "OOSMStationSensorView.h"
 #import <QuartzCore/QuartzCore.h>
+#import "OOSMStationInfoViewController.h"
+
 @interface OOSMStationSensorView()
 @property(strong, nonatomic)UILabel *propertyLabel;
 @property(strong, nonatomic)UIImageView *propertyImage;
+@property(strong, nonatomic)NSString *sensorIconImageName;
+@property(strong, nonatomic)NSString *sensorPropertyValue;
 
 @end
 @implementation OOSMStationSensorView
@@ -31,7 +35,8 @@
 @synthesize sensorPropertyValue = _sensorPropertyValue;
 @synthesize propertyLabel = _propertyLabel;
 @synthesize propertyImage = _propertyImage;
-
+@synthesize stationInfoViewController = _stationInfoViewController;
+@synthesize propertyObserved = _propertyObserved;
 
 - (id)initWithFrame:(CGRect)frame sensorIconName:(NSString*)sensorIconName
 sensorPropertyValue:(NSString*)sensorPropertyValue
@@ -40,11 +45,17 @@ sensorPropertyValue:(NSString*)sensorPropertyValue
     if (self) {
         // Initialization code
         self.sensorPropertyValue = sensorPropertyValue;
+        self.propertyObserved = sensorIconName;
         self.sensorIconImageName = [sensorIconName stringByAppendingString:@".png"];
+        
+        NSDictionary *unitsForSensor = @{@"air_temperature": @"ºC", @"air_pressure": @"mb", @"relative_humidity": @"%", @"rain_fall": @"centimeters", @"visibility": @"km", @"sea_water_electrical_conductivity": @"S/m", @"currents": @"", @"sea_water_salinity": @"", @"water_surface_height_above_reference_datum": @"", @"sea_surface_height_amplitude_due_to_equilibrium_ocean_tide": @"", @"sea_water_temperature": @"ºC", @"winds":@"m/s", @"harmonic_constituents":@"", @"datums":@""};
+        
         
         self.layer.borderWidth = 1.0;
         self.layer.borderColor = [UIColor lightGrayColor].CGColor;
         self.layer.cornerRadius = 0;
+        
+        self.backgroundColor = [UIColor whiteColor];
         
         self.propertyImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:self.sensorIconImageName]];
         self.propertyImage.contentMode = UIViewContentModeScaleAspectFit;
@@ -52,14 +63,28 @@ sensorPropertyValue:(NSString*)sensorPropertyValue
         [self addSubview:self.propertyImage];
         
         self.propertyLabel = [[UILabel alloc] init];
-        self.propertyLabel.text = self.sensorPropertyValue;
-        [self.propertyLabel sizeToFit];
+        self.propertyLabel.text = [[self.sensorPropertyValue stringByAppendingString:@" "] stringByAppendingString:[unitsForSensor objectForKey:sensorIconName]];
+        self.propertyLabel.numberOfLines = 2;
+        self.propertyLabel.frame = CGRectMake(0, 0, self.frame.size.width/2, self.frame.size.height);
         self.propertyLabel.center = CGPointMake(self.frame.size.width*(3.0/4.0), self.center.y);
         [self addSubview:self.propertyLabel];
         
         
     }
     return self;
+}
+
+//Change the background color of the view to make it appear to be a button when clicked.
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
+    self.backgroundColor = [UIColor lightGrayColor];
+}
+
+-(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event{
+    self.backgroundColor = [UIColor whiteColor];
+    
+    if([self.stationInfoViewController isKindOfClass:[OOSMStationInfoViewController class]]){
+        [((OOSMStationInfoViewController*)self.stationInfoViewController) stationSensorViewWasTouched:self];
+    }
 }
 
 /*

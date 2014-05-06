@@ -51,6 +51,9 @@
 		F19B49FF191142A500AF1972 /* blue_buoy_icon_50_plus.png in Resources */ = {isa = PBXBuildFile; fileRef = F19B49FE191142A500AF1972 /* blue_buoy_icon_50_plus.png */; };
 		F19B4A011911460900AF1972 /* blue_buoy_icon_100_plus.png in Resources */ = {isa = PBXBuildFile; fileRef = F19B4A001911460900AF1972 /* blue_buoy_icon_100_plus.png */; };
 		F19B4A03191146F000AF1972 /* blue_buoy_icon_500_plus.png in Resources */ = {isa = PBXBuildFile; fileRef = F19B4A02191146F000AF1972 /* blue_buoy_icon_500_plus.png */; };
+		F1A0351B1913056900A42EBD /* relative_humidity.png in Resources */ = {isa = PBXBuildFile; fileRef = F1A035181913056900A42EBD /* relative_humidity.png */; };
+		F1A0351C1913056900A42EBD /* rain_fall.png in Resources */ = {isa = PBXBuildFile; fileRef = F1A035191913056900A42EBD /* rain_fall.png */; };
+		F1A0351D1913056900A42EBD /* visibility.png in Resources */ = {isa = PBXBuildFile; fileRef = F1A0351A1913056900A42EBD /* visibility.png */; };
 		F1A5669E19070D91003C8FE5 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = F1A5669D19070D91003C8FE5 /* Reachability.m */; };
 		F1A78ED3190FD7B5005BD39E /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1A78ED2190FD7B5005BD39E /* QuartzCore.framework */; };
 		F1A78ED6190FDA1D005BD39E /* OOSMStationSensorView.m in Sources */ = {isa = PBXBuildFile; fileRef = F1A78ED5190FDA1D005BD39E /* OOSMStationSensorView.m */; };
@@ -135,6 +138,9 @@
 		F19B49FE191142A500AF1972 /* blue_buoy_icon_50_plus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blue_buoy_icon_50_plus.png; sourceTree = "<group>"; };
 		F19B4A001911460900AF1972 /* blue_buoy_icon_100_plus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blue_buoy_icon_100_plus.png; sourceTree = "<group>"; };
 		F19B4A02191146F000AF1972 /* blue_buoy_icon_500_plus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blue_buoy_icon_500_plus.png; sourceTree = "<group>"; };
+		F1A035181913056900A42EBD /* relative_humidity.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = relative_humidity.png; sourceTree = "<group>"; };
+		F1A035191913056900A42EBD /* rain_fall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rain_fall.png; sourceTree = "<group>"; };
+		F1A0351A1913056900A42EBD /* visibility.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = visibility.png; sourceTree = "<group>"; };
 		F1A5669C19070D91003C8FE5 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		F1A5669D19070D91003C8FE5 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		F1A78ED2190FD7B5005BD39E /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -384,6 +390,9 @@
 		F18ECE6818A067CA00DB4C33 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				F1A035181913056900A42EBD /* relative_humidity.png */,
+				F1A035191913056900A42EBD /* rain_fall.png */,
+				F1A0351A1913056900A42EBD /* visibility.png */,
 				F19B4A02191146F000AF1972 /* blue_buoy_icon_500_plus.png */,
 				F19B4A001911460900AF1972 /* blue_buoy_icon_100_plus.png */,
 				F19B49FE191142A500AF1972 /* blue_buoy_icon_50_plus.png */,
@@ -527,7 +536,9 @@
 				F16A3BB319101B5500D56855 /* time.png in Resources */,
 				F16A3BAC19101B5400D56855 /* depth.png in Resources */,
 				F16A3BB019101B5500D56855 /* sea_water_salinity.png in Resources */,
+				F1A0351C1913056900A42EBD /* rain_fall.png in Resources */,
 				F16C88F018579DAE002661D5 /* Images.xcassets in Resources */,
+				F1A0351B1913056900A42EBD /* relative_humidity.png in Resources */,
 				F16A3BB519101B5500D56855 /* winds.png in Resources */,
 				F16A3BB219101B5500D56855 /* temporary_splash_screen.png in Resources */,
 				F16C88E818579DAE002661D5 /* Main_iPhone.storyboard in Resources */,
@@ -537,6 +548,7 @@
 				F19B4A011911460900AF1972 /* blue_buoy_icon_100_plus.png in Resources */,
 				F16C88DF18579DAE002661D5 /* InfoPlist.strings in Resources */,
 				F19B4A03191146F000AF1972 /* blue_buoy_icon_500_plus.png in Resources */,
+				F1A0351D1913056900A42EBD /* visibility.png in Resources */,
 				F16A3BAA19101B5400D56855 /* current_speed.png in Resources */,
 				F16A3BAB19101B5400D56855 /* depth-1.png in Resources */,
 				F16A3BA519101B5400D56855 /* air_pressure.png in Resources */,
@@ -726,6 +738,8 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/OOS",
 					Mobile,
+					"$(PROJECT_DIR)/OOS",
+					Mobile,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -745,6 +759,8 @@
 				INFOPLIST_FILE = "OOS Mobile/OOS Mobile-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"$(PROJECT_DIR)/OOS",
+					Mobile,
 					"$(PROJECT_DIR)/OOS",
 					Mobile,
 				);

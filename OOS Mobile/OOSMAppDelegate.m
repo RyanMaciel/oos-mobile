@@ -21,12 +21,19 @@
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #import "OOSMAppDelegate.h"
+#import "BlitFeedback.h"
 
 @implementation OOSMAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    
+    //initialize blit feedback.
+    [[BlitFeedback sharedInstance] start:@"ec976388-aaab-460a-819d-c82ebf8cd4b2"];
+    [self.window makeKeyAndVisible];
+    [[BlitFeedback sharedInstance] attach];
+    
     return YES;
 }
 							

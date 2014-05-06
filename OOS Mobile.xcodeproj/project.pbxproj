@@ -55,7 +55,6 @@
 		F1A0351C1913056900A42EBD /* rain_fall.png in Resources */ = {isa = PBXBuildFile; fileRef = F1A035191913056900A42EBD /* rain_fall.png */; };
 		F1A0351D1913056900A42EBD /* visibility.png in Resources */ = {isa = PBXBuildFile; fileRef = F1A0351A1913056900A42EBD /* visibility.png */; };
 		F1A5669E19070D91003C8FE5 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = F1A5669D19070D91003C8FE5 /* Reachability.m */; };
-		F1A78ED3190FD7B5005BD39E /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1A78ED2190FD7B5005BD39E /* QuartzCore.framework */; };
 		F1A78ED6190FDA1D005BD39E /* OOSMStationSensorView.m in Sources */ = {isa = PBXBuildFile; fileRef = F1A78ED5190FDA1D005BD39E /* OOSMStationSensorView.m */; };
 		F1B1D01E18E203D60052EFDC /* OOSMClusterModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F1B1D01D18E203D60052EFDC /* OOSMClusterModel.m */; };
 		F1B1D02118E204700052EFDC /* OOSMMapCluster.m in Sources */ = {isa = PBXBuildFile; fileRef = F1B1D02018E204700052EFDC /* OOSMMapCluster.m */; };
@@ -63,6 +62,16 @@
 		F1B1D02A18E223C70052EFDC /* OOSMMapClusterTest.m in Sources */ = {isa = PBXBuildFile; fileRef = F1B1D02918E223C70052EFDC /* OOSMMapClusterTest.m */; };
 		F1B2F93D18F48A1E00BACDA3 /* OOSMFavStationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F1B2F93C18F48A1E00BACDA3 /* OOSMFavStationCell.xib */; };
 		F1B2F94018F48BF900BACDA3 /* OOSMFavStationTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F1B2F93F18F48BF900BACDA3 /* OOSMFavStationTableViewCell.m */; };
+		F1D5FE0F191959DF00879FE8 /* libBlitFeedback.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F1D5FE0E191959DF00879FE8 /* libBlitFeedback.a */; };
+		F1D5FE1119195A7000879FE8 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1D5FDF6191956DC00879FE8 /* AVFoundation.framework */; };
+		F1D5FE1219195A8000879FE8 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1D5FDF8191956E200879FE8 /* CoreVideo.framework */; };
+		F1D5FE1319195A8800879FE8 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1D5FDFA191956E900879FE8 /* CoreMedia.framework */; };
+		F1D5FE1419195A9000879FE8 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F1D5FDFC191956F500879FE8 /* libz.dylib */; };
+		F1D5FE1519195A9700879FE8 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1D5FDFE191956FC00879FE8 /* MediaPlayer.framework */; };
+		F1D5FE1619195AA200879FE8 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1A78ED2190FD7B5005BD39E /* QuartzCore.framework */; };
+		F1D5FE1719195ABB00879FE8 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1D5FE001919573400879FE8 /* MessageUI.framework */; };
+		F1D5FE1819195AC400879FE8 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1D5FE021919574000879FE8 /* CoreFoundation.framework */; };
+		F1D5FE1919195ACD00879FE8 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1D5FE041919574A00879FE8 /* SystemConfiguration.framework */; };
 		F1D88478186100AC00B4A349 /* COPYING in Resources */ = {isa = PBXBuildFile; fileRef = F1D88477186100AC00B4A349 /* COPYING */; };
 		F1E29B3B18725AB900416D5C /* OOSMParseHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = F1E29B3A18725AB900416D5C /* OOSMParseHelper.m */; };
 		F1F5BB4F18E3B3F200E43E84 /* OOSMMapAnnotationClusterRepresentation.m in Sources */ = {isa = PBXBuildFile; fileRef = F1F5BB4E18E3B3F200E43E84 /* OOSMMapAnnotationClusterRepresentation.m */; };
@@ -156,6 +165,17 @@
 		F1B2F93C18F48A1E00BACDA3 /* OOSMFavStationCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OOSMFavStationCell.xib; sourceTree = "<group>"; };
 		F1B2F93E18F48BF900BACDA3 /* OOSMFavStationTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OOSMFavStationTableViewCell.h; sourceTree = "<group>"; };
 		F1B2F93F18F48BF900BACDA3 /* OOSMFavStationTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OOSMFavStationTableViewCell.m; sourceTree = "<group>"; };
+		F1D5FDF6191956DC00879FE8 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		F1D5FDF8191956E200879FE8 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
+		F1D5FDFA191956E900879FE8 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		F1D5FDFC191956F500879FE8 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		F1D5FDFE191956FC00879FE8 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		F1D5FE001919573400879FE8 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		F1D5FE021919574000879FE8 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
+		F1D5FE041919574A00879FE8 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		F1D5FE081919594A00879FE8 /* libBlitFeedback.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libBlitFeedback.a; path = "OOS Mobile/BlitFeedback SDK iOS 1.2/Library/libBlitFeedback.a"; sourceTree = "<group>"; };
+		F1D5FE0D191959DF00879FE8 /* BlitFeedback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlitFeedback.h; sourceTree = "<group>"; };
+		F1D5FE0E191959DF00879FE8 /* libBlitFeedback.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libBlitFeedback.a; sourceTree = "<group>"; };
 		F1D88477186100AC00B4A349 /* COPYING */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = COPYING; sourceTree = "<group>"; };
 		F1E29B3918725AB900416D5C /* OOSMParseHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OOSMParseHelper.h; sourceTree = "<group>"; };
 		F1E29B3A18725AB900416D5C /* OOSMParseHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OOSMParseHelper.m; sourceTree = "<group>"; };
@@ -168,9 +188,19 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F1D5FE1919195ACD00879FE8 /* SystemConfiguration.framework in Frameworks */,
+				F1D5FE1819195AC400879FE8 /* CoreFoundation.framework in Frameworks */,
+				F1D5FE1719195ABB00879FE8 /* MessageUI.framework in Frameworks */,
+				F1D5FE1619195AA200879FE8 /* QuartzCore.framework in Frameworks */,
+				F1D5FE1519195A9700879FE8 /* MediaPlayer.framework in Frameworks */,
+				F1D5FE1419195A9000879FE8 /* libz.dylib in Frameworks */,
+				F1D5FE1319195A8800879FE8 /* CoreMedia.framework in Frameworks */,
+				F1D5FE1219195A8000879FE8 /* CoreVideo.framework in Frameworks */,
+				F1D5FE1119195A7000879FE8 /* AVFoundation.framework in Frameworks */,
 				F18433821860EC3200D7ED55 /* CoreLocation.framework in Frameworks */,
 				F16C891018579EA2002661D5 /* MapKit.framework in Frameworks */,
 				F16C88D718579DAE002661D5 /* CoreGraphics.framework in Frameworks */,
+				F1D5FE0F191959DF00879FE8 /* libBlitFeedback.a in Frameworks */,
 				F16C88D918579DAE002661D5 /* UIKit.framework in Frameworks */,
 				F16C88D518579DAE002661D5 /* Foundation.framework in Frameworks */,
 			);
@@ -180,7 +210,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F1A78ED3190FD7B5005BD39E /* QuartzCore.framework in Frameworks */,
 				F16C88F718579DAE002661D5 /* XCTest.framework in Frameworks */,
 				F16C88F918579DAE002661D5 /* UIKit.framework in Frameworks */,
 				F16C88F818579DAE002661D5 /* Foundation.framework in Frameworks */,
@@ -239,6 +268,15 @@
 		F16C88D318579DAE002661D5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F1D5FE081919594A00879FE8 /* libBlitFeedback.a */,
+				F1D5FE041919574A00879FE8 /* SystemConfiguration.framework */,
+				F1D5FE021919574000879FE8 /* CoreFoundation.framework */,
+				F1D5FE001919573400879FE8 /* MessageUI.framework */,
+				F1D5FDFE191956FC00879FE8 /* MediaPlayer.framework */,
+				F1D5FDFC191956F500879FE8 /* libz.dylib */,
+				F1D5FDFA191956E900879FE8 /* CoreMedia.framework */,
+				F1D5FDF8191956E200879FE8 /* CoreVideo.framework */,
+				F1D5FDF6191956DC00879FE8 /* AVFoundation.framework */,
 				F1A78ED2190FD7B5005BD39E /* QuartzCore.framework */,
 				F18433811860EC3200D7ED55 /* CoreLocation.framework */,
 				F16C890F18579EA2002661D5 /* MapKit.framework */,
@@ -253,6 +291,8 @@
 		F16C88DA18579DAE002661D5 /* OOS Mobile */ = {
 			isa = PBXGroup;
 			children = (
+				F1D5FE0D191959DF00879FE8 /* BlitFeedback.h */,
+				F1D5FE0E191959DF00879FE8 /* libBlitFeedback.a */,
 				F16C890E18579E07002661D5 /* iPad Resources */,
 				F16C890D18579DFA002661D5 /* Shared Resources  */,
 				F16C890C18579DEE002661D5 /* iPhone Resources */,
@@ -740,6 +780,13 @@
 					Mobile,
 					"$(PROJECT_DIR)/OOS",
 					Mobile,
+					"$(PROJECT_DIR)/OOS",
+					Mobile,
+					"$(PROJECT_DIR)/OOS",
+					Mobile/BlitFeedback,
+					SDK,
+					iOS,
+					1.2/Library,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -763,6 +810,13 @@
 					Mobile,
 					"$(PROJECT_DIR)/OOS",
 					Mobile,
+					"$(PROJECT_DIR)/OOS",
+					Mobile,
+					"$(PROJECT_DIR)/OOS",
+					Mobile/BlitFeedback,
+					SDK,
+					iOS,
+					1.2/Library,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -787,6 +841,16 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "OOS MobileTests/OOS MobileTests-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/OOS",
+					Mobile,
+					"$(PROJECT_DIR)/OOS",
+					Mobile/BlitFeedback,
+					SDK,
+					iOS,
+					1.2/Library,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
@@ -806,6 +870,16 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "OOS Mobile/OOS Mobile-Prefix.pch";
 				INFOPLIST_FILE = "OOS MobileTests/OOS MobileTests-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/OOS",
+					Mobile,
+					"$(PROJECT_DIR)/OOS",
+					Mobile/BlitFeedback,
+					SDK,
+					iOS,
+					1.2/Library,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;

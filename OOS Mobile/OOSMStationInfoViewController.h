@@ -22,6 +22,8 @@
 
 #import "OOSMViewController.h"
 #import "OOSMStation.h"
+#import "OOSMStationSensorView.h"
+
 @protocol OOSMStationInfoDataHandler <NSObject>
 
 //return properties to the delegate
@@ -32,4 +34,5 @@
 
 -(void)setStationInfoToDisplay:(OOSMStation*)stationToDisplay;
 -(void)displayWithDictionary:(NSDictionary*)stationInfo;
+-(void)stationSensorViewWasTouched:(OOSMStationSensorView*)sensorView;
 @end

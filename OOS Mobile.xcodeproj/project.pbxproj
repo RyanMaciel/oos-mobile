@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F1002149191D2C6D00DC2791 /* Screenshot 2014.04.30 11.01.48.png in Resources */ = {isa = PBXBuildFile; fileRef = F1002146191D2C6D00DC2791 /* Screenshot 2014.04.30 11.01.48.png */; };
+		F100214A191D2C6D00DC2791 /* Screenshot 2014.05.08 22.10.47.png in Resources */ = {isa = PBXBuildFile; fileRef = F1002147191D2C6D00DC2791 /* Screenshot 2014.05.08 22.10.47.png */; };
+		F100214B191D2C6D00DC2791 /* Screenshot 2014.05.08 22.12.55.png in Resources */ = {isa = PBXBuildFile; fileRef = F1002148191D2C6D00DC2791 /* Screenshot 2014.05.08 22.12.55.png */; };
 		F10CCF9818B3E20E0093241F /* www in Resources */ = {isa = PBXBuildFile; fileRef = F10CCF9718B3E20E0093241F /* www */; };
 		F1142E8F18610AD3009AA3B3 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F1142E8D18610AD3009AA3B3 /* Main_iPad.storyboard */; };
 		F117EC62187C825100EBA779 /* OOSMParseHelperOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = F117EC61187C825100EBA779 /* OOSMParseHelperOperation.m */; };
@@ -79,6 +82,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		F1002146191D2C6D00DC2791 /* Screenshot 2014.04.30 11.01.48.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Screenshot 2014.04.30 11.01.48.png"; sourceTree = "<group>"; };
+		F1002147191D2C6D00DC2791 /* Screenshot 2014.05.08 22.10.47.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Screenshot 2014.05.08 22.10.47.png"; sourceTree = "<group>"; };
+		F1002148191D2C6D00DC2791 /* Screenshot 2014.05.08 22.12.55.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Screenshot 2014.05.08 22.12.55.png"; sourceTree = "<group>"; };
 		F10CCF9718B3E20E0093241F /* www */ = {isa = PBXFileReference; lastKnownFileType = folder; path = www; sourceTree = "<group>"; };
 		F1142E8E18610AD3009AA3B3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = "OOS Mobile/Base.lproj/Main_iPad.storyboard"; sourceTree = "<group>"; };
 		F117EC60187C825100EBA779 /* OOSMParseHelperOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OOSMParseHelperOperation.h; sourceTree = "<group>"; };
@@ -190,6 +196,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F1002145191D2C6D00DC2791 /* Screenshots */ = {
+			isa = PBXGroup;
+			children = (
+				F1002146191D2C6D00DC2791 /* Screenshot 2014.04.30 11.01.48.png */,
+				F1002147191D2C6D00DC2791 /* Screenshot 2014.05.08 22.10.47.png */,
+				F1002148191D2C6D00DC2791 /* Screenshot 2014.05.08 22.12.55.png */,
+			);
+			path = Screenshots;
+			sourceTree = SOURCE_ROOT;
+		};
 		F15EF1DF18CF7BE70071584E /* Chart View */ = {
 			isa = PBXGroup;
 			children = (
@@ -253,6 +269,7 @@
 		F16C88DA18579DAE002661D5 /* OOS Mobile */ = {
 			isa = PBXGroup;
 			children = (
+				F1002145191D2C6D00DC2791 /* Screenshots */,
 				F16C890E18579E07002661D5 /* iPad Resources */,
 				F16C890D18579DFA002661D5 /* Shared Resources  */,
 				F16C890C18579DEE002661D5 /* iPhone Resources */,
@@ -546,10 +563,13 @@
 				F16A3BA619101B5400D56855 /* air_temperature.png in Resources */,
 				F1B2F93D18F48A1E00BACDA3 /* OOSMFavStationCell.xib in Resources */,
 				F19B4A011911460900AF1972 /* blue_buoy_icon_100_plus.png in Resources */,
+				F100214B191D2C6D00DC2791 /* Screenshot 2014.05.08 22.12.55.png in Resources */,
 				F16C88DF18579DAE002661D5 /* InfoPlist.strings in Resources */,
+				F100214A191D2C6D00DC2791 /* Screenshot 2014.05.08 22.10.47.png in Resources */,
 				F19B4A03191146F000AF1972 /* blue_buoy_icon_500_plus.png in Resources */,
 				F1A0351D1913056900A42EBD /* visibility.png in Resources */,
 				F16A3BAA19101B5400D56855 /* current_speed.png in Resources */,
+				F1002149191D2C6D00DC2791 /* Screenshot 2014.04.30 11.01.48.png in Resources */,
 				F16A3BAB19101B5400D56855 /* depth-1.png in Resources */,
 				F16A3BA519101B5400D56855 /* air_pressure.png in Resources */,
 				F16A3BA919101B5400D56855 /* blue_buoy_icon.png in Resources */,

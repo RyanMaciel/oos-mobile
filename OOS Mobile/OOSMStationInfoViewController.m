@@ -31,8 +31,11 @@
 @property(strong, nonatomic)IBOutlet UILabel *titleLable;
 @property(strong, nonatomic)IBOutlet UILabel *timeStamp;
 
+//add an IBOutlet to control the activity indicator
+@property(strong, nonatomic)IBOutlet UIActivityIndicatorView *activityView;
+
 @property(strong, nonatomic)OOSMStation *stationToDisplayInfo;
-@property(strong, nonatomic)OOSMParseHelper *parseHelper;
+@property(strong, nonatomic)OOSMParseHelperOperation *parseHelper;
 @property(strong, nonatomic)NSArray *sensorProperties;
 @property(nonatomic)int currentSensorPropertyIndex;
 @property(nonatomic)int numberOfValidProperties;
@@ -44,17 +47,27 @@
 @property(strong, nonatomic)NSString *webViewURL;
 @property(strong, nonatomic)NSString *webViewPropertyString;
 @property(strong, nonatomic)NSMutableArray *returnedStationProperties;
+<<<<<<< HEAD
 @property(strong, nonatomic)IBOutlet UIView *graphSelectionView;
 @property(strong, nonatomic)NSString *propertyForLastSensorViewTouched;
+=======
+@property(nonatomic)BOOL parserHasReturnedValue;
+@property(nonatomic)NSTimer *timeoutTimer;
+>>>>>>> ac894e6beab1c89b66fe0e5a33b445e6c2df410a
 
 -(void)addSensorProperties;
 -(IBAction)addStationToUserFavorites;
 -(void)getChartWithSender:(id)sender;
 -(void)setUpChartURLWithTimeInterval:(NSTimeInterval)interval forProperty:(NSString*)property;
+<<<<<<< HEAD
 -(IBAction)createGraphWithSender:(OOSMCustomButton*)buttonSender;
+=======
+-(void)addWarningLabel;
 
-//add an IBOutlet to controll the activity indicator
-@property(strong, nonatomic)IBOutlet UIActivityIndicatorView *activityView;
+//method to call when the timeout should occur.
+- (void)timerFireMethod:(NSTimer *)timer;
+>>>>>>> ac894e6beab1c89b66fe0e5a33b445e6c2df410a
+
 @end
 
 @implementation OOSMStationInfoViewController
@@ -76,8 +89,21 @@
 @synthesize returnedStationProperties=_returnedStationProperties;
 @synthesize graphSelectionView=_graphSelectionView;
 @synthesize propertyForLastSensorViewTouched = _propertyForLastSensorViewTouched;
+@synthesize parserHasReturnedValue=_parserHasReturnedValue;
+@synthesize timeoutTimer=_timeoutTimer;
 
-#pragma mark Handle Touch On Sensor View
+#pragma mark Handle Timing Out
+- (void)timerFireMethod:(NSTimer *)timer{
+   
+    if (!self.parserHasReturnedValue) {
+        //cancel the parse helper
+        [self.parseHelper cancel];
+        self.parseHelper = nil;
+        
+        [self.activityView stopAnimating];
+        [self addWarningLabel];
+    }
+}
 
 //If the user taps the screen while the graph view is shonw, hide it.
 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event{
@@ -105,6 +131,9 @@
     self.graphSelectionView.hidden = YES;
 }
 
+=======
+#pragma mark Handle Touch On Sensor View
+>>>>>>> ac894e6beab1c89b66fe0e5a33b445e6c2df410a
 //Respond when one of the station sensor views are touched.
 -(void)stationSensorViewWasTouched:(OOSMStationSensorView *)sensorView{
     
@@ -116,7 +145,13 @@
     self.propertyForLastSensorViewTouched = sensorView.propertyObserved;
     
 }
-
+-(void)didMoveToParentViewController:(UIViewController *)parent{
+    //This code will be called when the back button is tapped.
+    if(!parent){
+        //invalidate the timer
+        [self.timeoutTimer invalidate];
+    }
+}
 #pragma mark Handle Displaying Web View
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if([segue.destinationViewController isKindOfClass:[OOSMWebViewController class]]){
@@ -249,17 +284,25 @@
 
 -(void)addSensorProperties{
     
-    //set up a NSOperationQueue to do the parsing on a seperate thread
+    //Set up a NSOperationQueue to do the parsing on a seperate thread
     self.propertyOperationQueue = [[NSOperationQueue alloc] init];
     self.propertyOperationQueue.name = @"Parser Queue";
     
     //set up OOSMParseHelperOperation
     OOSMParseHelperOperation *parseHelperOp=[[OOSMParseHelperOperation alloc] initWithDelegate:self stationName:self.stationToDisplayInfo.nameForServer elementsToFind:[NSDictionary dictionaryWithObjectsAndKeys:@"", @"air_temperature", @"", @"air_pressure", @"", @"relative_humidity", @"", @"rain_fall", @"", @"visibility", @"", @"currents", @"", @"sea_water_salinity", @"",  @"sea_water_temperature", @"", @"winds", nil]];
+
+    self.parseHelper=[[OOSMParseHelperOperation alloc] initWithDelegate:self stationName:self.stationToDisplayInfo.nameForServer elementsToFind:[NSDictionary dictionaryWithObjectsAndKeys:@"", @"air_temperature", @"", @"air_pressure", @"", @"relative_humidity", @"", @"rain_fall", @"", @"visibility", @"", @"air_temperature", @"", @"currents", @"", @"sea_water_salinity", @"",  @"sea_water_temperature", @"", @"winds", nil]];
     
     // These were removed: @"water_surface_height_above_reference_datum", @"", @"sea_surface_height_amplitude_due_to_equilibrium_ocean_tide", @"", @"sea_water_electrical_conductivity", @"", ,@"", @"harmonic_constituents", @"", @"datums",
     
-    [parseHelperOp setQueuePriority:NSOperationQueuePriorityVeryHigh];
-    [self.propertyOperationQueue addOperation:parseHelperOp];
+    [self.parseHelper setQueuePriority:NSOperationQueuePriorityVeryHigh];
+    [self.propertyOperationQueue addOperation:self.parseHelper];
+    
+    self.parserHasReturnedValue = NO;
+
+    //Add a timer to timeout if the properties are not retrieved fast enough.
+    self.timeoutTimer = [NSTimer timerWithTimeInterval:10 target:self selector:@selector(timerFireMethod:) userInfo:nil repeats:NO];
+    [[NSRunLoop mainRunLoop] addTimer:self.timeoutTimer forMode:NSRunLoopCommonModes];
 }
 
 -(void)parseHelper:(OOSMParseHelper *)parseHelper returnedString:(NSString *)string forProperty:(NSString*)property{
@@ -267,7 +310,11 @@
 
     //Make sure that returnSting != nil.
     if(string && ![string isEqualToString: @""]){
-
+        
+        //the parser has returned a value so change this property
+        
+        self.parserHasReturnedValue = YES;
+        
         [self.returnedStationProperties addObject:property];
         
         //if the activity view is still animating and the string is not nil, then stop the activity view
@@ -309,15 +356,19 @@
                 [self.activityView stopAnimating];
             }
             
-            //add a warning label
-            UILabel *newLable = [[UILabel alloc] init];
-            newLable.text = @"No values where found for this station.";
-            [newLable sizeToFit];
-            newLable.center = self.view.center;
-            
-            [self.view addSubview:newLable];
+            [self addWarningLabel];
         }
     }
+}
+//Adds a error label to the view.
+-(void)addWarningLabel{
+
+    UILabel *newLable = [[UILabel alloc] init];
+    newLable.text = @"No values where found for this station.";
+    [newLable sizeToFit];
+    newLable.center = self.view.center;
+    
+    [self.view addSubview:newLable];
 }
 
 -(void)setStationInfoToDisplay:(OOSMStation*)stationToDisplay{
@@ -391,7 +442,6 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
 }
-
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

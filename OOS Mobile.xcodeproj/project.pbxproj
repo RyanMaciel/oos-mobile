@@ -61,6 +61,16 @@
 		F1A5669E19070D91003C8FE5 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = F1A5669D19070D91003C8FE5 /* Reachability.m */; };
 		F1A78ED3190FD7B5005BD39E /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1A78ED2190FD7B5005BD39E /* QuartzCore.framework */; };
 		F1A78ED6190FDA1D005BD39E /* OOSMStationSensorView.m in Sources */ = {isa = PBXBuildFile; fileRef = F1A78ED5190FDA1D005BD39E /* OOSMStationSensorView.m */; };
+		F1AF06CB1922A2E5003A0F5A /* libBlitFeedback.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F1AF06CA1922A2E5003A0F5A /* libBlitFeedback.a */; };
+		F1AF06CD1922A2F0003A0F5A /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1AF06CC1922A2F0003A0F5A /* AVFoundation.framework */; };
+		F1AF06CF1922A2F5003A0F5A /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1AF06CE1922A2F5003A0F5A /* CoreVideo.framework */; };
+		F1AF06D11922A2FB003A0F5A /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1AF06D01922A2FB003A0F5A /* CoreMedia.framework */; };
+		F1AF06D31922A308003A0F5A /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F1AF06D21922A308003A0F5A /* libz.dylib */; };
+		F1AF06D51922A310003A0F5A /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1AF06D41922A310003A0F5A /* MediaPlayer.framework */; };
+		F1AF06D61922A316003A0F5A /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1A78ED2190FD7B5005BD39E /* QuartzCore.framework */; };
+		F1AF06D81922A322003A0F5A /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1AF06D71922A322003A0F5A /* MessageUI.framework */; };
+		F1AF06DA1922A32C003A0F5A /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1AF06D91922A32C003A0F5A /* CoreFoundation.framework */; };
+		F1AF06DC1922A334003A0F5A /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1AF06DB1922A334003A0F5A /* SystemConfiguration.framework */; };
 		F1B1D01E18E203D60052EFDC /* OOSMClusterModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F1B1D01D18E203D60052EFDC /* OOSMClusterModel.m */; };
 		F1B1D02118E204700052EFDC /* OOSMMapCluster.m in Sources */ = {isa = PBXBuildFile; fileRef = F1B1D02018E204700052EFDC /* OOSMMapCluster.m */; };
 		F1B1D02418E2048A0052EFDC /* OOSMMapPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = F1B1D02318E2048A0052EFDC /* OOSMMapPoint.m */; };
@@ -155,6 +165,16 @@
 		F1A78ED2190FD7B5005BD39E /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		F1A78ED4190FDA1D005BD39E /* OOSMStationSensorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OOSMStationSensorView.h; sourceTree = "<group>"; };
 		F1A78ED5190FDA1D005BD39E /* OOSMStationSensorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OOSMStationSensorView.m; sourceTree = "<group>"; };
+		F1AF06C81922A2C6003A0F5A /* Library */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Library; path = "OOS Mobile/BlitFeedback SDK iOS 1.2/Library"; sourceTree = "<group>"; };
+		F1AF06CA1922A2E5003A0F5A /* libBlitFeedback.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libBlitFeedback.a; path = "OOS Mobile/libBlitFeedback.a"; sourceTree = "<group>"; };
+		F1AF06CC1922A2F0003A0F5A /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		F1AF06CE1922A2F5003A0F5A /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
+		F1AF06D01922A2FB003A0F5A /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		F1AF06D21922A308003A0F5A /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		F1AF06D41922A310003A0F5A /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		F1AF06D71922A322003A0F5A /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		F1AF06D91922A32C003A0F5A /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
+		F1AF06DB1922A334003A0F5A /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		F1B1D01C18E203D60052EFDC /* OOSMClusterModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OOSMClusterModel.h; sourceTree = "<group>"; };
 		F1B1D01D18E203D60052EFDC /* OOSMClusterModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OOSMClusterModel.m; sourceTree = "<group>"; };
 		F1B1D01F18E204700052EFDC /* OOSMMapCluster.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OOSMMapCluster.h; sourceTree = "<group>"; };
@@ -177,6 +197,16 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F1AF06DC1922A334003A0F5A /* SystemConfiguration.framework in Frameworks */,
+				F1AF06DA1922A32C003A0F5A /* CoreFoundation.framework in Frameworks */,
+				F1AF06D81922A322003A0F5A /* MessageUI.framework in Frameworks */,
+				F1AF06D61922A316003A0F5A /* QuartzCore.framework in Frameworks */,
+				F1AF06D51922A310003A0F5A /* MediaPlayer.framework in Frameworks */,
+				F1AF06D31922A308003A0F5A /* libz.dylib in Frameworks */,
+				F1AF06D11922A2FB003A0F5A /* CoreMedia.framework in Frameworks */,
+				F1AF06CF1922A2F5003A0F5A /* CoreVideo.framework in Frameworks */,
+				F1AF06CD1922A2F0003A0F5A /* AVFoundation.framework in Frameworks */,
+				F1AF06CB1922A2E5003A0F5A /* libBlitFeedback.a in Frameworks */,
 				F18433821860EC3200D7ED55 /* CoreLocation.framework in Frameworks */,
 				F16C891018579EA2002661D5 /* MapKit.framework in Frameworks */,
 				F16C88D718579DAE002661D5 /* CoreGraphics.framework in Frameworks */,
@@ -257,6 +287,16 @@
 		F16C88D318579DAE002661D5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F1AF06DB1922A334003A0F5A /* SystemConfiguration.framework */,
+				F1AF06D91922A32C003A0F5A /* CoreFoundation.framework */,
+				F1AF06D71922A322003A0F5A /* MessageUI.framework */,
+				F1AF06D41922A310003A0F5A /* MediaPlayer.framework */,
+				F1AF06D21922A308003A0F5A /* libz.dylib */,
+				F1AF06D01922A2FB003A0F5A /* CoreMedia.framework */,
+				F1AF06CE1922A2F5003A0F5A /* CoreVideo.framework */,
+				F1AF06CC1922A2F0003A0F5A /* AVFoundation.framework */,
+				F1AF06CA1922A2E5003A0F5A /* libBlitFeedback.a */,
+				F1AF06C81922A2C6003A0F5A /* Library */,
 				F1A78ED2190FD7B5005BD39E /* QuartzCore.framework */,
 				F18433811860EC3200D7ED55 /* CoreLocation.framework */,
 				F16C890F18579EA2002661D5 /* MapKit.framework */,
@@ -773,6 +813,8 @@
 					Mobile,
 					"$(PROJECT_DIR)/OOS",
 					Mobile,
+					"$(PROJECT_DIR)/OOS",
+					Mobile,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -792,6 +834,8 @@
 				INFOPLIST_FILE = "OOS Mobile/OOS Mobile-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"$(PROJECT_DIR)/OOS",
+					Mobile,
 					"$(PROJECT_DIR)/OOS",
 					Mobile,
 					"$(PROJECT_DIR)/OOS",

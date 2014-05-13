@@ -47,26 +47,20 @@
 @property(strong, nonatomic)NSString *webViewURL;
 @property(strong, nonatomic)NSString *webViewPropertyString;
 @property(strong, nonatomic)NSMutableArray *returnedStationProperties;
-<<<<<<< HEAD
 @property(strong, nonatomic)IBOutlet UIView *graphSelectionView;
 @property(strong, nonatomic)NSString *propertyForLastSensorViewTouched;
-=======
 @property(nonatomic)BOOL parserHasReturnedValue;
 @property(nonatomic)NSTimer *timeoutTimer;
->>>>>>> ac894e6beab1c89b66fe0e5a33b445e6c2df410a
 
 -(void)addSensorProperties;
 -(IBAction)addStationToUserFavorites;
 -(void)getChartWithSender:(id)sender;
 -(void)setUpChartURLWithTimeInterval:(NSTimeInterval)interval forProperty:(NSString*)property;
-<<<<<<< HEAD
 -(IBAction)createGraphWithSender:(OOSMCustomButton*)buttonSender;
-=======
 -(void)addWarningLabel;
 
 //method to call when the timeout should occur.
 - (void)timerFireMethod:(NSTimer *)timer;
->>>>>>> ac894e6beab1c89b66fe0e5a33b445e6c2df410a
 
 @end
 
@@ -131,9 +125,7 @@
     self.graphSelectionView.hidden = YES;
 }
 
-=======
 #pragma mark Handle Touch On Sensor View
->>>>>>> ac894e6beab1c89b66fe0e5a33b445e6c2df410a
 //Respond when one of the station sensor views are touched.
 -(void)stationSensorViewWasTouched:(OOSMStationSensorView *)sensorView{
     
@@ -289,8 +281,6 @@
     self.propertyOperationQueue.name = @"Parser Queue";
     
     //set up OOSMParseHelperOperation
-    OOSMParseHelperOperation *parseHelperOp=[[OOSMParseHelperOperation alloc] initWithDelegate:self stationName:self.stationToDisplayInfo.nameForServer elementsToFind:[NSDictionary dictionaryWithObjectsAndKeys:@"", @"air_temperature", @"", @"air_pressure", @"", @"relative_humidity", @"", @"rain_fall", @"", @"visibility", @"", @"currents", @"", @"sea_water_salinity", @"",  @"sea_water_temperature", @"", @"winds", nil]];
-
     self.parseHelper=[[OOSMParseHelperOperation alloc] initWithDelegate:self stationName:self.stationToDisplayInfo.nameForServer elementsToFind:[NSDictionary dictionaryWithObjectsAndKeys:@"", @"air_temperature", @"", @"air_pressure", @"", @"relative_humidity", @"", @"rain_fall", @"", @"visibility", @"", @"air_temperature", @"", @"currents", @"", @"sea_water_salinity", @"",  @"sea_water_temperature", @"", @"winds", nil]];
     
     // These were removed: @"water_surface_height_above_reference_datum", @"", @"sea_surface_height_amplitude_due_to_equilibrium_ocean_tide", @"", @"sea_water_electrical_conductivity", @"", ,@"", @"harmonic_constituents", @"", @"datums",

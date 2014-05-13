@@ -24,6 +24,7 @@
 #import "OOSMParseHelper.h"
 #import "OOSMParseHelperOperation.h"
 #import "OOSMWebViewController.h"
+#import "OOSMCustomButton.h"
 
 @interface OOSMStationInfoViewController () <OOSMParseOperationDelegate>
 
@@ -43,11 +44,14 @@
 @property(strong, nonatomic)NSString *webViewURL;
 @property(strong, nonatomic)NSString *webViewPropertyString;
 @property(strong, nonatomic)NSMutableArray *returnedStationProperties;
+@property(strong, nonatomic)IBOutlet UIView *graphSelectionView;
+@property(strong, nonatomic)NSString *propertyForLastSensorViewTouched;
 
 -(void)addSensorProperties;
 -(IBAction)addStationToUserFavorites;
 -(void)getChartWithSender:(id)sender;
 -(void)setUpChartURLWithTimeInterval:(NSTimeInterval)interval forProperty:(NSString*)property;
+-(IBAction)createGraphWithSender:(OOSMCustomButton*)buttonSender;
 
 //add an IBOutlet to controll the activity indicator
 @property(strong, nonatomic)IBOutlet UIActivityIndicatorView *activityView;
@@ -70,13 +74,47 @@
 @synthesize timeStamp=_timeStamp;
 @synthesize numberOfValidProperties=_numberOfValidProperties;
 @synthesize returnedStationProperties=_returnedStationProperties;
+@synthesize graphSelectionView=_graphSelectionView;
+@synthesize propertyForLastSensorViewTouched = _propertyForLastSensorViewTouched;
 
 #pragma mark Handle Touch On Sensor View
 
+//If the user taps the screen while the graph view is shonw, hide it.
+-(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event{
+    if(self.graphSelectionView.hidden == NO)self.graphSelectionView.hidden = YES;
+}
+
+-(IBAction)createGraphWithSender:(OOSMCustomButton *)buttonSender{
+    NSTimeInterval interval = 0.0;
+    
+    //Set the apropriate time interval.
+    if([buttonSender.titleLabel.text isEqualToString:@"One Day"]){
+        interval = -86400.0;
+    }
+    if([buttonSender.titleLabel.text isEqualToString:@"Three Days"]){
+        interval = -172800.0;
+    }
+    if([buttonSender.titleLabel.text isEqualToString:@"Five Days"]){
+        interval = -432000.0;
+    }
+    
+    //Create a graph with the specified time interval.  The interval must be negative.
+    [self setUpChartURLWithTimeInterval:interval forProperty:self.propertyForLastSensorViewTouched];
+    
+    //Hide the view again.
+    self.graphSelectionView.hidden = YES;
+}
+
 //Respond when one of the station sensor views are touched.
 -(void)stationSensorViewWasTouched:(OOSMStationSensorView *)sensorView{
-    //The interval here must be negative.
-    [self setUpChartURLWithTimeInterval:-259200 forProperty:sensorView.propertyObserved];
+    
+    self.graphSelectionView.hidden = NO;
+    [self.view addSubview:self.graphSelectionView];
+    
+    [self.view bringSubviewToFront:sensorView];
+    
+    self.propertyForLastSensorViewTouched = sensorView.propertyObserved;
+    
 }
 
 #pragma mark Handle Displaying Web View
@@ -120,14 +158,14 @@
     
     //set the second date in the time series
     webViewString = [webViewString stringByReplacingOccurrencesOfString:@"***SecondDate***" withString: [dateFormat stringFromDate:intervalDifference]];
-    
+
     //set the station name for the url
     webViewString = [webViewString stringByReplacingOccurrencesOfString:@"**StationName**" withString:self.stationToDisplayInfo.nameForServer];
-    
+
     //set the sensor property
     webViewString = [webViewString stringByReplacingOccurrencesOfString:@"***SensorProperty***" withString:property];
     self.webViewURL = webViewString;
-    
+
     //Set this property so that when the segue is called the web view will know what sensor property to create a graph of.
     self.webViewPropertyString = property;
     
@@ -216,7 +254,7 @@
     self.propertyOperationQueue.name = @"Parser Queue";
     
     //set up OOSMParseHelperOperation
-    OOSMParseHelperOperation *parseHelperOp=[[OOSMParseHelperOperation alloc] initWithDelegate:self stationName:self.stationToDisplayInfo.nameForServer elementsToFind:[NSDictionary dictionaryWithObjectsAndKeys:@"", @"air_temperature", @"", @"air_pressure", @"", @"relative_humidity", @"", @"rain_fall", @"", @"visibility", @"", @"air_temperature", @"", @"currents", @"", @"sea_water_salinity", @"",  @"sea_water_temperature", @"", @"winds", nil]];
+    OOSMParseHelperOperation *parseHelperOp=[[OOSMParseHelperOperation alloc] initWithDelegate:self stationName:self.stationToDisplayInfo.nameForServer elementsToFind:[NSDictionary dictionaryWithObjectsAndKeys:@"", @"air_temperature", @"", @"air_pressure", @"", @"relative_humidity", @"", @"rain_fall", @"", @"visibility", @"", @"currents", @"", @"sea_water_salinity", @"",  @"sea_water_temperature", @"", @"winds", nil]];
     
     // These were removed: @"water_surface_height_above_reference_datum", @"", @"sea_surface_height_amplitude_due_to_equilibrium_ocean_tide", @"", @"sea_water_electrical_conductivity", @"", ,@"", @"harmonic_constituents", @"", @"datums",
     
@@ -247,7 +285,10 @@
         OOSMStationSensorView *sensorView = [[OOSMStationSensorView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width/3 - 5, self.view.frame.size.width/3 + 5) sensorIconName:property sensorPropertyValue:string];
         sensorView.center = CGPointMake((sensorView.frame.size.width+5)/2 + ((sensorView.frame.size.width + 5) *(self.numberOfValidProperties%3)), 200 + ((sensorView.frame.size.height + 5) * (self.numberOfValidProperties / 3)));
         sensorView.stationInfoViewController = self;
-        [self.view addSubview:sensorView];
+        
+        //This line makes sure that if the user is selecting a range for the graph view, sensor views which are still loading will not "pop up" over the graphSelectionView.
+        [self.view insertSubview:sensorView belowSubview:self.graphSelectionView];
+       
         
         //subtract one in the self.sensor.count because we add one to it in the code below.
         if(self.currentSensorPropertyIndex<self.sensorProperties.count-1){
@@ -323,7 +364,7 @@
             self.titleLable.text=self.stationToDisplayInfo.userReadableName;
             
             //array of all the properties of the station sensors which we want to retrieve
-            self.sensorProperties=[[NSArray alloc] initWithObjects:@"air_temperature", @"air_pressure", @"relative_humidity", @"rain_fall", @"visibility", @"air_temperature", @"sea_water_electrical_conductivity", @"currents", @"sea_water_salinity", @"water_surface_height_above_reference_datum", @"sea_surface_height_amplitude_due_to_equilibrium_ocean_tide", @"sea_water_temperature", @"winds", @"harmonic_constituents", @"datums",  nil];
+            self.sensorProperties=[[NSArray alloc] initWithObjects:@"air_temperature", @"air_pressure", @"relative_humidity", @"rain_fall", @"visibility", @"sea_water_electrical_conductivity", @"currents", @"sea_water_salinity", @"water_surface_height_above_reference_datum", @"sea_surface_height_amplitude_due_to_equilibrium_ocean_tide", @"sea_water_temperature", @"winds", @"harmonic_constituents", @"datums",  nil];
             
             self.currentSensorPropertyIndex = 0;
             
@@ -343,6 +384,10 @@
         self.titleLable.text = @"An error has occured.";
         
     }
+    
+    //hide the graph selection view.
+    self.graphSelectionView.hidden = YES;
+    
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
 }

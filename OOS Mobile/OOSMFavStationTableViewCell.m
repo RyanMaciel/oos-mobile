@@ -38,7 +38,7 @@
 
 -(void)setUpWithDictionaryOfPropertiesAndValues:(NSDictionary *)propertyValues{
 
-    NSDictionary *unitsForSensor = @{@"air_temperature": @"ºC", @"air_pressure": @"mb", @"relative_humidity": @"%", @"rain_fall": @"centimeters", @"visibility": @"km", @"sea_water_electrical_conductivity": @"S/m", @"currents": @"", @"sea_water_salinity": @"", @"water_surface_height_above_reference_datum": @"", @"sea_surface_height_amplitude_due_to_equilibrium_ocean_tide": @"", @"sea_water_temperature": @"ºC", @"winds":@"m/s", @"harmonic_constituents":@"", @"datums":@""};
+    NSDictionary *unitsForSensor = @{@"air_temperature": @"ºC", @"air_pressure": @"mb", @"relative_humidity": @"%", @"rain_fall": @"centimeters", @"visibility": @"km", @"sea_water_electrical_conductivity": @"S/m", @"currents": @"", @"sea_water_salinity": @"", @"water_surface_height_above_reference_datum": @"", @"sea_surface_height_amplitude_due_to_equilibrium_ocean_tide": @"", @"sea_water_temperature": @"ºC", @"winds":@"m/s", @"harmonic_constituents":@"", @"datums":@"", @"rain_fall":@"mm", @"visibility":@"NM", @"currents" : @"cm/s", @"sea_water_salinity" : @"psu"};
     
     CGFloat elementBorder = 10;
     CGFloat startingXForNextElement = elementBorder;
@@ -53,6 +53,7 @@
 
         NSString *property = [[propertyValues allKeys] objectAtIndex:i];
         
+        //Get the icon that corresponds to the image.
         UIImageView *propertyImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:[property stringByAppendingString:@".png"]]];
         propertyImage.frame = CGRectMake(0, 0, 50, 100);
         propertyImage.contentMode = UIViewContentModeScaleAspectFit;
@@ -64,8 +65,8 @@
         valueLabel.text = [[propertyValues allValues] objectAtIndex:i];
         
         //add a unit label besides the value.
-        if([unitsForSensor objectForKey:[[propertyValues allValues] objectAtIndex:i]]){
-            [valueLabel.text stringByAppendingString:[[valueLabel.text stringByAppendingString:@" "] stringByAppendingString:[unitsForSensor objectForKey:[[propertyValues allValues] objectAtIndex:i]]] ];
+        if([unitsForSensor objectForKey:[[propertyValues allKeys] objectAtIndex:i]]){
+            valueLabel.text = [[valueLabel.text stringByAppendingString:@" "] stringByAppendingString:[unitsForSensor objectForKey:[[propertyValues allKeys] objectAtIndex:i]]];
         }
         [valueLabel sizeToFit];
         valueLabel.center = CGPointMake(valueLabel.frame.size.width/2 + propertyImage.center.x + propertyImage.frame.size.width/2 + elementBorder, self.bounds.size.height/2);

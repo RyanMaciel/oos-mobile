@@ -51,7 +51,7 @@
     self.errorLabel.hidden = YES;
     
     //check for network reachability:
-    Reachability *reachabilityChecker = [Reachability reachabilityWithHostName:@"google.com"];
+    Reachability *reachabilityChecker = [Reachability reachabilityWithHostName:@"opendap.co-ops.nos.noaa.gov"];
     reachabilityChecker.reachableBlock = ^(Reachability*reach)
     {
         [[NSOperationQueue mainQueue]addOperationWithBlock:^(void){

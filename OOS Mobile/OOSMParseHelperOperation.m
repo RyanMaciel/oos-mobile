@@ -53,7 +53,8 @@
     if(!self.isCancelled){
         
         if(string){
-            [self.outputDictionary setObject:string forKey:property];
+            //convert the float value in the string to an int and add it in the outputDictionary.
+            [self.outputDictionary setObject:[NSString stringWithFormat:@"%i", [string intValue]] forKey:property];
         }else{
             [self.outputDictionary setObject:@"" forKey:property];
         }

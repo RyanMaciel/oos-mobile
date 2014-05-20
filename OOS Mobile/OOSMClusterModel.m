@@ -138,7 +138,7 @@
         //set up everything needed to create the clusters.
         self.dataSet = dataSet;
         self.densityRadius = 5;
-        self.minPoints = 50;
+        self.minPoints = 40;
         self.clusters = [[NSMutableArray alloc] init];
         self.noisePoints = [[NSMutableDictionary alloc] init];
     }

@@ -53,6 +53,7 @@
 //this will be an array of OOSMMapPoins to reference when clustering the pins on the map.
 @property(strong, nonatomic)NSMutableDictionary *stationPoints;
 @property(strong, nonatomic)OOSMClusterModel *clusterModel;
+
 @end
 
 @implementation OOSMMapViewController
@@ -95,11 +96,13 @@
     //Run the clustering algorithm.
     NSDictionary *dataPoints = [self.clusterModel dBSCAN];
     
-    //Remove all annotations from map.
-    [self.mapView removeAnnotations:[self.mapView annotations]];
+   
+    NSArray *annotationsOnMap = [self.mapView annotations];
     
     [self addClustersToMap:[dataPoints objectForKey:@"clusters"]];
     [self addStationsPointsToMap:[dataPoints objectForKey:@"noisePoints"]];
+    
+    [self.mapView removeAnnotations:annotationsOnMap];
     
     //Reset the visited values of the OOSMMapPoints.
     for(OOSMMapPoint *point in [self.stationPoints allValues]){

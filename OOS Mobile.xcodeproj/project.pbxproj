@@ -61,7 +61,6 @@
 		F1A5669E19070D91003C8FE5 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = F1A5669D19070D91003C8FE5 /* Reachability.m */; };
 		F1A78ED3190FD7B5005BD39E /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1A78ED2190FD7B5005BD39E /* QuartzCore.framework */; };
 		F1A78ED6190FDA1D005BD39E /* OOSMStationSensorView.m in Sources */ = {isa = PBXBuildFile; fileRef = F1A78ED5190FDA1D005BD39E /* OOSMStationSensorView.m */; };
-		F1AF06CB1922A2E5003A0F5A /* libBlitFeedback.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F1AF06CA1922A2E5003A0F5A /* libBlitFeedback.a */; };
 		F1AF06CD1922A2F0003A0F5A /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1AF06CC1922A2F0003A0F5A /* AVFoundation.framework */; };
 		F1AF06CF1922A2F5003A0F5A /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1AF06CE1922A2F5003A0F5A /* CoreVideo.framework */; };
 		F1AF06D11922A2FB003A0F5A /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1AF06D01922A2FB003A0F5A /* CoreMedia.framework */; };
@@ -79,6 +78,9 @@
 		F1B2F94018F48BF900BACDA3 /* OOSMFavStationTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F1B2F93F18F48BF900BACDA3 /* OOSMFavStationTableViewCell.m */; };
 		F1D88478186100AC00B4A349 /* COPYING in Resources */ = {isa = PBXBuildFile; fileRef = F1D88477186100AC00B4A349 /* COPYING */; };
 		F1E29B3B18725AB900416D5C /* OOSMParseHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = F1E29B3A18725AB900416D5C /* OOSMParseHelper.m */; };
+		F1F183B4192BD0740013DCD8 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F1F183B3192BD0740013DCD8 /* Default-568h@2x.png */; };
+		F1F183B8192BD13E0013DCD8 /* libBlitFeedback.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F1F183B5192BD0D70013DCD8 /* libBlitFeedback.a */; };
+		F1F183BA192BD1880013DCD8 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1F183B9192BD1880013DCD8 /* CoreMotion.framework */; };
 		F1F5BB4F18E3B3F200E43E84 /* OOSMMapAnnotationClusterRepresentation.m in Sources */ = {isa = PBXBuildFile; fileRef = F1F5BB4E18E3B3F200E43E84 /* OOSMMapAnnotationClusterRepresentation.m */; };
 /* End PBXBuildFile section */
 
@@ -165,7 +167,6 @@
 		F1A78ED2190FD7B5005BD39E /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		F1A78ED4190FDA1D005BD39E /* OOSMStationSensorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OOSMStationSensorView.h; sourceTree = "<group>"; };
 		F1A78ED5190FDA1D005BD39E /* OOSMStationSensorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OOSMStationSensorView.m; sourceTree = "<group>"; };
-		F1AF06C81922A2C6003A0F5A /* Library */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Library; path = "OOS Mobile/BlitFeedback SDK iOS 1.2/Library"; sourceTree = "<group>"; };
 		F1AF06CA1922A2E5003A0F5A /* libBlitFeedback.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libBlitFeedback.a; path = "OOS Mobile/libBlitFeedback.a"; sourceTree = "<group>"; };
 		F1AF06CC1922A2F0003A0F5A /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		F1AF06CE1922A2F5003A0F5A /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
@@ -186,8 +187,12 @@
 		F1B2F93E18F48BF900BACDA3 /* OOSMFavStationTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OOSMFavStationTableViewCell.h; sourceTree = "<group>"; };
 		F1B2F93F18F48BF900BACDA3 /* OOSMFavStationTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OOSMFavStationTableViewCell.m; sourceTree = "<group>"; };
 		F1D88477186100AC00B4A349 /* COPYING */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = COPYING; sourceTree = "<group>"; };
+		F1E267771926BF9800665983 /* BlitFeedback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlitFeedback.h; sourceTree = "<group>"; };
 		F1E29B3918725AB900416D5C /* OOSMParseHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OOSMParseHelper.h; sourceTree = "<group>"; };
 		F1E29B3A18725AB900416D5C /* OOSMParseHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OOSMParseHelper.m; sourceTree = "<group>"; };
+		F1F183B3192BD0740013DCD8 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		F1F183B5192BD0D70013DCD8 /* libBlitFeedback.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libBlitFeedback.a; sourceTree = "<group>"; };
+		F1F183B9192BD1880013DCD8 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		F1F5BB4D18E3B3F200E43E84 /* OOSMMapAnnotationClusterRepresentation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OOSMMapAnnotationClusterRepresentation.h; sourceTree = "<group>"; };
 		F1F5BB4E18E3B3F200E43E84 /* OOSMMapAnnotationClusterRepresentation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OOSMMapAnnotationClusterRepresentation.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -197,6 +202,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F1F183B8192BD13E0013DCD8 /* libBlitFeedback.a in Frameworks */,
+				F1F183BA192BD1880013DCD8 /* CoreMotion.framework in Frameworks */,
 				F1AF06DC1922A334003A0F5A /* SystemConfiguration.framework in Frameworks */,
 				F1AF06DA1922A32C003A0F5A /* CoreFoundation.framework in Frameworks */,
 				F1AF06D81922A322003A0F5A /* MessageUI.framework in Frameworks */,
@@ -206,7 +213,6 @@
 				F1AF06D11922A2FB003A0F5A /* CoreMedia.framework in Frameworks */,
 				F1AF06CF1922A2F5003A0F5A /* CoreVideo.framework in Frameworks */,
 				F1AF06CD1922A2F0003A0F5A /* AVFoundation.framework in Frameworks */,
-				F1AF06CB1922A2E5003A0F5A /* libBlitFeedback.a in Frameworks */,
 				F18433821860EC3200D7ED55 /* CoreLocation.framework in Frameworks */,
 				F16C891018579EA2002661D5 /* MapKit.framework in Frameworks */,
 				F16C88D718579DAE002661D5 /* CoreGraphics.framework in Frameworks */,
@@ -268,6 +274,7 @@
 		F16C88C818579DAE002661D5 = {
 			isa = PBXGroup;
 			children = (
+				F1F183B3192BD0740013DCD8 /* Default-568h@2x.png */,
 				F16C88DA18579DAE002661D5 /* OOS Mobile */,
 				F16C88FC18579DAE002661D5 /* OOS MobileTests */,
 				F16C88D318579DAE002661D5 /* Frameworks */,
@@ -287,6 +294,7 @@
 		F16C88D318579DAE002661D5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F1F183B9192BD1880013DCD8 /* CoreMotion.framework */,
 				F1AF06DB1922A334003A0F5A /* SystemConfiguration.framework */,
 				F1AF06D91922A32C003A0F5A /* CoreFoundation.framework */,
 				F1AF06D71922A322003A0F5A /* MessageUI.framework */,
@@ -296,7 +304,6 @@
 				F1AF06CE1922A2F5003A0F5A /* CoreVideo.framework */,
 				F1AF06CC1922A2F0003A0F5A /* AVFoundation.framework */,
 				F1AF06CA1922A2E5003A0F5A /* libBlitFeedback.a */,
-				F1AF06C81922A2C6003A0F5A /* Library */,
 				F1A78ED2190FD7B5005BD39E /* QuartzCore.framework */,
 				F18433811860EC3200D7ED55 /* CoreLocation.framework */,
 				F16C890F18579EA2002661D5 /* MapKit.framework */,
@@ -312,6 +319,7 @@
 			isa = PBXGroup;
 			children = (
 				F16E7F421921500200FFF722 /* OOSM Launch Image-1 11-22-13-107.png */,
+				F1F183B7192BD0E70013DCD8 /* Feedback */,
 				F1002145191D2C6D00DC2791 /* Screenshots */,
 				F16C890E18579E07002661D5 /* iPad Resources */,
 				F16C890D18579DFA002661D5 /* Shared Resources  */,
@@ -503,6 +511,15 @@
 			name = Clustering;
 			sourceTree = "<group>";
 		};
+		F1F183B7192BD0E70013DCD8 /* Feedback */ = {
+			isa = PBXGroup;
+			children = (
+				F1F183B5192BD0D70013DCD8 /* libBlitFeedback.a */,
+				F1E267771926BF9800665983 /* BlitFeedback.h */,
+			);
+			name = Feedback;
+			sourceTree = "<group>";
+		};
 		F1F5BB4A18E3B3AD00E43E84 /* Station Annotation Representations */ = {
 			isa = PBXGroup;
 			children = (
@@ -613,6 +630,7 @@
 				F16E7F431921500200FFF722 /* OOSM Launch Image-1 11-22-13-107.png in Resources */,
 				F16A3BB219101B5500D56855 /* temporary_splash_screen.png in Resources */,
 				F16C88E818579DAE002661D5 /* Main_iPhone.storyboard in Resources */,
+				F1F183B4192BD0740013DCD8 /* Default-568h@2x.png in Resources */,
 				F1D88478186100AC00B4A349 /* COPYING in Resources */,
 				F16A3BA619101B5400D56855 /* air_temperature.png in Resources */,
 				F1B2F93D18F48A1E00BACDA3 /* OOSMFavStationCell.xib in Resources */,
@@ -815,6 +833,12 @@
 					Mobile,
 					"$(PROJECT_DIR)/OOS",
 					Mobile,
+					"$(PROJECT_DIR)/OOS",
+					Mobile,
+					"$(PROJECT_DIR)/OOS",
+					Mobile,
+					"$(PROJECT_DIR)/OOS",
+					Mobile,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -834,6 +858,12 @@
 				INFOPLIST_FILE = "OOS Mobile/OOS Mobile-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"$(PROJECT_DIR)/OOS",
+					Mobile,
+					"$(PROJECT_DIR)/OOS",
+					Mobile,
+					"$(PROJECT_DIR)/OOS",
+					Mobile,
 					"$(PROJECT_DIR)/OOS",
 					Mobile,
 					"$(PROJECT_DIR)/OOS",

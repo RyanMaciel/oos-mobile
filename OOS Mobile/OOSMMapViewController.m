@@ -89,7 +89,7 @@
         }
     }
     
-    self.clusterModel.densityRadius = self.mapView.region.span.latitudeDelta/10.0;
+    self.clusterModel.densityRadius = self.mapView.region.span.latitudeDelta/12.0;
     self.clusterModel.dataSet = stationsShownOnMap;
     
     //Run the clustering algorithm.
@@ -240,7 +240,7 @@
     self.mapView=[[MKMapView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
     self.mapView.delegate=self;
     
-    MKCoordinateRegion regionToFocusOn=[self.mapView regionThatFits:MKCoordinateRegionMakeWithDistance(CLLocationCoordinate2DMake(42, -70), 10000000, 10000000)];
+    MKCoordinateRegion regionToFocusOn=[self.mapView regionThatFits:MKCoordinateRegionMakeWithDistance(CLLocationCoordinate2DMake(42, -70), 3500000, 3500000)];
     [self.mapView setRegion:regionToFocusOn];
     [self.view addSubview:self.mapView];
 

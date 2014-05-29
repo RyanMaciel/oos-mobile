@@ -7,11 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		F100214A191D2C6D00DC2791 /* Screenshot 2014.05.08 22.10.47.png in Resources */ = {isa = PBXBuildFile; fileRef = F1002147191D2C6D00DC2791 /* Screenshot 2014.05.08 22.10.47.png */; };
 		F100214B191D2C6D00DC2791 /* Screenshot 2014.05.08 22.12.55.png in Resources */ = {isa = PBXBuildFile; fileRef = F1002148191D2C6D00DC2791 /* Screenshot 2014.05.08 22.12.55.png */; };
 		F10CCF9818B3E20E0093241F /* www in Resources */ = {isa = PBXBuildFile; fileRef = F10CCF9718B3E20E0093241F /* www */; };
 		F1142E8F18610AD3009AA3B3 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F1142E8D18610AD3009AA3B3 /* Main_iPad.storyboard */; };
 		F117EC62187C825100EBA779 /* OOSMParseHelperOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = F117EC61187C825100EBA779 /* OOSMParseHelperOperation.m */; };
+		F155F570192EAF3F000BCEB1 /* icon76.png in Resources */ = {isa = PBXBuildFile; fileRef = F155F56D192EAF3F000BCEB1 /* icon76.png */; };
+		F155F571192EAF3F000BCEB1 /* icon120.png in Resources */ = {isa = PBXBuildFile; fileRef = F155F56E192EAF3F000BCEB1 /* icon120.png */; };
+		F155F572192EAF3F000BCEB1 /* icon152.png in Resources */ = {isa = PBXBuildFile; fileRef = F155F56F192EAF3F000BCEB1 /* icon152.png */; };
+		F155F575192EAFA8000BCEB1 /* icon58.png in Resources */ = {isa = PBXBuildFile; fileRef = F155F573192EAFA8000BCEB1 /* icon58.png */; };
+		F155F576192EAFA8000BCEB1 /* icon80.png in Resources */ = {isa = PBXBuildFile; fileRef = F155F574192EAFA8000BCEB1 /* icon80.png */; };
+		F157D5D4193680380078294E /* 3.5 inch launch image.png in Resources */ = {isa = PBXBuildFile; fileRef = F157D5D2193680380078294E /* 3.5 inch launch image.png */; };
+		F157D5D5193680380078294E /* 4 inch launch image.png in Resources */ = {isa = PBXBuildFile; fileRef = F157D5D3193680380078294E /* 4 inch launch image.png */; };
 		F15EF1E318CF7CDD0071584E /* OOSMLoadingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F15EF1E218CF7CDD0071584E /* OOSMLoadingViewController.m */; };
 		F15EF1ED18CFA8B60071584E /* OOSMNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F15EF1EC18CFA8B60071584E /* OOSMNavigationViewController.m */; };
 		F16A3BA519101B5400D56855 /* air_pressure.png in Resources */ = {isa = PBXBuildFile; fileRef = F16A3B9219101B5400D56855 /* air_pressure.png */; };
@@ -76,10 +82,9 @@
 		F1B1D02A18E223C70052EFDC /* OOSMMapClusterTest.m in Sources */ = {isa = PBXBuildFile; fileRef = F1B1D02918E223C70052EFDC /* OOSMMapClusterTest.m */; };
 		F1B2F93D18F48A1E00BACDA3 /* OOSMFavStationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F1B2F93C18F48A1E00BACDA3 /* OOSMFavStationCell.xib */; };
 		F1B2F94018F48BF900BACDA3 /* OOSMFavStationTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F1B2F93F18F48BF900BACDA3 /* OOSMFavStationTableViewCell.m */; };
+		F1C970781937A2A2007B2A07 /* libBlitFeedback.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F1AF06CA1922A2E5003A0F5A /* libBlitFeedback.a */; };
 		F1D88478186100AC00B4A349 /* COPYING in Resources */ = {isa = PBXBuildFile; fileRef = F1D88477186100AC00B4A349 /* COPYING */; };
 		F1E29B3B18725AB900416D5C /* OOSMParseHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = F1E29B3A18725AB900416D5C /* OOSMParseHelper.m */; };
-		F1F183B4192BD0740013DCD8 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F1F183B3192BD0740013DCD8 /* Default-568h@2x.png */; };
-		F1F183B8192BD13E0013DCD8 /* libBlitFeedback.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F1F183B5192BD0D70013DCD8 /* libBlitFeedback.a */; };
 		F1F183BA192BD1880013DCD8 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1F183B9192BD1880013DCD8 /* CoreMotion.framework */; };
 		F1F5BB4F18E3B3F200E43E84 /* OOSMMapAnnotationClusterRepresentation.m in Sources */ = {isa = PBXBuildFile; fileRef = F1F5BB4E18E3B3F200E43E84 /* OOSMMapAnnotationClusterRepresentation.m */; };
 /* End PBXBuildFile section */
@@ -95,12 +100,18 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		F1002147191D2C6D00DC2791 /* Screenshot 2014.05.08 22.10.47.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Screenshot 2014.05.08 22.10.47.png"; sourceTree = "<group>"; };
 		F1002148191D2C6D00DC2791 /* Screenshot 2014.05.08 22.12.55.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Screenshot 2014.05.08 22.12.55.png"; sourceTree = "<group>"; };
 		F10CCF9718B3E20E0093241F /* www */ = {isa = PBXFileReference; lastKnownFileType = folder; path = www; sourceTree = "<group>"; };
 		F1142E8E18610AD3009AA3B3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = "OOS Mobile/Base.lproj/Main_iPad.storyboard"; sourceTree = "<group>"; };
 		F117EC60187C825100EBA779 /* OOSMParseHelperOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OOSMParseHelperOperation.h; sourceTree = "<group>"; };
 		F117EC61187C825100EBA779 /* OOSMParseHelperOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OOSMParseHelperOperation.m; sourceTree = "<group>"; };
+		F155F56D192EAF3F000BCEB1 /* icon76.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon76.png; sourceTree = "<group>"; };
+		F155F56E192EAF3F000BCEB1 /* icon120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon120.png; sourceTree = "<group>"; };
+		F155F56F192EAF3F000BCEB1 /* icon152.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon152.png; sourceTree = "<group>"; };
+		F155F573192EAFA8000BCEB1 /* icon58.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon58.png; sourceTree = "<group>"; };
+		F155F574192EAFA8000BCEB1 /* icon80.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon80.png; sourceTree = "<group>"; };
+		F157D5D2193680380078294E /* 3.5 inch launch image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "3.5 inch launch image.png"; sourceTree = "<group>"; };
+		F157D5D3193680380078294E /* 4 inch launch image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "4 inch launch image.png"; sourceTree = "<group>"; };
 		F15EF1E118CF7CDD0071584E /* OOSMLoadingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OOSMLoadingViewController.h; sourceTree = "<group>"; };
 		F15EF1E218CF7CDD0071584E /* OOSMLoadingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OOSMLoadingViewController.m; sourceTree = "<group>"; };
 		F15EF1EB18CFA8B60071584E /* OOSMNavigationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OOSMNavigationViewController.h; sourceTree = "<group>"; };
@@ -190,7 +201,6 @@
 		F1E267771926BF9800665983 /* BlitFeedback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlitFeedback.h; sourceTree = "<group>"; };
 		F1E29B3918725AB900416D5C /* OOSMParseHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OOSMParseHelper.h; sourceTree = "<group>"; };
 		F1E29B3A18725AB900416D5C /* OOSMParseHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OOSMParseHelper.m; sourceTree = "<group>"; };
-		F1F183B3192BD0740013DCD8 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		F1F183B5192BD0D70013DCD8 /* libBlitFeedback.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libBlitFeedback.a; sourceTree = "<group>"; };
 		F1F183B9192BD1880013DCD8 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		F1F5BB4D18E3B3F200E43E84 /* OOSMMapAnnotationClusterRepresentation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OOSMMapAnnotationClusterRepresentation.h; sourceTree = "<group>"; };
@@ -202,7 +212,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F1F183B8192BD13E0013DCD8 /* libBlitFeedback.a in Frameworks */,
 				F1F183BA192BD1880013DCD8 /* CoreMotion.framework in Frameworks */,
 				F1AF06DC1922A334003A0F5A /* SystemConfiguration.framework in Frameworks */,
 				F1AF06DA1922A32C003A0F5A /* CoreFoundation.framework in Frameworks */,
@@ -217,6 +226,7 @@
 				F16C891018579EA2002661D5 /* MapKit.framework in Frameworks */,
 				F16C88D718579DAE002661D5 /* CoreGraphics.framework in Frameworks */,
 				F16C88D918579DAE002661D5 /* UIKit.framework in Frameworks */,
+				F1C970781937A2A2007B2A07 /* libBlitFeedback.a in Frameworks */,
 				F16C88D518579DAE002661D5 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -238,11 +248,24 @@
 		F1002145191D2C6D00DC2791 /* Screenshots */ = {
 			isa = PBXGroup;
 			children = (
-				F1002147191D2C6D00DC2791 /* Screenshot 2014.05.08 22.10.47.png */,
 				F1002148191D2C6D00DC2791 /* Screenshot 2014.05.08 22.12.55.png */,
 			);
 			path = Screenshots;
 			sourceTree = SOURCE_ROOT;
+		};
+		F155F56C192EAF21000BCEB1 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				F157D5D2193680380078294E /* 3.5 inch launch image.png */,
+				F157D5D3193680380078294E /* 4 inch launch image.png */,
+				F155F573192EAFA8000BCEB1 /* icon58.png */,
+				F155F574192EAFA8000BCEB1 /* icon80.png */,
+				F155F56D192EAF3F000BCEB1 /* icon76.png */,
+				F155F56E192EAF3F000BCEB1 /* icon120.png */,
+				F155F56F192EAF3F000BCEB1 /* icon152.png */,
+			);
+			name = Images;
+			sourceTree = "<group>";
 		};
 		F15EF1DF18CF7BE70071584E /* Chart View */ = {
 			isa = PBXGroup;
@@ -274,7 +297,6 @@
 		F16C88C818579DAE002661D5 = {
 			isa = PBXGroup;
 			children = (
-				F1F183B3192BD0740013DCD8 /* Default-568h@2x.png */,
 				F16C88DA18579DAE002661D5 /* OOS Mobile */,
 				F16C88FC18579DAE002661D5 /* OOS MobileTests */,
 				F16C88D318579DAE002661D5 /* Frameworks */,
@@ -371,6 +393,7 @@
 		F16C890D18579DFA002661D5 /* Shared Resources  */ = {
 			isa = PBXGroup;
 			children = (
+				F155F56C192EAF21000BCEB1 /* Images */,
 				F16E7F3E19213F1000FFF722 /* Custom Button */,
 				F1A5669B19070D7F003C8FE5 /* Network Reachability */,
 				F15EF1E418CFA7A00071584E /* Navigation Controller */,
@@ -617,6 +640,7 @@
 				F10CCF9818B3E20E0093241F /* www in Resources */,
 				F1142E8F18610AD3009AA3B3 /* Main_iPad.storyboard in Resources */,
 				F16A3BB419101B5500D56855 /* water_surface_height_above_reference_datum.png in Resources */,
+				F157D5D5193680380078294E /* 4 inch launch image.png in Resources */,
 				F16A3BA819101B5400D56855 /* blue_buoy_icon_test.png in Resources */,
 				F16A3BAE19101B5500D56855 /* OOSM Launch Image.png in Resources */,
 				F19B49FF191142A500AF1972 /* blue_buoy_icon_50_plus.png in Resources */,
@@ -627,21 +651,25 @@
 				F16C88F018579DAE002661D5 /* Images.xcassets in Resources */,
 				F1A0351B1913056900A42EBD /* relative_humidity.png in Resources */,
 				F16A3BB519101B5500D56855 /* winds.png in Resources */,
+				F155F576192EAFA8000BCEB1 /* icon80.png in Resources */,
+				F155F575192EAFA8000BCEB1 /* icon58.png in Resources */,
 				F16E7F431921500200FFF722 /* OOSM Launch Image-1 11-22-13-107.png in Resources */,
+				F157D5D4193680380078294E /* 3.5 inch launch image.png in Resources */,
 				F16A3BB219101B5500D56855 /* temporary_splash_screen.png in Resources */,
 				F16C88E818579DAE002661D5 /* Main_iPhone.storyboard in Resources */,
-				F1F183B4192BD0740013DCD8 /* Default-568h@2x.png in Resources */,
 				F1D88478186100AC00B4A349 /* COPYING in Resources */,
+				F155F570192EAF3F000BCEB1 /* icon76.png in Resources */,
 				F16A3BA619101B5400D56855 /* air_temperature.png in Resources */,
 				F1B2F93D18F48A1E00BACDA3 /* OOSMFavStationCell.xib in Resources */,
 				F19B4A011911460900AF1972 /* blue_buoy_icon_100_plus.png in Resources */,
 				F100214B191D2C6D00DC2791 /* Screenshot 2014.05.08 22.12.55.png in Resources */,
 				F16C88DF18579DAE002661D5 /* InfoPlist.strings in Resources */,
-				F100214A191D2C6D00DC2791 /* Screenshot 2014.05.08 22.10.47.png in Resources */,
 				F19B4A03191146F000AF1972 /* blue_buoy_icon_500_plus.png in Resources */,
 				F1A0351D1913056900A42EBD /* visibility.png in Resources */,
 				F16A3BAA19101B5400D56855 /* current_speed.png in Resources */,
+				F155F571192EAF3F000BCEB1 /* icon120.png in Resources */,
 				F16A3BAB19101B5400D56855 /* depth-1.png in Resources */,
+				F155F572192EAF3F000BCEB1 /* icon152.png in Resources */,
 				F16A3BA519101B5400D56855 /* air_pressure.png in Resources */,
 				F16A3BA919101B5400D56855 /* blue_buoy_icon.png in Resources */,
 			);
@@ -819,7 +847,8 @@
 		F16C890718579DAE002661D5 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-2";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-2";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -827,6 +856,14 @@
 				INFOPLIST_FILE = "OOS Mobile/OOS Mobile-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"$(PROJECT_DIR)/OOS",
+					Mobile,
+					"$(PROJECT_DIR)/OOS",
+					Mobile,
+					"$(PROJECT_DIR)/OOS",
+					Mobile,
+					"$(PROJECT_DIR)/OOS",
+					Mobile,
 					"$(PROJECT_DIR)/OOS",
 					Mobile,
 					"$(PROJECT_DIR)/OOS",
@@ -850,7 +887,8 @@
 		F16C890818579DAE002661D5 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-2";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-2";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -858,6 +896,14 @@
 				INFOPLIST_FILE = "OOS Mobile/OOS Mobile-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"$(PROJECT_DIR)/OOS",
+					Mobile,
+					"$(PROJECT_DIR)/OOS",
+					Mobile,
+					"$(PROJECT_DIR)/OOS",
+					Mobile,
+					"$(PROJECT_DIR)/OOS",
+					Mobile,
 					"$(PROJECT_DIR)/OOS",
 					Mobile,
 					"$(PROJECT_DIR)/OOS",

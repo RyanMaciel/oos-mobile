@@ -34,6 +34,9 @@
     [self.window makeKeyAndVisible];
     [[BlitFeedback sharedInstance] attachWithIntegrationType:kBFFloatingButton];
     
+    //Show the launch image for 5 seconds.
+    sleep(3);
+    
     return YES;
 }
 							

@@ -83,6 +83,8 @@
 		F1B2F93D18F48A1E00BACDA3 /* OOSMFavStationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F1B2F93C18F48A1E00BACDA3 /* OOSMFavStationCell.xib */; };
 		F1B2F94018F48BF900BACDA3 /* OOSMFavStationTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F1B2F93F18F48BF900BACDA3 /* OOSMFavStationTableViewCell.m */; };
 		F1C970781937A2A2007B2A07 /* libBlitFeedback.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F1AF06CA1922A2E5003A0F5A /* libBlitFeedback.a */; };
+		F1C9707B1937ACAB007B2A07 /* Screenshot 2014.05.29 13.35.46.png in Resources */ = {isa = PBXBuildFile; fileRef = F1C970791937ACAB007B2A07 /* Screenshot 2014.05.29 13.35.46.png */; };
+		F1C9707C1937ACAB007B2A07 /* Screenshot 2014.05.29 13.37.16.png in Resources */ = {isa = PBXBuildFile; fileRef = F1C9707A1937ACAB007B2A07 /* Screenshot 2014.05.29 13.37.16.png */; };
 		F1D88478186100AC00B4A349 /* COPYING in Resources */ = {isa = PBXBuildFile; fileRef = F1D88477186100AC00B4A349 /* COPYING */; };
 		F1E29B3B18725AB900416D5C /* OOSMParseHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = F1E29B3A18725AB900416D5C /* OOSMParseHelper.m */; };
 		F1F183BA192BD1880013DCD8 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1F183B9192BD1880013DCD8 /* CoreMotion.framework */; };
@@ -197,6 +199,8 @@
 		F1B2F93C18F48A1E00BACDA3 /* OOSMFavStationCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OOSMFavStationCell.xib; sourceTree = "<group>"; };
 		F1B2F93E18F48BF900BACDA3 /* OOSMFavStationTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OOSMFavStationTableViewCell.h; sourceTree = "<group>"; };
 		F1B2F93F18F48BF900BACDA3 /* OOSMFavStationTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OOSMFavStationTableViewCell.m; sourceTree = "<group>"; };
+		F1C970791937ACAB007B2A07 /* Screenshot 2014.05.29 13.35.46.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Screenshot 2014.05.29 13.35.46.png"; sourceTree = "<group>"; };
+		F1C9707A1937ACAB007B2A07 /* Screenshot 2014.05.29 13.37.16.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Screenshot 2014.05.29 13.37.16.png"; sourceTree = "<group>"; };
 		F1D88477186100AC00B4A349 /* COPYING */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = COPYING; sourceTree = "<group>"; };
 		F1E267771926BF9800665983 /* BlitFeedback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlitFeedback.h; sourceTree = "<group>"; };
 		F1E29B3918725AB900416D5C /* OOSMParseHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OOSMParseHelper.h; sourceTree = "<group>"; };
@@ -248,6 +252,8 @@
 		F1002145191D2C6D00DC2791 /* Screenshots */ = {
 			isa = PBXGroup;
 			children = (
+				F1C970791937ACAB007B2A07 /* Screenshot 2014.05.29 13.35.46.png */,
+				F1C9707A1937ACAB007B2A07 /* Screenshot 2014.05.29 13.37.16.png */,
 				F1002148191D2C6D00DC2791 /* Screenshot 2014.05.08 22.12.55.png */,
 			);
 			path = Screenshots;
@@ -645,6 +651,7 @@
 				F16A3BAE19101B5500D56855 /* OOSM Launch Image.png in Resources */,
 				F19B49FF191142A500AF1972 /* blue_buoy_icon_50_plus.png in Resources */,
 				F16A3BB319101B5500D56855 /* time.png in Resources */,
+				F1C9707B1937ACAB007B2A07 /* Screenshot 2014.05.29 13.35.46.png in Resources */,
 				F16A3BAC19101B5400D56855 /* depth.png in Resources */,
 				F16A3BB019101B5500D56855 /* sea_water_salinity.png in Resources */,
 				F1A0351C1913056900A42EBD /* rain_fall.png in Resources */,
@@ -666,6 +673,7 @@
 				F16C88DF18579DAE002661D5 /* InfoPlist.strings in Resources */,
 				F19B4A03191146F000AF1972 /* blue_buoy_icon_500_plus.png in Resources */,
 				F1A0351D1913056900A42EBD /* visibility.png in Resources */,
+				F1C9707C1937ACAB007B2A07 /* Screenshot 2014.05.29 13.37.16.png in Resources */,
 				F16A3BAA19101B5400D56855 /* current_speed.png in Resources */,
 				F155F571192EAF3F000BCEB1 /* icon120.png in Resources */,
 				F16A3BAB19101B5400D56855 /* depth-1.png in Resources */,

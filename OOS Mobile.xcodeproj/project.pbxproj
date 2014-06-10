@@ -56,6 +56,7 @@
 		F18433791860D95D00D7ED55 /* OOSMStation.m in Sources */ = {isa = PBXBuildFile; fileRef = F18433781860D95D00D7ED55 /* OOSMStation.m */; };
 		F184337F1860DF8F00D7ED55 /* OOSMStationInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F184337E1860DF8F00D7ED55 /* OOSMStationInfoViewController.m */; };
 		F18433821860EC3200D7ED55 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F18433811860EC3200D7ED55 /* CoreLocation.framework */; };
+		F1871E181947122100ACCAAD /* libBlitFeedback.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F1AF06CA1922A2E5003A0F5A /* libBlitFeedback.a */; };
 		F1898843187CADA000E1CC37 /* OOSMFavoriteStationsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F1898842187CADA000E1CC37 /* OOSMFavoriteStationsViewController.m */; };
 		F19764D918A94F9200AA02BD /* OOSMWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F19764D818A94F9200AA02BD /* OOSMWebViewController.m */; };
 		F19B49FF191142A500AF1972 /* blue_buoy_icon_50_plus.png in Resources */ = {isa = PBXBuildFile; fileRef = F19B49FE191142A500AF1972 /* blue_buoy_icon_50_plus.png */; };
@@ -82,7 +83,6 @@
 		F1B1D02A18E223C70052EFDC /* OOSMMapClusterTest.m in Sources */ = {isa = PBXBuildFile; fileRef = F1B1D02918E223C70052EFDC /* OOSMMapClusterTest.m */; };
 		F1B2F93D18F48A1E00BACDA3 /* OOSMFavStationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F1B2F93C18F48A1E00BACDA3 /* OOSMFavStationCell.xib */; };
 		F1B2F94018F48BF900BACDA3 /* OOSMFavStationTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F1B2F93F18F48BF900BACDA3 /* OOSMFavStationTableViewCell.m */; };
-		F1C970781937A2A2007B2A07 /* libBlitFeedback.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F1AF06CA1922A2E5003A0F5A /* libBlitFeedback.a */; };
 		F1C9707B1937ACAB007B2A07 /* Screenshot 2014.05.29 13.35.46.png in Resources */ = {isa = PBXBuildFile; fileRef = F1C970791937ACAB007B2A07 /* Screenshot 2014.05.29 13.35.46.png */; };
 		F1C9707C1937ACAB007B2A07 /* Screenshot 2014.05.29 13.37.16.png in Resources */ = {isa = PBXBuildFile; fileRef = F1C9707A1937ACAB007B2A07 /* Screenshot 2014.05.29 13.37.16.png */; };
 		F1D88478186100AC00B4A349 /* COPYING in Resources */ = {isa = PBXBuildFile; fileRef = F1D88477186100AC00B4A349 /* COPYING */; };
@@ -216,6 +216,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F1871E181947122100ACCAAD /* libBlitFeedback.a in Frameworks */,
 				F1F183BA192BD1880013DCD8 /* CoreMotion.framework in Frameworks */,
 				F1AF06DC1922A334003A0F5A /* SystemConfiguration.framework in Frameworks */,
 				F1AF06DA1922A32C003A0F5A /* CoreFoundation.framework in Frameworks */,
@@ -230,7 +231,6 @@
 				F16C891018579EA2002661D5 /* MapKit.framework in Frameworks */,
 				F16C88D718579DAE002661D5 /* CoreGraphics.framework in Frameworks */,
 				F16C88D918579DAE002661D5 /* UIKit.framework in Frameworks */,
-				F1C970781937A2A2007B2A07 /* libBlitFeedback.a in Frameworks */,
 				F16C88D518579DAE002661D5 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -611,7 +611,7 @@
 				ORGANIZATIONNAME = "RPS ASA";
 				TargetAttributes = {
 					F16C88D018579DAE002661D5 = {
-						DevelopmentTeam = 3L6C8AWWAU;
+						DevelopmentTeam = CH5PENK9Y5;
 					};
 					F16C88F418579DAE002661D5 = {
 						TestTargetID = F16C88D018579DAE002661D5;
@@ -795,7 +795,8 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Guy deWardener (CH5PENK9Y5)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Guy deWardener (CH5PENK9Y5)";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -835,7 +836,8 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Guy deWardener (CH5PENK9Y5)";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -857,8 +859,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-2";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-2";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Guy deWardener (CH5PENK9Y5)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Guy deWardener (CH5PENK9Y5)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "OOS Mobile/OOS Mobile-Prefix.pch";
 				INFOPLIST_FILE = "OOS Mobile/OOS Mobile-Info.plist";
@@ -884,9 +886,29 @@
 					Mobile,
 					"$(PROJECT_DIR)/OOS",
 					Mobile,
+					"$(PROJECT_DIR)/OOS",
+					Mobile,
+					"$(PROJECT_DIR)/OOS",
+					Mobile,
+					"$(PROJECT_DIR)/OOS",
+					Mobile,
+					"$(PROJECT_DIR)/OOS",
+					Mobile,
+					"$(PROJECT_DIR)/OOS",
+					Mobile,
+					"$(PROJECT_DIR)/OOS",
+					Mobile,
+					"$(PROJECT_DIR)/OOS",
+					Mobile,
+					"$(PROJECT_DIR)/OOS",
+					Mobile,
+					"$(PROJECT_DIR)/OOS",
+					Mobile,
+					"$(PROJECT_DIR)/OOS",
+					Mobile,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "AEFE2367-8319-4AE0-88AA-4058CC4C4D1F";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -897,8 +919,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-2";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-2";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Guy deWardener (CH5PENK9Y5)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Guy deWardener (CH5PENK9Y5)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "OOS Mobile/OOS Mobile-Prefix.pch";
 				INFOPLIST_FILE = "OOS Mobile/OOS Mobile-Info.plist";
@@ -924,9 +946,29 @@
 					Mobile,
 					"$(PROJECT_DIR)/OOS",
 					Mobile,
+					"$(PROJECT_DIR)/OOS",
+					Mobile,
+					"$(PROJECT_DIR)/OOS",
+					Mobile,
+					"$(PROJECT_DIR)/OOS",
+					Mobile,
+					"$(PROJECT_DIR)/OOS",
+					Mobile,
+					"$(PROJECT_DIR)/OOS",
+					Mobile,
+					"$(PROJECT_DIR)/OOS",
+					Mobile,
+					"$(PROJECT_DIR)/OOS",
+					Mobile,
+					"$(PROJECT_DIR)/OOS",
+					Mobile,
+					"$(PROJECT_DIR)/OOS",
+					Mobile,
+					"$(PROJECT_DIR)/OOS",
+					Mobile,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "AEFE2367-8319-4AE0-88AA-4058CC4C4D1F";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};

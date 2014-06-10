@@ -19,6 +19,7 @@
 //   You should have received a copy of the GNU General Public License
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #import "OOSMWebViewController.h"
+#import "objc/message.h"
 
 @interface OOSMWebViewController () <UIWebViewDelegate>
 @property(strong, nonatomic)IBOutlet UIWebView *mainWebView;
@@ -99,6 +100,9 @@
 - (void)viewDidLoad
 {
 
+    //Force rotation.
+    objc_msgSend([UIDevice currentDevice], @selector(setOrientation:), UIInterfaceOrientationLandscapeLeft);
+    
     self.errorMessageLabel.hidden = YES;
     //change the interface orientation
     [[UIApplication sharedApplication] setStatusBarOrientation:UIInterfaceOrientationLandscapeLeft animated:YES];
@@ -121,10 +125,18 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
--(UIInterfaceOrientation)preferredInterfaceOrientationForPresentation{
-    return UIInterfaceOrientationLandscapeLeft;
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    return (interfaceOrientation != UIInterfaceOrientationPortrait && interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
 }
--(NSUInteger)supportedInterfaceOrientations{
-    return UIInterfaceOrientationMaskLandscapeLeft;
+
+-(NSUInteger)supportedInterfaceOrientations
+{
+    return UIInterfaceOrientationMaskLandscape;
+}
+
+-(BOOL)shouldAutorotate
+{
+    return YES;
 }
 @end

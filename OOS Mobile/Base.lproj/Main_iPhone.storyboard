@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13C1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="DJ1-bK-Km7">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="DJ1-bK-Km7">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
@@ -55,7 +55,6 @@
                         <constraints>
                             <constraint firstItem="u6N-2P-PSm" firstAttribute="top" secondItem="j8R-ng-PKa" secondAttribute="bottom" constant="166" id="1wl-s1-CCq"/>
                             <constraint firstAttribute="trailing" secondItem="u6N-2P-PSm" secondAttribute="trailing" constant="150" id="FMp-oc-a11"/>
-                            <constraint firstItem="f59-3s-IIv" firstAttribute="centerY" secondItem="zIF-YK-4Mg" secondAttribute="centerY" id="J1C-ec-nKE"/>
                             <constraint firstItem="f59-3s-IIv" firstAttribute="leading" secondItem="zIF-YK-4Mg" secondAttribute="leading" constant="88" id="OLP-iF-qEx"/>
                             <constraint firstItem="u6N-2P-PSm" firstAttribute="top" secondItem="f59-3s-IIv" secondAttribute="bottom" constant="28" id="Oy3-Eq-7RN"/>
                             <constraint firstAttribute="trailing" secondItem="f59-3s-IIv" secondAttribute="trailing" constant="88" id="UUe-ac-7EB"/>
@@ -63,7 +62,17 @@
                         </constraints>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
-                    <navigationItem key="navigationItem" id="DLT-rc-XmO"/>
+                    <navigationItem key="navigationItem" id="DLT-rc-XmO">
+                        <barButtonItem key="leftBarButtonItem" style="plain" id="k1E-AZ-HaA">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoLight" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="wEi-cE-YWt">
+                                <rect key="frame" x="16" y="11" width="22" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <connections>
                         <outlet property="errorMessageLabel" destination="f59-3s-IIv" id="h5o-lz-fpM"/>
@@ -74,6 +83,34 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lyA-YA-oAb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1211" y="-22"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="aFf-zn-QXt">
+            <objects>
+                <viewController id="kS3-gV-BAG" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="QdD-go-5HE"/>
+                        <viewControllerLayoutGuide type="bottom" id="GDH-kS-CXt"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="QLZ-rc-q6r">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="A nice bunch of text about OOSM." translatesAutoresizingMaskIntoConstraints="NO" id="J0w-ZY-Znw">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="vpm-db-GHt"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ge1-zJ-9rh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-731" y="-11"/>
         </scene>
         <!--Loading View Controller-->
         <scene sceneID="52J-Mk-du7">
@@ -105,7 +142,20 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="dkN-II-VlR"/>
+                    <navigationItem key="navigationItem" id="dkN-II-VlR">
+                        <barButtonItem key="leftBarButtonItem" id="pAt-c3-KFF">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoLight" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="WgH-xT-vKx">
+                                <rect key="frame" x="16" y="11" width="22" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="kS3-gV-BAG" kind="push" id="mew-lw-Utx"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="errorLabel" destination="m3r-qL-9Ru" id="K0j-Bk-CPu"/>
                         <outlet property="indicator" destination="FCG-JV-DvV" id="dLy-8A-n5m"/>
@@ -131,6 +181,15 @@
                     </view>
                     <navigationItem key="navigationItem" id="2Nu-p1-B1n">
                         <nil key="title"/>
+                        <barButtonItem key="leftBarButtonItem" id="4zp-hp-irg">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoLight" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="LxM-pv-O82">
+                                <rect key="frame" x="16" y="11" width="22" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="bookmarks" id="VWc-ip-MRt">
                             <connections>
                                 <segue destination="kmN-x1-j7Q" kind="push" id="6ZX-oz-hcJ"/>
@@ -169,7 +228,17 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Favorite Stations" id="Fau-gp-DgV"/>
+                    <navigationItem key="navigationItem" title="Favorite Stations" id="Fau-gp-DgV">
+                        <barButtonItem key="leftBarButtonItem" id="4v2-gZ-JKO">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoLight" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="Ieb-yh-Huo">
+                                <rect key="frame" x="16" y="11" width="22" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="mainTableView" destination="CO7-dc-gY9" id="3OD-3p-iv6"/>
                         <segue destination="dnX-wV-4L9" kind="push" identifier="StationInfo" id="Icm-60-zaS"/>
@@ -295,6 +364,15 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="wSl-mq-IWP">
+                        <barButtonItem key="leftBarButtonItem" id="RPw-hI-hHZ">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoLight" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="EbL-Ym-AfH">
+                                <rect key="frame" x="16" y="11" width="22" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="n0f-5H-gj2">
                             <connections>
                                 <action selector="addStationToUserFavorites" destination="dnX-wV-4L9" id="ZBh-dh-b1v"/>
@@ -313,7 +391,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aah-j0-qjp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="774" y="-22"/>
+            <point key="canvasLocation" x="752" y="-11"/>
         </scene>
     </scenes>
     <resources>

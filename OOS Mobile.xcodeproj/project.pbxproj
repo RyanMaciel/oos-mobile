@@ -53,10 +53,10 @@
 		F16C89191857ADC5002661D5 /* OOSMStationMapAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = F16C89181857ADC5002661D5 /* OOSMStationMapAnnotation.m */; };
 		F16E7F4119213F3C00FFF722 /* OOSMCustomButton.m in Sources */ = {isa = PBXBuildFile; fileRef = F16E7F4019213F3C00FFF722 /* OOSMCustomButton.m */; };
 		F16E7F431921500200FFF722 /* OOSM Launch Image-1 11-22-13-107.png in Resources */ = {isa = PBXBuildFile; fileRef = F16E7F421921500200FFF722 /* OOSM Launch Image-1 11-22-13-107.png */; };
+		F171117C195095F5004FDE2E /* libBlitFeedback.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F1AF06CA1922A2E5003A0F5A /* libBlitFeedback.a */; };
 		F18433791860D95D00D7ED55 /* OOSMStation.m in Sources */ = {isa = PBXBuildFile; fileRef = F18433781860D95D00D7ED55 /* OOSMStation.m */; };
 		F184337F1860DF8F00D7ED55 /* OOSMStationInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F184337E1860DF8F00D7ED55 /* OOSMStationInfoViewController.m */; };
 		F18433821860EC3200D7ED55 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F18433811860EC3200D7ED55 /* CoreLocation.framework */; };
-		F1871E181947122100ACCAAD /* libBlitFeedback.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F1AF06CA1922A2E5003A0F5A /* libBlitFeedback.a */; };
 		F1898843187CADA000E1CC37 /* OOSMFavoriteStationsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F1898842187CADA000E1CC37 /* OOSMFavoriteStationsViewController.m */; };
 		F19764D918A94F9200AA02BD /* OOSMWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F19764D818A94F9200AA02BD /* OOSMWebViewController.m */; };
 		F19B49FF191142A500AF1972 /* blue_buoy_icon_50_plus.png in Resources */ = {isa = PBXBuildFile; fileRef = F19B49FE191142A500AF1972 /* blue_buoy_icon_50_plus.png */; };
@@ -87,6 +87,12 @@
 		F1C9707C1937ACAB007B2A07 /* Screenshot 2014.05.29 13.37.16.png in Resources */ = {isa = PBXBuildFile; fileRef = F1C9707A1937ACAB007B2A07 /* Screenshot 2014.05.29 13.37.16.png */; };
 		F1D88478186100AC00B4A349 /* COPYING in Resources */ = {isa = PBXBuildFile; fileRef = F1D88477186100AC00B4A349 /* COPYING */; };
 		F1E29B3B18725AB900416D5C /* OOSMParseHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = F1E29B3A18725AB900416D5C /* OOSMParseHelper.m */; };
+		F1E336671947A2680027B05C /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1E336661947A2680027B05C /* Parse.framework */; };
+		F1E336691947A2A40027B05C /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1E336681947A2A40027B05C /* AudioToolbox.framework */; };
+		F1E3366B1947A2AD0027B05C /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1E3366A1947A2AD0027B05C /* CFNetwork.framework */; };
+		F1E3366D1947A2C90027B05C /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1E3366C1947A2C90027B05C /* MobileCoreServices.framework */; };
+		F1E3366F1947A2E50027B05C /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1E3366E1947A2E50027B05C /* Security.framework */; };
+		F1E336711947A2ED0027B05C /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1E336701947A2ED0027B05C /* StoreKit.framework */; };
 		F1F183BA192BD1880013DCD8 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1F183B9192BD1880013DCD8 /* CoreMotion.framework */; };
 		F1F5BB4F18E3B3F200E43E84 /* OOSMMapAnnotationClusterRepresentation.m in Sources */ = {isa = PBXBuildFile; fileRef = F1F5BB4E18E3B3F200E43E84 /* OOSMMapAnnotationClusterRepresentation.m */; };
 /* End PBXBuildFile section */
@@ -205,6 +211,12 @@
 		F1E267771926BF9800665983 /* BlitFeedback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlitFeedback.h; sourceTree = "<group>"; };
 		F1E29B3918725AB900416D5C /* OOSMParseHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OOSMParseHelper.h; sourceTree = "<group>"; };
 		F1E29B3A18725AB900416D5C /* OOSMParseHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OOSMParseHelper.m; sourceTree = "<group>"; };
+		F1E336661947A2680027B05C /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parse.framework; path = Screenshots/Parse.framework; sourceTree = "<group>"; };
+		F1E336681947A2A40027B05C /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		F1E3366A1947A2AD0027B05C /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		F1E3366C1947A2C90027B05C /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		F1E3366E1947A2E50027B05C /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		F1E336701947A2ED0027B05C /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		F1F183B5192BD0D70013DCD8 /* libBlitFeedback.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libBlitFeedback.a; sourceTree = "<group>"; };
 		F1F183B9192BD1880013DCD8 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		F1F5BB4D18E3B3F200E43E84 /* OOSMMapAnnotationClusterRepresentation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OOSMMapAnnotationClusterRepresentation.h; sourceTree = "<group>"; };
@@ -216,12 +228,18 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F1871E181947122100ACCAAD /* libBlitFeedback.a in Frameworks */,
+				F171117C195095F5004FDE2E /* libBlitFeedback.a in Frameworks */,
+				F1E336711947A2ED0027B05C /* StoreKit.framework in Frameworks */,
+				F1E3366F1947A2E50027B05C /* Security.framework in Frameworks */,
+				F1AF06D61922A316003A0F5A /* QuartzCore.framework in Frameworks */,
+				F1E3366D1947A2C90027B05C /* MobileCoreServices.framework in Frameworks */,
+				F1E3366B1947A2AD0027B05C /* CFNetwork.framework in Frameworks */,
+				F1E336691947A2A40027B05C /* AudioToolbox.framework in Frameworks */,
 				F1F183BA192BD1880013DCD8 /* CoreMotion.framework in Frameworks */,
 				F1AF06DC1922A334003A0F5A /* SystemConfiguration.framework in Frameworks */,
 				F1AF06DA1922A32C003A0F5A /* CoreFoundation.framework in Frameworks */,
 				F1AF06D81922A322003A0F5A /* MessageUI.framework in Frameworks */,
-				F1AF06D61922A316003A0F5A /* QuartzCore.framework in Frameworks */,
+				F1E336671947A2680027B05C /* Parse.framework in Frameworks */,
 				F1AF06D51922A310003A0F5A /* MediaPlayer.framework in Frameworks */,
 				F1AF06D31922A308003A0F5A /* libz.dylib in Frameworks */,
 				F1AF06D11922A2FB003A0F5A /* CoreMedia.framework in Frameworks */,
@@ -262,6 +280,26 @@
 		F155F56C192EAF21000BCEB1 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				F1A035181913056900A42EBD /* relative_humidity.png */,
+				F1A035191913056900A42EBD /* rain_fall.png */,
+				F1A0351A1913056900A42EBD /* visibility.png */,
+				F19B4A02191146F000AF1972 /* blue_buoy_icon_500_plus.png */,
+				F19B4A001911460900AF1972 /* blue_buoy_icon_100_plus.png */,
+				F19B49FE191142A500AF1972 /* blue_buoy_icon_50_plus.png */,
+				F16A3B9219101B5400D56855 /* air_pressure.png */,
+				F16A3B9319101B5400D56855 /* air_temperature.png */,
+				F16A3B9619101B5400D56855 /* blue_buoy_icon_test.png */,
+				F16A3B9719101B5400D56855 /* blue_buoy_icon.png */,
+				F16A3B9819101B5400D56855 /* current_speed.png */,
+				F16A3B9919101B5400D56855 /* depth-1.png */,
+				F16A3B9A19101B5400D56855 /* depth.png */,
+				F16A3B9C19101B5400D56855 /* OOSM Launch Image.png */,
+				F16A3B9F19101B5400D56855 /* sea_water_salinity.png */,
+				F16A3BA019101B5400D56855 /* sea_water_temperature.png */,
+				F16A3BA119101B5400D56855 /* temporary_splash_screen.png */,
+				F16A3BA219101B5400D56855 /* time.png */,
+				F16A3BA319101B5400D56855 /* water_surface_height_above_reference_datum.png */,
+				F16A3BA419101B5400D56855 /* winds.png */,
 				F157D5D2193680380078294E /* 3.5 inch launch image.png */,
 				F157D5D3193680380078294E /* 4 inch launch image.png */,
 				F155F573192EAFA8000BCEB1 /* icon58.png */,
@@ -322,6 +360,12 @@
 		F16C88D318579DAE002661D5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F1E336701947A2ED0027B05C /* StoreKit.framework */,
+				F1E3366E1947A2E50027B05C /* Security.framework */,
+				F1E3366C1947A2C90027B05C /* MobileCoreServices.framework */,
+				F1E3366A1947A2AD0027B05C /* CFNetwork.framework */,
+				F1E336681947A2A40027B05C /* AudioToolbox.framework */,
+				F1E336661947A2680027B05C /* Parse.framework */,
 				F1F183B9192BD1880013DCD8 /* CoreMotion.framework */,
 				F1AF06DB1922A334003A0F5A /* SystemConfiguration.framework */,
 				F1AF06D91922A32C003A0F5A /* CoreFoundation.framework */,
@@ -405,7 +449,6 @@
 				F15EF1E418CFA7A00071584E /* Navigation Controller */,
 				F15EF1E018CF7CA90071584E /* Loading View */,
 				F10CCF9718B3E20E0093241F /* www */,
-				F18ECE6818A067CA00DB4C33 /* Images */,
 				F1898840187CAD6500E1CC37 /* Favorite Stations */,
 				F18433801860DFA000D7ED55 /* StationInfo */,
 				F184337A1860DDF600D7ED55 /* Data Fetching */,
@@ -492,33 +535,6 @@
 				F1B2F93F18F48BF900BACDA3 /* OOSMFavStationTableViewCell.m */,
 			);
 			name = "Favorite Stations";
-			sourceTree = "<group>";
-		};
-		F18ECE6818A067CA00DB4C33 /* Images */ = {
-			isa = PBXGroup;
-			children = (
-				F1A035181913056900A42EBD /* relative_humidity.png */,
-				F1A035191913056900A42EBD /* rain_fall.png */,
-				F1A0351A1913056900A42EBD /* visibility.png */,
-				F19B4A02191146F000AF1972 /* blue_buoy_icon_500_plus.png */,
-				F19B4A001911460900AF1972 /* blue_buoy_icon_100_plus.png */,
-				F19B49FE191142A500AF1972 /* blue_buoy_icon_50_plus.png */,
-				F16A3B9219101B5400D56855 /* air_pressure.png */,
-				F16A3B9319101B5400D56855 /* air_temperature.png */,
-				F16A3B9619101B5400D56855 /* blue_buoy_icon_test.png */,
-				F16A3B9719101B5400D56855 /* blue_buoy_icon.png */,
-				F16A3B9819101B5400D56855 /* current_speed.png */,
-				F16A3B9919101B5400D56855 /* depth-1.png */,
-				F16A3B9A19101B5400D56855 /* depth.png */,
-				F16A3B9C19101B5400D56855 /* OOSM Launch Image.png */,
-				F16A3B9F19101B5400D56855 /* sea_water_salinity.png */,
-				F16A3BA019101B5400D56855 /* sea_water_temperature.png */,
-				F16A3BA119101B5400D56855 /* temporary_splash_screen.png */,
-				F16A3BA219101B5400D56855 /* time.png */,
-				F16A3BA319101B5400D56855 /* water_surface_height_above_reference_datum.png */,
-				F16A3BA419101B5400D56855 /* winds.png */,
-			);
-			name = Images;
 			sourceTree = "<group>";
 		};
 		F1A5669B19070D7F003C8FE5 /* Network Reachability */ = {
@@ -795,7 +811,7 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Guy deWardener (CH5PENK9Y5)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Guy deWardener (KSNC6EUAX3)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Guy deWardener (CH5PENK9Y5)";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -836,7 +852,7 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Guy deWardener (KSNC6EUAX3)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Guy deWardener (CH5PENK9Y5)";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
@@ -859,8 +875,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-2";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-2";
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Guy deWardener (CH5PENK9Y5)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Guy deWardener (CH5PENK9Y5)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Screenshots",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "OOS Mobile/OOS Mobile-Prefix.pch";
 				INFOPLIST_FILE = "OOS Mobile/OOS Mobile-Info.plist";
@@ -906,9 +926,13 @@
 					Mobile,
 					"$(PROJECT_DIR)/OOS",
 					Mobile,
+					"$(PROJECT_DIR)/OOS",
+					Mobile,
+					"$(PROJECT_DIR)/OOS",
+					Mobile,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "AEFE2367-8319-4AE0-88AA-4058CC4C4D1F";
+				PROVISIONING_PROFILE = "6BBA0D56-CC10-4545-B4F1-62C82799EAF3";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -919,8 +943,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-2";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-2";
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Guy deWardener (CH5PENK9Y5)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Guy deWardener (CH5PENK9Y5)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Screenshots",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "OOS Mobile/OOS Mobile-Prefix.pch";
 				INFOPLIST_FILE = "OOS Mobile/OOS Mobile-Info.plist";
@@ -966,9 +994,13 @@
 					Mobile,
 					"$(PROJECT_DIR)/OOS",
 					Mobile,
+					"$(PROJECT_DIR)/OOS",
+					Mobile,
+					"$(PROJECT_DIR)/OOS",
+					Mobile,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "AEFE2367-8319-4AE0-88AA-4058CC4C4D1F";
+				PROVISIONING_PROFILE = "6BBA0D56-CC10-4545-B4F1-62C82799EAF3";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};

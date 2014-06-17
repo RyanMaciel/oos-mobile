@@ -22,24 +22,43 @@
 
 #import "OOSMAppDelegate.h"
 #import "BlitFeedback.h"
+#import <Parse/Parse.h>
 
 @implementation OOSMAppDelegate
+
+//Respond to push notification by requesting data from the sever (in the future).
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult result))handler
+{
+    NSLog(@"got a push!");
+    //Success
+    handler(UIBackgroundFetchResultNewData);
+}
+
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    
+    [Parse setApplicationId:@"67nvFLQCpsO78yODcYYRry1loVCW3KFwKVaAKYu5"
+                  clientKey:@"yzM1kfLe8imnFpFza8kfjoNo91g047gL8xfqcIBe"];
     
     //initialize blit feedback.
     [[BlitFeedback sharedInstance] start:@"ec976388-aaab-460a-819d-c82ebf8cd4b2"];
     [self.window makeKeyAndVisible];
     [[BlitFeedback sharedInstance] attachWithIntegrationType:kBFFloatingButton];
     
+    [[UIApplication sharedApplication] registerForRemoteNotificationTypes:
+     (UIRemoteNotificationTypeNewsstandContentAvailability|
+      UIRemoteNotificationTypeBadge |
+      UIRemoteNotificationTypeSound |
+      UIRemoteNotificationTypeAlert)];
+    
     //Show the launch image for 5 seconds.
     sleep(3);
     
     return YES;
 }
-							
+
 - (void)applicationWillResignActive:(UIApplication *)application
 {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
@@ -65,6 +84,20 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+- (void)application:(UIApplication *)application
+didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
+{
+    // Store the deviceToken in the current installation and save it to Parse.
+    PFInstallation *currentInstallation = [PFInstallation currentInstallation];
+    [currentInstallation setDeviceTokenFromData:deviceToken];
+    [currentInstallation saveInBackground];
+}
+
+- (void)application:(UIApplication *)application
+didReceiveRemoteNotification:(NSDictionary *)userInfo {
+    [PFPush handlePush:userInfo];
 }
 
 @end

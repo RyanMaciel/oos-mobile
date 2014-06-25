@@ -35,25 +35,13 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
--(BOOL)shouldAutorotate{
-    return YES;
-}
--(NSUInteger)supportedInterfaceOrientations{
-    if([self.visibleViewController isKindOfClass:[OOSMWebViewController class]]){
-        
-        //only allow the interface orientation to be landscape in the web view.
-        return UIInterfaceOrientationMaskLandscapeLeft | UIInterfaceOrientationMaskLandscapeRight;
-    }
-    return UIInterfaceOrientationMaskPortrait;
-}
 
--(UIInterfaceOrientation)preferredInterfaceOrientationForPresentation{
-    if([self.visibleViewController isKindOfClass:[OOSMWebViewController class]]){
-        
-        //only allow the interface orientation to be landscape in the web view.
-        return UIInterfaceOrientationLandscapeLeft;
-    }
-    
-    return UIInterfaceOrientationPortrait;
+- (BOOL)shouldAutorotate
+{
+    return self.topViewController.shouldAutorotate;
+}
+- (NSUInteger)supportedInterfaceOrientations
+{
+    return self.topViewController.supportedInterfaceOrientations;
 }
 @end

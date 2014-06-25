@@ -10,8 +10,14 @@
 #import <Foundation/Foundation.h>
 
 //----------------------------------
-// Dependencies: AVFoundation, CoreVideo, CoreMedia, libz.dylib, MediaPlayer, QuartzCore, MessageUI, SystemConfiguration, CoreFoundation
+// Dependencies: AVFoundation, CoreVideo, CoreMedia, libz.dylib, MediaPlayer, QuartzCore, MessageUI, SystemConfiguration, CoreFoundation, CoreMotion
 //
+
+typedef enum                // integration type
+{
+    kBFFloatingButton,
+    kBFShake
+} BFIntegration;
 
 @protocol BlitFeedbackDelegate <NSObject>
 - (void) reportSent;
@@ -29,8 +35,8 @@
 @property (nonatomic, weak) id<BlitFeedbackDelegate> delegate;
 
 - (void) start:(NSString *)_key;
-- (void) attach;
-- (void) attach:(UIWindow *)_window;
+- (void) attachWithIntegrationType:(BFIntegration)_integration;
+- (void) attach:(UIWindow *)_window withIntegrationType:(BFIntegration)_integration;
 - (void) detach;
 - (BOOL)redirectNSLog:(BOOL)_redirect;
 
@@ -41,6 +47,9 @@
 - (BOOL) captureScreenshot;
 - (BOOL) startScreencast;
 - (BOOL) stopScreencast;
+- (BOOL) startLivecast;
+- (BOOL) stopLivecast;
 
 #pragma mark -
+
 @end

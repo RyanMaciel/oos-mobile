@@ -32,7 +32,10 @@
     //initialize blit feedback.
     [[BlitFeedback sharedInstance] start:@"ec976388-aaab-460a-819d-c82ebf8cd4b2"];
     [self.window makeKeyAndVisible];
-    [[BlitFeedback sharedInstance] attach];
+    [[BlitFeedback sharedInstance] attachWithIntegrationType:kBFFloatingButton];
+    
+    //Show the launch image for 5 seconds.
+    sleep(3);
     
     return YES;
 }

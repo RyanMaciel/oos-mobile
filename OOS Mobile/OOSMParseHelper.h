@@ -21,14 +21,12 @@
 
 
 //This class is meant to help with the parsing of RSS feeds. The initWithURL:andElementsToRead: method should be called. The class will then parse the RSS from the URL given and store the value of each element which the element parameter passed to the initializer method mentioned above in the property elementsToReturn.
-
 //the NSDictionary recieved as a parameter of this initializer method should be formatted so the the key is the element name to find and the value is another NSDictionary whose single key will be the element's attribute, and single
 //value will be the attribute's value.
 //if no attribute is meant to be specified the value for the key should be set to and empty string (@"")
 
 #import <Foundation/Foundation.h>
 
-@protocol OOSMParseHelperDelegate;
 @protocol OOSMParseHelperDelegate;
 
 @interface OOSMParseHelper : NSObject 

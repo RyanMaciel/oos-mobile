@@ -53,6 +53,7 @@
 //this will be an array of OOSMMapPoins to reference when clustering the pins on the map.
 @property(strong, nonatomic)NSMutableDictionary *stationPoints;
 @property(strong, nonatomic)OOSMClusterModel *clusterModel;
+
 @end
 
 @implementation OOSMMapViewController
@@ -89,17 +90,19 @@
         }
     }
     
-    self.clusterModel.densityRadius = self.mapView.region.span.latitudeDelta/10.0;
+    self.clusterModel.densityRadius = self.mapView.region.span.latitudeDelta/12.0;
     self.clusterModel.dataSet = stationsShownOnMap;
     
     //Run the clustering algorithm.
     NSDictionary *dataPoints = [self.clusterModel dBSCAN];
     
-    //Remove all annotations from map.
-    [self.mapView removeAnnotations:[self.mapView annotations]];
+   
+    NSArray *annotationsOnMap = [self.mapView annotations];
     
     [self addClustersToMap:[dataPoints objectForKey:@"clusters"]];
     [self addStationsPointsToMap:[dataPoints objectForKey:@"noisePoints"]];
+    
+    [self.mapView removeAnnotations:annotationsOnMap];
     
     //Reset the visited values of the OOSMMapPoints.
     for(OOSMMapPoint *point in [self.stationPoints allValues]){
@@ -240,7 +243,7 @@
     self.mapView=[[MKMapView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
     self.mapView.delegate=self;
     
-    MKCoordinateRegion regionToFocusOn=[self.mapView regionThatFits:MKCoordinateRegionMakeWithDistance(CLLocationCoordinate2DMake(42, -70), 10000000, 10000000)];
+    MKCoordinateRegion regionToFocusOn=[self.mapView regionThatFits:MKCoordinateRegionMakeWithDistance(CLLocationCoordinate2DMake(42, -70), 3500000, 3500000)];
     [self.mapView setRegion:regionToFocusOn];
     [self.view addSubview:self.mapView];
 

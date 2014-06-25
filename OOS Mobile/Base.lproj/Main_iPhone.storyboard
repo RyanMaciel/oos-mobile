@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13C1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="DJ1-bK-Km7">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="DJ1-bK-Km7">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
@@ -40,9 +40,12 @@
                                 <rect key="frame" x="150" y="230" width="180" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </activityIndicatorView>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="An Error occured while loading data." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f59-3s-IIv">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="An Error occured while loading data." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f59-3s-IIv">
                                 <rect key="frame" x="88" y="118" width="304" height="84"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="84" id="czk-Je-ayy"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
@@ -52,11 +55,24 @@
                         <constraints>
                             <constraint firstItem="u6N-2P-PSm" firstAttribute="top" secondItem="j8R-ng-PKa" secondAttribute="bottom" constant="166" id="1wl-s1-CCq"/>
                             <constraint firstAttribute="trailing" secondItem="u6N-2P-PSm" secondAttribute="trailing" constant="150" id="FMp-oc-a11"/>
+                            <constraint firstItem="f59-3s-IIv" firstAttribute="leading" secondItem="zIF-YK-4Mg" secondAttribute="leading" constant="88" id="OLP-iF-qEx"/>
+                            <constraint firstItem="u6N-2P-PSm" firstAttribute="top" secondItem="f59-3s-IIv" secondAttribute="bottom" constant="28" id="Oy3-Eq-7RN"/>
+                            <constraint firstAttribute="trailing" secondItem="f59-3s-IIv" secondAttribute="trailing" constant="88" id="UUe-ac-7EB"/>
                             <constraint firstItem="u6N-2P-PSm" firstAttribute="leading" secondItem="zIF-YK-4Mg" secondAttribute="leading" constant="150" id="Y1m-cd-dd8"/>
                         </constraints>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
-                    <navigationItem key="navigationItem" id="DLT-rc-XmO"/>
+                    <navigationItem key="navigationItem" id="DLT-rc-XmO">
+                        <barButtonItem key="leftBarButtonItem" style="plain" id="k1E-AZ-HaA">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoLight" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="wEi-cE-YWt">
+                                <rect key="frame" x="16" y="11" width="22" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <connections>
                         <outlet property="errorMessageLabel" destination="f59-3s-IIv" id="h5o-lz-fpM"/>
@@ -67,6 +83,34 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lyA-YA-oAb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1211" y="-22"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="aFf-zn-QXt">
+            <objects>
+                <viewController id="kS3-gV-BAG" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="QdD-go-5HE"/>
+                        <viewControllerLayoutGuide type="bottom" id="GDH-kS-CXt"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="QLZ-rc-q6r">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="A nice bunch of text about OOSM." translatesAutoresizingMaskIntoConstraints="NO" id="J0w-ZY-Znw">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="vpm-db-GHt"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ge1-zJ-9rh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-731" y="-11"/>
         </scene>
         <!--Loading View Controller-->
         <scene sceneID="52J-Mk-du7">
@@ -80,19 +124,16 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="OOSM Launch Image.png" translatesAutoresizingMaskIntoConstraints="NO" id="7tm-Gf-SgL">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="480" id="gAh-OZ-oFr"/>
-                                </constraints>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="4 inch launch image.png" translatesAutoresizingMaskIntoConstraints="NO" id="Q56-UH-2dW">
+                                <rect key="frame" x="0.0" y="0.0" width="328" height="568"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="FCG-JV-DvV">
-                                <rect key="frame" x="150" y="310" width="20" height="20"/>
+                                <rect key="frame" x="150" y="392" width="20" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </activityIndicatorView>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="An Error Occured Retrieving Data" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m3r-qL-9Ru">
-                                <rect key="frame" x="31" y="309" width="259" height="21"/>
+                                <rect key="frame" x="31" y="391" width="259" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -100,13 +141,21 @@
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="7tm-Gf-SgL" firstAttribute="leading" secondItem="5fx-QU-Luj" secondAttribute="leading" id="cV6-l1-VQy"/>
-                            <constraint firstAttribute="trailing" secondItem="7tm-Gf-SgL" secondAttribute="trailing" id="gXZ-kh-cfe"/>
-                            <constraint firstItem="7tm-Gf-SgL" firstAttribute="top" secondItem="5fx-QU-Luj" secondAttribute="top" id="w9J-Lh-rvN"/>
-                        </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="dkN-II-VlR"/>
+                    <navigationItem key="navigationItem" id="dkN-II-VlR">
+                        <barButtonItem key="leftBarButtonItem" id="pAt-c3-KFF">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoLight" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="WgH-xT-vKx">
+                                <rect key="frame" x="16" y="11" width="22" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="kS3-gV-BAG" kind="push" id="mew-lw-Utx"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="errorLabel" destination="m3r-qL-9Ru" id="K0j-Bk-CPu"/>
                         <outlet property="indicator" destination="FCG-JV-DvV" id="dLy-8A-n5m"/>
@@ -132,6 +181,15 @@
                     </view>
                     <navigationItem key="navigationItem" id="2Nu-p1-B1n">
                         <nil key="title"/>
+                        <barButtonItem key="leftBarButtonItem" id="4zp-hp-irg">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoLight" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="LxM-pv-O82">
+                                <rect key="frame" x="16" y="11" width="22" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="bookmarks" id="VWc-ip-MRt">
                             <connections>
                                 <segue destination="kmN-x1-j7Q" kind="push" id="6ZX-oz-hcJ"/>
@@ -170,7 +228,17 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Favorite Stations" id="Fau-gp-DgV"/>
+                    <navigationItem key="navigationItem" title="Favorite Stations" id="Fau-gp-DgV">
+                        <barButtonItem key="leftBarButtonItem" id="4v2-gZ-JKO">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoLight" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="Ieb-yh-Huo">
+                                <rect key="frame" x="16" y="11" width="22" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="mainTableView" destination="CO7-dc-gY9" id="3OD-3p-iv6"/>
                         <segue destination="dnX-wV-4L9" kind="push" identifier="StationInfo" id="Icm-60-zaS"/>
@@ -198,9 +266,13 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Timestamp" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="281" translatesAutoresizingMaskIntoConstraints="NO" id="VyP-Vh-FRK">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Timestamp" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="281" translatesAutoresizingMaskIntoConstraints="NO" id="VyP-Vh-FRK">
                                 <rect key="frame" x="20" y="449" width="281" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="31" id="2G4-7n-0iS"/>
+                                    <constraint firstAttribute="width" constant="281" id="gDN-fz-WC6"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -208,10 +280,99 @@
                                 <rect key="frame" x="150" y="274" width="20" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </activityIndicatorView>
+                            <view alpha="0.69999999999999973" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AZG-d2-Qqh">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hxQ-xk-FMB" customClass="OOSMCustomButton">
+                                        <rect key="frame" x="110" y="396" width="100" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="aBl-qY-JjX"/>
+                                            <constraint firstAttribute="width" constant="100" id="glz-1P-KkA"/>
+                                        </constraints>
+                                        <state key="normal" title="Three Days">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="createGraphWithSender:" destination="dnX-wV-4L9" eventType="touchUpInside" id="US7-Et-qQt"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RRm-HC-2vy" customClass="OOSMCustomButton">
+                                        <rect key="frame" x="-7" y="396" width="100" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="100" id="fp2-ck-b39"/>
+                                            <constraint firstAttribute="height" constant="50" id="kjM-Fc-kCK"/>
+                                        </constraints>
+                                        <state key="normal" title="One Day">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="createGraphWithSender:" destination="dnX-wV-4L9" eventType="touchUpInside" id="wtn-lt-RJh"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6pW-9n-TGO" customClass="OOSMCustomButton">
+                                        <rect key="frame" x="227" y="396" width="100" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="Z2G-V9-WwQ"/>
+                                            <constraint firstAttribute="width" constant="100" id="yV8-sh-6pl"/>
+                                        </constraints>
+                                        <state key="normal" title="Five Days">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="createGraphWithSender:" destination="dnX-wV-4L9" eventType="touchUpInside" id="2E1-GC-qgE"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Create a Graph For:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KNa-kE-Kf8">
+                                        <rect key="frame" x="72" y="367" width="176" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="21" id="4WZ-gO-ajt"/>
+                                            <constraint firstAttribute="width" constant="176" id="MeD-Gr-Zed"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="hxQ-xk-FMB" firstAttribute="leading" secondItem="RRm-HC-2vy" secondAttribute="trailing" constant="17" id="0fd-2m-Tm3"/>
+                                    <constraint firstItem="hxQ-xk-FMB" firstAttribute="leading" secondItem="KNa-kE-Kf8" secondAttribute="trailing" constant="-138" id="2nC-uT-Irp"/>
+                                    <constraint firstAttribute="bottom" secondItem="hxQ-xk-FMB" secondAttribute="bottom" constant="34" id="NQd-fK-b00"/>
+                                    <constraint firstAttribute="trailing" secondItem="hxQ-xk-FMB" secondAttribute="trailing" constant="110" id="WMj-LG-lcm"/>
+                                    <constraint firstItem="6pW-9n-TGO" firstAttribute="leading" secondItem="hxQ-xk-FMB" secondAttribute="trailing" constant="17" id="czP-Gg-ntt"/>
+                                    <constraint firstItem="hxQ-xk-FMB" firstAttribute="top" secondItem="RRm-HC-2vy" secondAttribute="bottom" constant="-50" id="eUz-vS-XnQ"/>
+                                    <constraint firstItem="6pW-9n-TGO" firstAttribute="top" secondItem="hxQ-xk-FMB" secondAttribute="bottom" constant="-50" id="hFE-1C-KED"/>
+                                    <constraint firstItem="hxQ-xk-FMB" firstAttribute="top" secondItem="KNa-kE-Kf8" secondAttribute="bottom" constant="8" id="oNr-bj-dvY"/>
+                                    <constraint firstItem="hxQ-xk-FMB" firstAttribute="leading" secondItem="AZG-d2-Qqh" secondAttribute="leading" constant="110" id="rH4-Wf-Abp"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="VyP-Vh-FRK" secondAttribute="trailing" constant="19" id="Kyb-BC-zQd"/>
+                            <constraint firstItem="VyP-Vh-FRK" firstAttribute="leading" secondItem="jLa-bu-m5G" secondAttribute="leading" constant="20" id="Nq7-Zl-dyW"/>
+                            <constraint firstAttribute="bottom" secondItem="VyP-Vh-FRK" secondAttribute="bottom" id="V6H-4L-c3r"/>
+                            <constraint firstAttribute="bottom" secondItem="AZG-d2-Qqh" secondAttribute="bottom" id="XJT-tI-GE1"/>
+                            <constraint firstItem="AZG-d2-Qqh" firstAttribute="top" secondItem="jLa-bu-m5G" secondAttribute="top" id="aec-KK-fwM"/>
+                            <constraint firstAttribute="trailing" secondItem="AZG-d2-Qqh" secondAttribute="trailing" id="anb-Ed-wVA"/>
+                            <constraint firstItem="AZG-d2-Qqh" firstAttribute="leading" secondItem="jLa-bu-m5G" secondAttribute="leading" id="oNR-Em-2X7"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="wSl-mq-IWP">
+                        <barButtonItem key="leftBarButtonItem" id="RPw-hI-hHZ">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoLight" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="EbL-Ym-AfH">
+                                <rect key="frame" x="16" y="11" width="22" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="n0f-5H-gj2">
                             <connections>
                                 <action selector="addStationToUserFavorites" destination="dnX-wV-4L9" id="ZBh-dh-b1v"/>
@@ -221,6 +382,7 @@
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <connections>
                         <outlet property="activityView" destination="SPH-2j-ya2" id="vgA-Fs-a8A"/>
+                        <outlet property="graphSelectionView" destination="AZG-d2-Qqh" id="iKT-wt-fZ4"/>
                         <outlet property="timeStamp" destination="VyP-Vh-FRK" id="Bcy-ab-k6K"/>
                         <outlet property="titleLable" destination="2Sf-fd-pNe" id="q0B-eP-FZ5"/>
                         <outlet property="view" destination="jLa-bu-m5G" id="m1E-AO-LD1"/>
@@ -229,11 +391,11 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aah-j0-qjp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="774" y="-22"/>
+            <point key="canvasLocation" x="752" y="-11"/>
         </scene>
     </scenes>
     <resources>
-        <image name="OOSM Launch Image.png" width="640" height="960"/>
+        <image name="4 inch launch image.png" width="640" height="1136"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

@@ -48,7 +48,7 @@ sensorPropertyValue:(NSString*)sensorPropertyValue
         self.propertyObserved = sensorIconName;
         self.sensorIconImageName = [sensorIconName stringByAppendingString:@".png"];
         
-        NSDictionary *unitsForSensor = @{@"air_temperature": @"ºC", @"air_pressure": @"mb", @"relative_humidity": @"%", @"rain_fall": @"centimeters", @"visibility": @"km", @"sea_water_electrical_conductivity": @"S/m", @"currents": @"", @"sea_water_salinity": @"", @"water_surface_height_above_reference_datum": @"", @"sea_surface_height_amplitude_due_to_equilibrium_ocean_tide": @"", @"sea_water_temperature": @"ºC", @"winds":@"m/s", @"harmonic_constituents":@"", @"datums":@""};
+        NSDictionary *unitsForSensor = @{@"air_temperature": @"ºC", @"air_pressure": @"mb", @"relative_humidity": @"%", @"rain_fall": @"centimeters", @"visibility": @"km", @"sea_water_electrical_conductivity": @"S/m", @"currents": @"", @"sea_water_salinity": @"", @"water_surface_height_above_reference_datum": @"", @"sea_surface_height_amplitude_due_to_equilibrium_ocean_tide": @"", @"sea_water_temperature": @"ºC", @"winds":@"m/s", @"harmonic_constituents":@"", @"datums":@"", @"rain_fall":@"mm", @"visibility":@"NM", @"currents" : @"cm/s", @"sea_water_salinity" : @"psu"};
         
         
         self.layer.borderWidth = 1.0;

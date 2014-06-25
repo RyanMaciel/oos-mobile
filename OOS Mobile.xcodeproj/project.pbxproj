@@ -53,11 +53,11 @@
 		F16C89191857ADC5002661D5 /* OOSMStationMapAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = F16C89181857ADC5002661D5 /* OOSMStationMapAnnotation.m */; };
 		F16E7F4119213F3C00FFF722 /* OOSMCustomButton.m in Sources */ = {isa = PBXBuildFile; fileRef = F16E7F4019213F3C00FFF722 /* OOSMCustomButton.m */; };
 		F16E7F431921500200FFF722 /* OOSM Launch Image-1 11-22-13-107.png in Resources */ = {isa = PBXBuildFile; fileRef = F16E7F421921500200FFF722 /* OOSM Launch Image-1 11-22-13-107.png */; };
-		F171117C195095F5004FDE2E /* libBlitFeedback.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F1AF06CA1922A2E5003A0F5A /* libBlitFeedback.a */; };
 		F18433791860D95D00D7ED55 /* OOSMStation.m in Sources */ = {isa = PBXBuildFile; fileRef = F18433781860D95D00D7ED55 /* OOSMStation.m */; };
 		F184337F1860DF8F00D7ED55 /* OOSMStationInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F184337E1860DF8F00D7ED55 /* OOSMStationInfoViewController.m */; };
 		F18433821860EC3200D7ED55 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F18433811860EC3200D7ED55 /* CoreLocation.framework */; };
 		F1898843187CADA000E1CC37 /* OOSMFavoriteStationsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F1898842187CADA000E1CC37 /* OOSMFavoriteStationsViewController.m */; };
+		F18B661E19524B3E00FD0628 /* libBlitFeedback.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F1AF06CA1922A2E5003A0F5A /* libBlitFeedback.a */; };
 		F19764D918A94F9200AA02BD /* OOSMWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F19764D818A94F9200AA02BD /* OOSMWebViewController.m */; };
 		F19B49FF191142A500AF1972 /* blue_buoy_icon_50_plus.png in Resources */ = {isa = PBXBuildFile; fileRef = F19B49FE191142A500AF1972 /* blue_buoy_icon_50_plus.png */; };
 		F19B4A011911460900AF1972 /* blue_buoy_icon_100_plus.png in Resources */ = {isa = PBXBuildFile; fileRef = F19B4A001911460900AF1972 /* blue_buoy_icon_100_plus.png */; };
@@ -228,7 +228,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F171117C195095F5004FDE2E /* libBlitFeedback.a in Frameworks */,
+				F18B661E19524B3E00FD0628 /* libBlitFeedback.a in Frameworks */,
 				F1E336711947A2ED0027B05C /* StoreKit.framework in Frameworks */,
 				F1E3366F1947A2E50027B05C /* Security.framework in Frameworks */,
 				F1AF06D61922A316003A0F5A /* QuartzCore.framework in Frameworks */,
@@ -930,6 +930,10 @@
 					Mobile,
 					"$(PROJECT_DIR)/OOS",
 					Mobile,
+					"$(PROJECT_DIR)/OOS",
+					Mobile,
+					"$(PROJECT_DIR)/OOS",
+					Mobile,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "6BBA0D56-CC10-4545-B4F1-62C82799EAF3";
@@ -954,6 +958,10 @@
 				INFOPLIST_FILE = "OOS Mobile/OOS Mobile-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"$(PROJECT_DIR)/OOS",
+					Mobile,
+					"$(PROJECT_DIR)/OOS",
+					Mobile,
 					"$(PROJECT_DIR)/OOS",
 					Mobile,
 					"$(PROJECT_DIR)/OOS",

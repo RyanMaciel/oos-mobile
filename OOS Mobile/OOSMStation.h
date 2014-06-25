@@ -35,4 +35,7 @@
 -(OOSMMapPoint*)getPoint;
 
 -(id)initWithUserReadableName:(NSString*)name nameForServer:(NSString*)nameForServer location:(CLLocation*)location;
+
+-(NSArray*)unwrappedStation;
+-(id)initWithUnwrappedStation:(NSArray*)unwrappedStation;
 @end

@@ -46,6 +46,7 @@
 -(void)addClustersToMap:(NSArray*)clusters;
 -(void)addStationsPointsToMap:(NSDictionary*)stationPoints;
 -(void)addStationToMap:(OOSMStation*)station;
+-(void)retrieveStationData;
 
 //this will be an array of OOSMStations to referece to--among other things--cluster the pins on the map
 @property(strong, nonatomic)NSMutableDictionary *stations;
@@ -69,6 +70,18 @@
 @synthesize fiftyPlusPinImage=_fiftyPlusPinImage;
 @synthesize oneHundredPlusPinImage=_oneHundredPlusPinImage;
 @synthesize fiveHundredPlusPinImage=_fiveHundredPlusPinImage;
+
+//Get the saved data for the station.
+-(void)retrieveStationData{
+    NSArray *stationArray = [[NSUserDefaults standardUserDefaults] arrayForKey:@"kStationArray"];
+    for(NSArray *stationRepresentation in stationArray){
+        
+        OOSMStation *station = [[OOSMStation alloc] initWithUnwrappedStation:stationRepresentation];
+        [self.stations setValue:station forKey:station.serverid];
+        
+        [self.stationPoints setObject:[station getPoint] forKey:station.serverid];
+    }
+}
 
 #pragma mark Handle Clustering:
 //This method will handle running the clustering algorithm and adding the data points to the map.
@@ -161,8 +174,22 @@
     
     [self handleClustering];
     
+    
+    if(![[NSUserDefaults standardUserDefaults] boolForKey:@"kShouldRetrieveData"]){
+        
+        NSMutableArray *unwrappedStations = [[NSMutableArray alloc] init];
+        for (OOSMStation *station in [self.stations allValues]){
+            [unwrappedStations addObject:[station unwrappedStation]];
+        }
+        
+        //Save the station data for future use.
+        [[NSUserDefaults standardUserDefaults] setObject:unwrappedStations forKey:@"kStationArray"];
+    
+    }
     //call when the data handler has finished parsing.
     [self.mapDelegate mapViewControllerFinishedLoading:self];
+    
+    
         
 }
 
@@ -270,6 +297,7 @@
 
 - (void)viewDidLoad
 {
+    
     //initialize mutable dictionaries
     self.stations = [[NSMutableDictionary alloc] init];
     self.stationPoints = [[NSMutableDictionary alloc] init];
@@ -280,8 +308,21 @@
     //set up the map
     [self createMap];
     
-    OOSMDataHandlerModel *dataHandlerModel=[[OOSMDataHandlerModel alloc] init];
-    dataHandlerModel.delegate = self;
+    //If this the user's first use of the app, then get the data needed to populate the map.
+    //If not, then retrieve the stored data to populate the map.
+    if(![[NSUserDefaults standardUserDefaults] boolForKey:@"kShouldRetrieveData"]){
+        OOSMDataHandlerModel *dataHandlerModel=[[OOSMDataHandlerModel alloc] init];
+        dataHandlerModel.delegate = self;
+        
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"kShouldRetrieveData"];
+        
+    }else{
+        
+        [self retrieveStationData];
+        [self handleClustering];
+        [self.mapDelegate mapViewControllerFinishedLoading:self];
+    
+    }
     
     self.coreLocationManager=[[CLLocationManager alloc] init];
     self.coreLocationManager.desiredAccuracy=kCLLocationAccuracyKilometer;

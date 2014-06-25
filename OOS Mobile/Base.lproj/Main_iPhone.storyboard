@@ -179,6 +179,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <toolbarItems/>
                     <navigationItem key="navigationItem" id="2Nu-p1-B1n">
                         <nil key="title"/>
                         <barButtonItem key="leftBarButtonItem" id="4zp-hp-irg">
@@ -196,6 +197,7 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <segue destination="dnX-wV-4L9" kind="push" identifier="StationInfo" id="NIR-s7-xUw"/>
                     </connections>
@@ -363,6 +365,7 @@
                             <constraint firstItem="AZG-d2-Qqh" firstAttribute="leading" secondItem="jLa-bu-m5G" secondAttribute="leading" id="oNR-Em-2X7"/>
                         </constraints>
                     </view>
+                    <toolbarItems/>
                     <navigationItem key="navigationItem" id="wSl-mq-IWP">
                         <barButtonItem key="leftBarButtonItem" id="RPw-hI-hHZ">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoLight" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="EbL-Ym-AfH">
@@ -403,6 +406,6 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="Icm-60-zaS"/>
+        <segue reference="NIR-s7-xUw"/>
     </inferredMetricsTieBreakers>
 </document>

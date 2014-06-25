@@ -57,4 +57,21 @@
     return self;
 }
 
+//return an array of values that can be used to create a new OOSMStation object, and can also be used in a dictionary.
+-(NSArray*)unwrappedStation{
+    return @[self.nameForServer, self.userReadableName, @[[NSNumber numberWithDouble:self.location.coordinate.latitude], [NSNumber numberWithDouble:self.location.coordinate.longitude]], self.serverid];
+}
+
+-(id)initWithUnwrappedStation:(NSArray*)unwrappedStation{
+    self = [super init];
+    if(self){
+        self.nameForServer = unwrappedStation[0];
+        self.userReadableName = unwrappedStation[1];
+        self.location = [[CLLocation alloc] initWithLatitude:[unwrappedStation[2][0] doubleValue] longitude:[unwrappedStation[2][1] floatValue]];
+        self.serverid = unwrappedStation[3];
+        
+    }
+    return self;
+}
+
 @end
